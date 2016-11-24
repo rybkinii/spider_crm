@@ -1,0 +1,88 @@
+﻿
+
+        
+
+            
+   <div class="panel panel-default"><div class="panel-heading">Зачисление комиссии субагентам агента ИП</div><div class="panel-body">
+
+        <div style="padding-bottom:5px;" align="center">
+            
+            <b>Период:&nbsp;</b><select id="period" name="period" style="width:150px;"><option value="201607">Июль 2016</option>
+<option value="201606">Июнь 2016</option>
+<option value="201605">Май 2016</option>
+<option value="201604">Апрель 2016</option>
+<option value="201603">Март 2016</option>
+<option value="201602">Февраль 2016</option>
+<option value="201601">Январь 2016</option>
+<option value="201512">Декабрь 2015</option>
+<option value="201511">Ноябрь 2015</option>
+<option value="201510">Октябрь 2015</option>
+<option value="201509">Сентябрь 2015</option>
+<option value="201508">Август 2015</option>
+<option value="201507">Июль 2015</option>
+<option value="201506">Июнь 2015</option>
+<option value="201505">Май 2015</option>
+<option value="201504">Апрель 2015</option>
+<option value="201503">Март 2015</option>
+<option value="201502">Февраль 2015</option>
+<option value="201501">Январь 2015</option>
+<option value="201412">Декабрь 2014</option>
+<option value="201411">Ноябрь 2014</option>
+<option value="201410">Октябрь 2014</option>
+<option value="201409">Сентябрь 2014</option>
+<option value="201408">Август 2014</option>
+<option value="201407">Июль 2014</option>
+<option value="201406">Июнь 2014</option>
+<option value="201405">Май 2014</option>
+<option value="201404">Апрель 2014</option>
+<option value="201403">Март 2014</option>
+<option value="201402">Февраль 2014</option>
+<option value="201401">Январь 2014</option>
+<option value="201312">Декабрь 2013</option>
+<option value="201311">Ноябрь 2013</option>
+<option value="201310">Октябрь 2013</option>
+<option value="201309">Сентябрь 2013</option>
+<option value="201308">Август 2013</option>
+</select>
+            <b style="margin-left:15px;">Выбрать все&nbsp;<input type="checkbox" id="selectAll" /></b>
+            <input id="enroll" type="button" style="margin:0 0 5px 15px;width:100px;" value="Зачислить" />
+            <img id="loading" src="/Content/images/loading.gif" alt="loading" style="margin-bottom:5px;vertical-align:middle;visibility:hidden;" />
+            <div id="serverError" class="field-validation-error" align="center"></div>
+         </div>
+         <div id="result">
+            
+<table class="parameters-table" align="center">
+    <tr>
+        <th>№</th>
+        <th>Субагент</th>
+        <th>Неначисленная комиссия с НДС</th>
+        <th>Комиссия Итого</th>
+        <th>Списание ИТО за период</th>
+        <th>Комиссия к зачислению</th>
+        <th >Статус/Действие</th>
+        <th style="width:220px;">Способ зачисления / Комментарий</th>
+    </tr>
+    
+    <tr>
+        <th colspan="2">Итого:</th>
+        <th style="text-align:left;">0,00 </th>
+        <th style="text-align:left;">0,00 </th>
+        <th style="text-align:left;">0</th>
+        <th colspan="3"></th>
+    </tr>
+</table>
+
+
+
+
+         </div>
+         <div style="margin:20px;" align="center">
+            <table class="parameters-table" >
+                <tr>
+                    <td class="toEnroll"><div style="width:40px;"></div></td>
+                    <td>Зеленым цветом выделена комиссия к зачислению без НДС, для агентов, не являющихся плательщиками НДС.</td>
+                </tr>
+            </table>
+        </div>
+    </div></div>
+

@@ -1,0 +1,423 @@
+﻿
+
+        
+
+            
+    <form action="/Agent/Save" id="form0" method="post">
+    <div class="panel panel-default"><div class="panel-heading">Создание агента</div><div class="panel-body">
+    
+    <div align="center">
+        <input id="Agent_Id" name="Agent.Id" type="hidden" value="0" />
+        <input id="Agent_Parent_Id" name="Agent.Parent.Id" type="hidden" value="6416475" />
+        <input id="AgentInfo_Id" name="AgentInfo.Id" type="hidden" value="0" />
+        <input id="MaxCreditLimit" name="MaxCreditLimit" type="hidden" value="0" />
+        <input id="PageTitle" name="PageTitle" type="hidden" value="Создание агента" />
+        
+        <table class="create-entity">
+            <tr>
+                <th>Главный агент</th>
+                <td>
+                  <input disabled="disabled" id="Agent_Parent_Name" name="Agent.Parent.Name" type="text" value="ИП Аскирка  (TELE2)" />
+                  
+                </td>
+                <td></td>
+            </tr>
+            
+            <tr>
+                <th>Наименование в системе</th>
+                <td>
+                    <input id="Agent_Name" name="Agent.Name" type="text" value="" />                   
+                </td>
+                <td><span style="color: red;">*</span></td>
+            </tr>
+            <tr>
+                <th>Наименование на чеке</th>
+                <td>
+                    <input id="AgentInfo_AgentLegalName" name="AgentInfo.AgentLegalName" type="text" value="" />                   
+                </td>
+                <td><span style="color: red;">*</span></td>
+            </tr>
+            
+            <tr>
+                <th>Номер договора</th>
+                <td><input id="AgentInfo_ContractNo" name="AgentInfo.ContractNo" type="text" value="" /></td>
+                <td></td>
+            </tr>
+            <tr>
+                <th>Дата договора</th>
+                
+                
+                <td><input id="AgentInfo_ContractDateString" name="AgentInfo.ContractDateString" style="width: 200px" type="text" value="16.08.2016" /></td>
+                <td></td>
+            </tr>
+            
+            <tr>
+                <th>Юридический адрес</th>
+                <td>
+                    <input id="AgentInfo_AgentLegalAddress" name="AgentInfo.AgentLegalAddress" type="text" value="" />
+                </td>
+                <td><span style="color: red;">*</span></td>
+            </tr>
+            
+            <tr>
+                <th>Регион</th>
+                <td>                    
+                    <select id="Region_Id" name="Region.Id"><option value="0">Не задан</option>
+<option value="80">Агинский Бурятский автономный округ</option>
+<option value="22">Алтайский край</option>
+<option value="28">Амурская область</option>
+<option value="29">Архангельская область</option>
+<option value="30">Астраханская область</option>
+<option value="31">Белгородская область</option>
+<option value="32">Брянская область</option>
+<option value="33">Владимирская область</option>
+<option value="34">Волгоградская область</option>
+<option value="35">Вологодская область</option>
+<option value="36">Воронежская область</option>
+<option value="79">Еврейская автономная область</option>
+<option value="75">Забайкальский край</option>
+<option value="37">Ивановская область</option>
+<option value="38">Иркутская область</option>
+<option value="39">Калининградская область</option>
+<option value="40">Калужская область</option>
+<option value="41">Камчатский край</option>
+<option value="42">Кемеровская область</option>
+<option value="43">Кировская область</option>
+<option value="81">Коми-Пермяцкий автономный округ</option>
+<option value="82">Корякский автономный округ</option>
+<option value="44">Костромская область</option>
+<option value="23">Краснодарский край</option>
+<option value="24">Красноярский край</option>
+<option value="45">Курганская область</option>
+<option value="46">Курская область</option>
+<option value="47">Ленинградская область</option>
+<option value="48">Липецкая область</option>
+<option value="49">Магаданская область</option>
+<option value="77">Москва</option>
+<option value="50">Московская область</option>
+<option value="51">Мурманская область</option>
+<option value="83">Ненецкий автономный округ</option>
+<option value="52">Нижегородская область</option>
+<option value="53">Новгородская область</option>
+<option value="54">Новосибирская область</option>
+<option value="55">Омская область</option>
+<option value="56">Оренбургская область</option>
+<option value="57">Орловская область</option>
+<option value="58">Пензенская область</option>
+<option value="59">Пермский край</option>
+<option value="25">Приморский край</option>
+<option value="60">Псковская область</option>
+<option value="1">республика Адыгея</option>
+<option value="4">республика Алтай</option>
+<option value="2">республика Башкортостан</option>
+<option value="3">республика Бурятия</option>
+<option value="5">республика Дагестан</option>
+<option value="6">республика Ингушетия</option>
+<option value="7">республика Кабардино-Балкарская</option>
+<option value="8">республика Калмыкия</option>
+<option value="9">республика Карачаево-Черкесская</option>
+<option value="10">республика Карелия</option>
+<option value="11">республика Коми</option>
+<option value="91">республика Крым</option>
+<option value="12">республика Марий Эл</option>
+<option value="13">республика Мордовия</option>
+<option value="14">республика Саха (Якутия)</option>
+<option value="15">республика Северная Осетия-Алания</option>
+<option value="16">республика Татарстан</option>
+<option value="17">республика Тыва</option>
+<option value="18">республика Удмуртская</option>
+<option value="19">республика Хакасия</option>
+<option value="20">республика Чеченская</option>
+<option value="21">республика Чувашская</option>
+<option value="61">Ростовская область</option>
+<option value="62">Рязанская область</option>
+<option value="63">Самарская область</option>
+<option value="78">Санкт-Петербург</option>
+<option value="64">Саратовская область</option>
+<option value="65">Сахалинская область</option>
+<option value="66">Свердловская область</option>
+<option value="92">Севастополь</option>
+<option value="67">Смоленская область</option>
+<option value="26">Ставропольский край</option>
+<option value="84">Таймырский (Долгано-Ненецкий) автономный округ</option>
+<option value="68">Тамбовская область</option>
+<option value="69">Тверская область</option>
+<option value="70">Томская область</option>
+<option value="71">Тульская область</option>
+<option value="72">Тюменская область</option>
+<option value="73">Ульяновская область</option>
+<option value="85">Усть-Ордынский Бурятский автономный округ</option>
+<option value="27">Хабаровский край</option>
+<option value="86">Ханты-Мансийский автономный округ - Югра</option>
+<option value="74">Челябинская область</option>
+<option value="87">Чукотский автономный округ</option>
+<option value="88">Эвенкийский автономный округ</option>
+<option value="89">Ямало-Ненецкий автономный округ</option>
+<option value="76">Ярославская область</option>
+</select>
+                </td>
+                <td>
+                </td>
+            </tr>
+            <tr>
+                <th>Часовой пояс</th>
+                <td>
+                    <select id="Agent_GMTOffset" name="Agent.GMTOffset"><option value="2">GMT +02:00</option>
+<option value="3">GMT +03:00</option>
+<option value="4">GMT +04:00</option>
+<option value="5">GMT +05:00</option>
+<option value="6">GMT +06:00</option>
+<option value="7">GMT +07:00</option>
+<option value="8">GMT +08:00</option>
+<option value="9">GMT +09:00</option>
+<option value="10">GMT +10:00</option>
+<option value="11">GMT +11:00</option>
+<option value="12">GMT +12:00</option>
+</select>
+                </td>
+                <td>
+                </td>
+            </tr>
+            <tr>
+                <th>Контактный телефон (мобильный)</th>
+                <td>
+                  <input id="Agent_CellPhone" name="Agent.CellPhone" type="text" value="" />
+                 
+                </td>
+                <td> <span style="color: red;">*</span> </td>
+            </tr>
+            
+            <tr>
+                <th>ФИО директора</th>
+                <td>
+                    <input id="User_FullName" name="User.FullName" type="text" value="" />
+                </td>
+                <td><span style="color: red;">*</span></td>
+            </tr>
+            
+            <tr>
+                <th>Контактное лицо</th>
+                <td>
+                    <input id="Agent_Contact" name="Agent.Contact" type="text" value="" />
+                </td>
+                <td><span style="color: red;">*</span></td>
+            </tr>
+            <tr>
+                <th>Должность</th>
+                <td><input id="Agent_Title" name="Agent.Title" type="text" value="" /></td>
+                <td></td>
+            </tr>
+            <tr>
+                <th>Контактный телефон (рабочий)</th>
+                <td><input id="Agent_Tel" name="Agent.Tel" type="text" value="" /></td>
+                <td><span style="color: red;">*</span></td>
+            </tr>
+            <tr>
+                <th>e-mail</th>
+                <td><input id="Agent_Email" name="Agent.Email" type="text" value="" /></td>
+                <td></td>
+            </tr>
+            <tr>
+                <th>Факс</th>
+                <td><input id="Agent_Fax" name="Agent.Fax" type="text" value="" /></td>
+                <td></td>
+            </tr>           
+            <tr>
+                <th>Телефон тех. поддержки</th>
+                <td><input id="AgentInfo_TechSupportPhone" name="AgentInfo.TechSupportPhone" type="text" value="" /></td>
+                <td><span style="color: red;">*</span></td>
+            </tr>
+            
+            <tr>
+                <th>ИНН</th>
+                <td>
+                    <input id="AgentInfo_AgentITIN" name="AgentInfo.AgentITIN" type="text" value="" />
+                </td>
+                <td><span style="color: red;">*</span></td>
+            </tr>
+            <tr>
+                <th>КПП</th>
+                <td><input id="Agent_BankKPP" name="Agent.BankKPP" type="text" value="" /></td>
+                <td><span style="color: red;">*</span></td>
+            </tr>
+            <tr>
+                <th>Название банка</th>
+                <td>
+                    <input id="Agent_BankName" name="Agent.BankName" type="text" value="" />
+                </td>
+                <td><span style="color: red;">*</span></td>
+            </tr>
+            <tr>
+                <th>БИК</th>
+                <td>
+                    <input id="Agent_BankBIC" name="Agent.BankBIC" type="text" value="" />
+                </td>
+                <td><span style="color: red;">*</span></td>
+            </tr>
+            <tr>
+                <th>Счет</th>
+                <td>
+                    <input id="Agent_BankAccount" name="Agent.BankAccount" type="text" value="" />
+                </td>
+                <td><span style="color: red;">*</span></td>
+            </tr>
+            <tr>
+                <th>Корр. счет</th>
+                <td>
+                    <input id="Agent_BankCorrAccount" name="Agent.BankCorrAccount" type="text" value="" />
+                </td>
+                <td><span style="color: red;">*</span></td>
+            </tr>
+            
+            <tr>
+                <th>Плательщик НДС</th>
+                <td><input checked="checked" id="Agent_IsVATPayer" name="Agent.IsVATPayer" type="checkbox" value="true" /><input name="Agent.IsVATPayer" type="hidden" value="false" /></td>
+                <td><span style="color: red;">*</span></td>
+            </tr>
+            
+            <tr>
+               <th>Тарифный план</th>
+               <td>
+                    <select id="Tariff" name="Tariff"><option value="0">Тарифный план без дохода</option>
+<option value="1">Тарифный план главного агента</option>
+<option value="2">Доля 0,05% от входа</option>
+<option value="3">Доля 0,10% от входа</option>
+<option value="4">Доля 0,15% от входа</option>
+<option value="5">Доля 0,20% от входа</option>
+<option value="6">Доля 0,25% от входа</option>
+<option value="7">Доля 0,30% от входа</option>
+<option value="8">Доля 0,35% от входа</option>
+<option value="9">Доля 0,40% от входа</option>
+<option value="10">Доля 0,45% от входа</option>
+<option value="11">Доля 0,50% от входа</option>
+<option value="12">Доля 0,55% от входа</option>
+<option value="13">Доля 0,60% от входа</option>
+<option value="14">Доля 0,65% от входа</option>
+<option value="15">Доля 0,70% от входа</option>
+<option value="16">Доля 0,75% от входа</option>
+<option value="17">Доля 0,80% от входа</option>
+<option value="18">Доля 0,85% от входа</option>
+<option value="19">Доля 0,90% от входа</option>
+<option value="20">Доля 0,95% от входа</option>
+<option value="21">Доля 1,00% от входа</option>
+<option value="22">5% от дохода</option>
+<option value="23">10% от дохода</option>
+<option value="24">15% от дохода</option>
+<option value="25">20% от дохода</option>
+<option value="26">25% от дохода</option>
+<option value="27">30% от дохода</option>
+<option value="28">35% от дохода</option>
+<option value="29">40% от дохода</option>
+<option value="30">45% от дохода</option>
+<option value="31">50% от дохода</option>
+<option value="32">55% от дохода</option>
+<option value="33">60% от дохода</option>
+<option value="34">65% от дохода</option>
+<option value="35">70% от дохода</option>
+<option value="36">75% от дохода</option>
+<option value="37">80% от дохода</option>
+<option value="38">85% от дохода</option>
+<option value="39">90% от дохода</option>
+<option value="40">95% от дохода</option>
+<option value="41">100% от дохода</option>
+</select>
+                </td>
+                <td></td>
+            </tr>
+            
+            <tr>
+                <th>Кредитный лимит</th>
+                <td><input id="Agent_CreditLimit" name="Agent.CreditLimit" readonly="readonly" type="text" value="0.00" /></td>
+                <td>
+                </td>
+            </tr>
+            <tr>
+                <th>Процент за овердрафт</th>
+                <td><input id="Agent_CreditPercent" name="Agent.CreditPercent" readonly="readonly" type="text" value="0.00" /></td>
+                <td>
+                </td>
+            </tr>
+            <tr>
+                <th>Информация на чеке</th>
+                <td><textarea cols="20" id="AgentInfo_InfoString" name="AgentInfo.InfoString" rows="5">
+Спасибо за пользование нашим терминалом! Проверка платежа и обращение в тех. поддержку на сайте www.n-ps.ru, раздел &quot;Служба Поддержки&quot;.</textarea></td>
+                <td></td>
+            </tr>
+            <tr>
+                <th>Запрет выхода из программы через сервисное меню</th>
+                <td><input id="AgentInfo_SecureServiceMenu" name="AgentInfo.SecureServiceMenu" type="checkbox" value="true" /><input name="AgentInfo.SecureServiceMenu" type="hidden" value="false" /></td>
+                <td></td>
+            </tr>
+
+                
+            <tr>
+                <th>Логин</th>
+                <td>
+                    <input id="User_Login" name="User.Login" type="text" value="" />                   
+                </td>
+                <td><span style="color: red;">*</span></td>
+            </tr>
+            <tr>
+                <th>Пароль на получение сертификата</th>
+                <td>
+<input type="text" id="User_Password" name="User.Password" style="width: 100px" value=""/>
+<input type="button" id="User_PasswordButton" value="Сгенерировать" /></td>
+                <td><span style="color: red;">*</span></td>
+            </tr>
+            <tr>
+                <th>Пароль для Web-доступа</th>
+                <td>
+<input type="text" id="User_WebPassword" name="User.WebPassword" style="width: 100px" value=""/>
+<input type="button" id="User_WebPasswordButton" value="Сгенерировать" /></td>
+                <td><span style="color: red;">*</span></td>
+            </tr>
+            
+            <tr>
+                <th>Активен</th>
+                <td><input checked="checked" id="Agent_Active" name="Agent.Active" type="checkbox" value="true" /><input name="Agent.Active" type="hidden" value="false" /></td>
+                <td></td>
+            </tr>
+             <tr>
+                <th>Списание ИТО включено</th>
+                <td><input checked="checked" id="AgentInfo_EnableITO" name="AgentInfo.EnableITO" type="checkbox" value="true" /><input name="AgentInfo.EnableITO" type="hidden" value="false" /></td>
+            </tr>
+            
+        </table>
+        <p>
+            <input type="submit" value="Сохранить" id="submitButton"/>
+            <input type="button" value="Отмена" onclick="javascript:document.location.href = '/Agent/Index'" />
+            
+        </p>
+        <div id="serverError" class="field-validation-error">
+            
+            <span class="field-validation-valid" id="Agent_Name_validationMessage"></span> 
+            <span class="field-validation-valid" id="AgentInfo_ContractNo_validationMessage"></span> 
+            <span class="field-validation-valid" id="AgentInfo_AgentLegalName_validationMessage"></span> 
+            <span class="field-validation-valid" id="AgentInfo_ContractDateString_validationMessage"></span> 
+            <span class="field-validation-valid" id="AgentInfo_AgentLegalAddress_validationMessage"></span> 
+            <span class="field-validation-valid" id="Agent_CellPhone_validationMessage"></span> 
+            <span class="field-validation-valid" id="User_FullName_validationMessage"></span> 
+            <span class="field-validation-valid" id="Agent_Contact_validationMessage"></span> 
+            <span class="field-validation-valid" id="Agent_Title_validationMessage"></span> 
+            <span class="field-validation-valid" id="Agent_Tel_validationMessage"></span> 
+            <span class="field-validation-valid" id="Agent_Email_validationMessage"></span> 
+            <span class="field-validation-valid" id="Agent_Fax_validationMessage"></span> 
+            <span class="field-validation-valid" id="AgentInfo_TechSupportPhone_validationMessage"></span> 
+            <span class="field-validation-valid" id="AgentInfo_AgentITIN_validationMessage"></span> 
+            <span class="field-validation-valid" id="Agent_BankKPP_validationMessage"></span> 
+            <span class="field-validation-valid" id="Agent_BankName_validationMessage"></span> 
+            <span class="field-validation-valid" id="Agent_BankBIC_validationMessage"></span> 
+            <span class="field-validation-valid" id="Agent_BankAccount_validationMessage"></span> 
+            <span class="field-validation-valid" id="Agent_BankCorrAccount_validationMessage"></span> 
+            <span class="field-validation-valid" id="Agent_IsVATPayer_validationMessage"></span>            
+            <span class="field-validation-valid" id="Agent_CreditPercent_validationMessage"></span>            
+            <span class="field-validation-valid" id="AgentInfo_InfoString_validationMessage"></span> 
+            <span class="field-validation-valid" id="User_Login_validationMessage"></span> 
+            <span class="field-validation-valid" id="User_Password_validationMessage"></span> 
+            <span class="field-validation-valid" id="User_WebPassword_validationMessage"></span> 
+            <span class="field-validation-valid" id="Agent_MinSeparateBalance_validationMessage"></span>            
+        </div>
+    </div>
+    </div></div>
+    </form>
+

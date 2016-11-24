@@ -1,0 +1,141 @@
+<div ng-if="FF_Client.status!='ready'" class="app-content-loading">
+          <i class="fa fa-spinner fa-spin loading-spinner"></i>
+</div>
+
+<div ui-content-for="title">
+    <center>
+        <signal-panel class='pull-right' ng-if="FF_Client.status=='ready'">
+            <!--{{ FSession.current.clientgroup=='Архитектор' }}-->
+                <div class="fa fa-plus"    ng-click="FF_Client.Create({f_c_f_client:FSession.current.f_client});$root.treedisplay[FSession.current.f_client]=true;" ></div>
+                <div class="fa fa-refresh" ng-click="FF_Client.Load();FF_Access.Load();FF_Contact.Load();" ></div>
+                <div class="fa fa-save"    ng-click="FF_Client.Save();FF_Access.Save();FF_Contact.Save();" ></div>
+        </signal-panel>
+    </center>
+</div>
+
+<div class="scrollable" ng-if="FF_Client.status=='ready'">
+<div class="scrollable-content">
+  <div class="container-fluid section section-break" id="toggleExample" ng-controller="CtrlUserIndex">
+
+            <br/>
+
+
+
+            <script type="text/ng-template" id="FF_Accesses">
+                <div ng-class="'paneled-item'+(item | iud_class)" ng-controller="CtrlUserIndex">
+                    <b>{{(item.name ? item.name : 'Новая запись')}}</b>
+					
+                    <i class='fa fa-remove pull-right clickable'    ng-click='item | iud_delete'  ng-if="item.iud!=3 && item.iud!=4 && FF_Access.status=='ready'"    ></i>
+                    <i class='fa fa-undo   pull-right clickable'    ng-click='item | iud_undo'    ng-if="(item.iud==3 || item.iud==4) && FF_Access.status=='ready'"    ></i>
+                    <i class='fa fa-edit   pull-right clickable'    ng-click="FF_Access.Param('edititem', FF_Access.Param('edititem').value== item.id ? '0' : item.id)" ng-if="FF_Access.status=='ready'"></i>
+                    <div style='clear:both;'></div>
+                    <table style='width:100%;'  cellspacing='3px;' ng-if="FF_Access.Param('edititem').value==item.id">
+                        <tr><td>Название</td><td>
+                                <input type='text' ng-change="item | iud_change" ng-model='item.name' />
+                        </td></tr>
+                        <tr><td>Логин</td><td>
+                                <input type='text' ng-change="item | iud_change" ng-model='item.login' />
+                        </td></tr>
+                        <tr><td>Пароль</td><td>
+                                <input type='passwd' ng-change="item | iud_change;"   ng-model='item.passwd' />
+                        </td></tr>
+                    </table>
+                </div>
+            </script>
+            
+            <script type="text/ng-template" id="FF_Contactes">
+                <div ng-class="'paneled-item'+(item | iud_class)" ng-controller="CtrlUserIndex">
+                    <b>{{ item.c_contacttype | get_indexed_value : {list: FF_Dictionaryes.dictionary('lst_system_c_contacttype'), index:'c_contacttype', field:'descr'} }}&nbsp;{{(item.data ? item.data : 'Новая запись')}}</b>
+
+					
+                    <i class='fa fa-remove pull-right clickable'    ng-click='item | iud_delete'  ng-if="item.iud!=3 && item.iud!=4 && FF_Contact.status=='ready'"    ></i>
+                    <i class='fa fa-undo   pull-right clickable'    ng-click='item | iud_undo'    ng-if="(item.iud==3 || item.iud==4) && FF_Contact.status=='ready'"    ></i>
+                    <i class='fa fa-edit   pull-right clickable'    ng-click="FF_Contact.Param('edititem', FF_Contact.Param('edititem').value== item.id ? '0' : item.id)" ng-if="FF_Contact.status=='ready'"></i>
+                    <div style='clear:both;'></div>
+                    <table style='width:100%;'  cellspacing='3px;' ng-if="FF_Contact.Param('edititem').value==item.id">
+                        
+                        <tr><td>Тип контакта</td><td>
+                                <selector-source clearing='true' ng-change="item | iud_change" ng-model="item.c_contacttype" source="{list:FF_Dictionaryes.dictionary('lst_system_c_contacttype'),index:'c_contacttype',field:'descr'}" search="true" class="" ></selector-source>
+                        </td></tr>
+                        <tr><td>Основной способ связи</td><td>
+                            <input type='checkbox' ng-change="item | iud_change;"  ng-model='item.prefer_loop' />
+                        </td></tr>
+                        <tr><td>Данные контакта</td><td>
+                                <input type='passwd' ng-change="item | iud_change;"   ng-model='item.data' />
+                        </td></tr>
+                        
+                    </table>
+                </div>
+            </script>
+			
+
+
+
+			
+            <script type="text/ng-template" id="FF_ClientItemTemplate">
+                <div ng-class="'paneled-item'+(item | iud_class)" ng-controller="CtrlUserIndex">
+                    <b>{{item.id}}:{{item.f_client}}:&nbsp;{{item.descr}}</b>
+                    <i class='fa fa-undo   pull-right clickable'   ng-click='item | iud_undo'    ng-if="(item.iud==3 || item.iud==4) && FF_Client.status=='ready'"    ></i>
+                    <i class='fa fa-remove pull-right clickable'  ng-click='item | iud_delete'  ng-if="item.iud!=3 && item.iud!=4 && FF_Client.status=='ready'"    ></i>
+                    <i class='fa fa-edit   pull-right clickable'    ng-click="edit_client(item);" ng-if="FF_Client.status=='ready'"></i>
+                    <div style='clear:both;'></div>
+            
+                    <div ng-if="FF_Client.Param('edititem').value==item.id"> <!-- BODY -->
+
+                        <table style='width:100%;'  cellspacing='3px;' >
+                            <tr><td>Почта</td><td><input type='text' ng-change="item | iud_change" ng-model='item.email' /></td></tr>
+                            <tr><td>Пароль</td><td><input type='text' ng-change="item | iud_change" ng-model='item.passwd' /></td></tr>
+                            <tr><td>Главный агент</td><td>{{ item.f_c_f_client | get_indexed_value : {list: FF_Client.items, index:'f_client', field:'descr'} }}</td></tr>
+                            <tr><td>Тип лица</td><td><selector-source clearing='true' ng-change="item | iud_change" ng-model="item.c_clientjur" source="{list:FF_Dictionaryes.dictionary('lst_system_c_clientjur'),index:'c_clientjur',field:'descr'}" search="true" class="" ></selector-source></td></tr>
+                            <tr><td>Группа</td><td><selector-source clearing='true' ng-change="item | iud_change" ng-model="item.c_clientgroup" source="{list:FF_Dictionaryes.dictionary('lst_system_c_clientgroup'),index:'c_clientgroup',field:'descr'}" search="true" class="" ></selector-source></td></tr>
+                            <tr ng-if='item.c_clientjur==2'><td>Краткое наименование</td><td><input type='text' ng-change="item | iud_change" ng-model='item.name1' /></td></tr>
+                            <tr ng-if='item.c_clientjur==1'><td>Фамилия</td><td><input type='text' ng-change="item | iud_change" ng-model='item.name1' /></td></tr>
+                            <tr ng-if='item.c_clientjur==1'><td>Имя</td><td><input type='text' ng-change="item | iud_change" ng-model='item.name2' /></td></tr>
+                            <tr ng-if='item.c_clientjur==1'><td>Отчество</td><td><input type='text' ng-change="item | iud_change" ng-model='item.name3' /></td></tr>
+                            <tr ng-if='item.c_clientjur==2'><td>Полное наименование</td><td><input type='text' ng-change="item | iud_change" ng-model='item.descr' /></td></tr>
+                            <tr ng-if='item.c_clientjur==1'><td>ФИО</td><td><input type='text' ng-change="item | iud_change" ng-model='item.descr' /></td></tr>
+                            <tr><td>Пол</td><td><input type='radio' value='1' ng-change="item | iud_change" ng-model='item.sex' />Муж<input type='radio' value='0' ng-change="item | iud_change" ng-model='item.sex' />Жен</td></tr>
+                            <tr><td>День рожденья</td><td><input type='date' format-date placeholder="yyyy-MM-dd" ng-change="item | iud_change" ng-model='item.birthday' /></td></tr>
+                            <tr><td>Временная зона</td><td><input type='text' ng-change="item | iud_change" ng-model='item.timezone' /></td></tr>
+                            <tr ng-repeat="dextra in FF_Dictionaryes.dictionary('lst_system_c_extratype')"><td>{{dextra.name}}</td><td><input ng-repeat="iextra in item.ask_f_clientextra.data" type='text' ng-change="iextra | iud_change; item | iud_change" ng-model='iextra.value_char' ng-if="iextra.c_extratype==dextra.c_extratype && iextra.stat==0" /></td></tr>
+                        </table>
+
+                        <div ng-if="FF_Contact.status!='ready' || FF_Access.status!='ready'">Идёт загрузка данных...</div>
+                        
+                        <div ng-if="item.f_client>0">
+                            <div ng-if="FF_Contact.status=='ready'">
+                                <br/>
+                                <h4>Контакты</h4>
+                                <div ng-repeat="item in FF_Contact.items | orderBy:'id' track by $index" ng-if='item.stat==0' ng-include="'FF_Contactes'"></div>
+                                <br/>
+                                <signal-panel class='pull-right'>
+                                        <div ng-click="FF_Contact.Create({f_client:item.f_client})" >Добавить контакт</div>
+                                </signal-panel>
+                                <div style='clear:both;'></div>
+                            </div>
+
+
+                            <div ng-if="FF_Access.status=='ready' && item.f_client==FSession.current.f_client">
+                                <br/>
+                                <h4>Терминалы</h4>
+                                <div ng-repeat="item in FF_Access.items | orderBy:'id' track by $index" ng-if='item.stat==0' ng-include="'FF_Accesses'"></div>
+                                <br/>
+                                <signal-panel class='pull-right'>
+                                        <div ng-click="FF_Access.Create({f_client:item.f_client})" >Добавить терминал</div>
+                                </signal-panel>
+                                <div style='clear:both;'></div>
+                            </div>
+                        </div>
+                    </div> <!-- /BODY -->
+					
+                </div>
+            </script>
+            
+
+			
+            <div ng-repeat="item in FF_Client.items | orderObjectBy:'id' track by $index" 
+                 ng-if='(item.stat==stat || stat==null) && $root.editors.indexOf(FSession.current.clientgroup)!=-1' ng-include="'FF_ClientItemTemplate'"></div>
+
+  </div>
+</div>
+</div>

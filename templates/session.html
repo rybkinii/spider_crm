@@ -1,0 +1,29 @@
+
+ 
+<div ng-controller="CtrlSession" class="panel panel-default">
+	<!--{{FSession.current}}-->
+	<div class="panel-heading">Текущая сессия 
+		<span role="button"  ng-click='SwitchDebug();' 
+				ng-class="FSession.current.debug_mode ? 'btn-success' : 'btn-default'" 
+				class="btn btn-xs pull-right glyphicon glyphicon-wrench" 
+				aria-hidden="true"></span>
+		<div class="clear"></div>
+	</div>
+        
+	<div ng-if="FSession.status!='ready'" class="panel-body">
+            <i class="fa fa-2x fa-android"></i> Загрузка...
+	</div>
+
+	<div ng-if="FSession.status=='ready' && FSession.items.length>0" ng-repeat='session in FSession.items' class="panel-body">
+		{{session.descr}} ({{session.clientgroup}}) <button ng-click="FSession.Save();">Выход</button>
+	</div>
+	<div ng-if="FSession.status=='ready' && FSession.items.length==0" class="panel-body">
+		<table>
+			<tr><td>Пользователь</td><td><input type='text' class="form-control input-sm" ng-model='sessionlogin'/></td></tr>
+			<tr><td>Пароль</td><td><input type='password' class="form-control input-sm" ng-model='sessionpass'/></td></tr>
+			<tr><td></td><td><button class='pull-right' ng-click="FSession.Load({'email':sessionlogin,'passwd':sessionpass});">Войти</button></td></tr>
+		</table>
+	</div>
+	
+</div>
+

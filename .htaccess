@@ -1,0 +1,41 @@
+RewriteRule ^(php|css|js|modules|phpadmin)($|/) - [L]
+
+# with AJAX withCredentials=false (cookies NOT sent)
+Options +SymLinksIfOwnerMatch
+Header always set Access-Control-Allow-Origin "*"
+Header always set Access-Control-Max-Age: 3628800
+Header always set Access-Control-Allow-Methods "POST, GET, PUT, OPTIONS, PATCH, DELETE" 
+Header always set Access-Control-Allow-Headers "X-Accept-Charset,X-Accept,Content-Type"
+RewriteEngine On               
+RewriteCond %{REQUEST_METHOD} OPTIONS 
+RewriteRule ^(.*)$ $1 [R=200,L,E=HTTP_ORIGIN:%{HTTP:ORIGIN}]]
+
+RewriteRule ^style/([0-9-]+)/?$ style.php?id=$1 [NC,L]
+RewriteRule ^file/([0-9-]+)/?$ file.php?id=$1 [NC,L]
+RewriteRule ^file/([0-9-]+)/thumball/([a-zA-Z0-9-]+)?$ file.php?id=$1&thumball=$2 [NC,L]
+
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^.*$ / [L]
+
+
+# with AJAX withCredentials=true (cookies sent, SSL allowed...)
+Options +SymLinksIfOwnerMatch
+SetEnvIfNoCase ORIGIN (.*) ORIGIN=$1
+Header always set Access-Control-Allow-Origin "%{ORIGIN}e"
+Header always set Access-Control-Allow-Methods "POST, GET, PUT, OPTIONS, PATCH, DELETE" 
+Header always set Access-Control-Max-Age: 3628800
+Header always set Access-Control-Allow-Credentials "true"
+Header always set Access-Control-Allow-Headers "X-Accept-Charset,X-Accept,Content-Type"
+RewriteEngine On
+RewriteCond %{REQUEST_METHOD} OPTIONS
+RewriteRule ^(.*)$ $1 [R=200,L,E=HTTP_ORIGIN:%{HTTP:ORIGIN}]
+
+RewriteRule ^style/([0-9-]+)/?$ style.php?id=$1 [NC,L]
+RewriteRule ^file/([0-9-]+)/?$ file.php?id=$1 [NC,L]
+RewriteRule ^file/([0-9-]+)/thumball/([a-zA-Z0-9-]+)?$ file.php?id=$1&thumball=$2 [NC,L]
+
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^.*$ / [L]
+

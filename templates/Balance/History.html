@@ -1,0 +1,84 @@
+﻿
+
+        
+
+            
+    <div class="panel panel-default"><div class="panel-heading">Движение по кассе агента ИП</div><div class="panel-body">
+
+            
+            <table class="parameters-table" align="center">
+                <tr>
+                    <td style="padding:0;" colspan="2">
+
+
+
+<table class="parameters-table" align="center" >
+    <tr>
+        <th colspan="2">Период</th>
+    </tr>
+    <tr>
+        <td>
+            <label for="StartingTime">Диапазон:</label> &nbsp;&nbsp;&nbsp;&nbsp;
+        </td>
+        <td>
+            <select id="Period" name="Period" style="width: 150px"><option value="0">За сегодня</option>
+<option value="1">За вчера</option>
+<option value="2">За последние 7 дней</option>
+<option value="3">За последние 14 дней</option>
+<option value="4">За последние 30 дней</option>
+<option value="5">За текущий месяц</option>
+<option value="6">За прошлый месяц</option>
+</select>
+            с &nbsp;
+            
+            <input class="dateinput" id="StartingTime" name="StartingTime" type="text" value="" />
+
+            
+
+            <span id="CopyStartingDate" class="hand" title="Скопировать начальную дату">до</span>&nbsp;
+            
+            <input class="dateinput" id="EndingTime" name="EndingTime" type="text" value="" />
+
+            
+        </td>
+    </tr>
+</table>
+<div style="text-align:center;">
+    <span><span class="field-validation-valid" id="StartingTime_validationMessage"></span></span>&nbsp;
+    <span><span class="field-validation-valid" id="EndingTime_validationMessage"></span></span>
+</div>
+</td>
+                </tr>
+                
+                <tr>
+                    <th colspan="2">Параметры фильтра</th>
+                </tr>
+                <tr>
+                    <td>Тип операции</td>
+                    <td><select id="operationType" name="operationType"><option selected="selected" value="Any">Любая</option>
+<option value="Redistribution">Перераспределение</option>
+<option value="CommissionEnroll">Зачисление внутренней комиссии</option>
+<option value="Correction">Корректировка</option>
+<option value="ITO">Списание ИТО</option>
+</select></td>
+                </tr>
+                <tr>
+                    <td>Субагент</td>                   
+                    <td><select id="targetAgent" name="targetAgent"><option selected="selected" value="0">Любой</option>
+</select></td>                   
+                </tr>
+                <tr>
+                    <td>Направление операции</td>                    
+                    <td><select id="operationDirection" name="operationDirection"><option selected="selected" value="Any">Все</option>
+<option value="Minus">Снятие</option>
+<option value="Plus">Зачисление</option>
+</select></td>
+                </tr>
+                
+            </table>
+            
+            <div>
+                <input id="build" type="button" value="Построить отчет"/>
+                <img class="loading_img" src="/Content/Images/loading.gif" style="visibility:hidden;" alt="loader" />
+            </div>
+    </div></div>

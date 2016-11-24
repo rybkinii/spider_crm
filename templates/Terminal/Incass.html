@@ -1,0 +1,254 @@
+<div ng-if="FF_Incassation.status!='ready'" class="app-content-loading">
+          <i class="fa fa-spinner fa-spin loading-spinner"></i>
+</div>
+
+<div ui-content-for="title">
+    <center>
+        <signal-panel class='pull-right' ng-if="FF_Incassation.status=='ready'">
+                <!--<div class="fa fa-plus"     ng-click="FF_Incassation.Create({f_c_f_client:FSession.current.f_client});$root.treedisplay[FSession.current.f_client]=true;" ></div>-->
+                <div class="fa fa-refresh" ng-click="FF_Incassation.Load()" ></div>
+                <!--<div class="fa fa-save"    ng-click="FF_Incassation.Save();" ></div>-->
+        </signal-panel>
+    </center>
+</div>
+
+<div class="scrollable" ng-if="FF_Incassation.status=='ready'">
+<div class="scrollable-content">
+  <div class="container-fluid section section-break" id="toggleExample" ng-controller="CtrlIncassation">
+
+            <br/>
+			<table width='100%'>
+				<tr><th>Фильтры</th></tr>
+                                <tr><td width='30%'>Агент</td><td><selector-source clearing='true' style='min-width:100%' ng-change="FF_Incassation.Load();" ng-model="FF_Client.f_client" source="{list:FF_Client.items,index:'f_client',field:'descr'}" search="true" class="" ></selector-source></td></tr>
+				<tr><td width='30%'>Терминал</td><td><selector-source clearing='true' style='min-width:100%' ng-change="FF_Incassation.Load();" ng-model="FF_Incassation.f_terminal" source="{list:FF_Terminal.items,index:'f_terminal',field:'fa_descr'}" search="true" class="" ></selector-source></td></tr>
+				<!--<tr><td colspan='2'><input type='checkbox' ng-change="item | iud_change;"  ng-false-value="0" ng-true-value="1" ng-checked="stat==1" ng-model='stat' /> Отображать отключенные терминалы</td></tr>-->
+				<tr><td width='30%'>Дата начала</td><td><input type='date' format-date placeholder="yyyy-MM-dd" ng-change="FF_Incassation.Load();" ng-model='FF_Incassation.dts_value_start' /></td></tr>
+				<tr><td width='30%'>Дата окончания</td><td><input type='date' format-date placeholder="yyyy-MM-dd" ng-change="FF_Incassation.Load();" ng-model='FF_Incassation.dts_value_stop' /></td></tr>
+			</table>
+
+			<br/>
+			<center>
+			<!--<div data-pagination="" data-num-pages="numPages()"  data-current-page="currentPage" data-max-size="maxSize" data-boundary-links="true"></div>-->
+			</center>
+
+<table border='1' align='center'>
+    <tr>
+        <th>№</th>
+        <th>Дата/Терминал</th>
+        <th ng-repeat='date in FF_Incassation.dates track by $index' colspan='{{date.count}}'>{{date.date}}</th>
+        <th>Итого</th>
+    </tr>
+    <tr ng-repeat='record in FF_Incassation.history track by $index'>
+        <td>{{record.f_terminal}}</td>
+        <td>{{record.f_terminal | get_indexed_value : {list: FF_Terminal.items, index:'f_terminal', field:'tname'} }}</td>
+        <td  ng-repeat='field in record.records track by $index' >
+            <label ng-repeat='fdate in FF_Incassation.dates track by $index' ng-if='field.date==fdate.date'>{{field.value}}</label>
+        </td>
+        <td><label>{{record.total}}</label></td>
+    </tr>
+</table>
+<br/>
+
+            <script type="text/ng-template" id="FF_Incassations">
+                <div ng-class="'paneled-item'+(item | iud_class)" ng-controller="CtrlIncassation">
+                    <b>Терминал {{item.f_terminal}}: c&nbsp;{{item.dts_start}}&nbsp;до&nbsp;{{item.dts_start}} сумма {{item.terminal_value_total_sum}}</b>
+                    <!--<i class='fa fa-undo   pull-right clickable'   ng-click='item | iud_undo'    ng-if="(item.iud==3 || item.iud==4) && FF_Incassation.status=='ready'"    ></i>
+                    <i class='fa fa-remove pull-right clickable'  ng-click='item | iud_delete'  ng-if="item.iud!=3 && item.iud!=4 && FF_Incassation.status=='ready'"    ></i>-->
+                    <i class='fa fa-edit   pull-right clickable'    ng-click="FF_Incassation.Param('edititem', FF_Incassation.Param('edititem').value== item.id ? '0' : item.id)" ng-if="FF_Incassation.status=='ready'"></i>
+                    <div style='clear:both;'></div>
+					
+                    <table style='width:100%;'  cellspacing='3px;' ng-if="FF_Incassation.Param('edititem').value==item.id">
+						
+						<tr><td>f_incassation</td><td>
+							<label>{{item.f_incassation}}</label>
+                        </td></tr><!--:"5" -->
+						<tr><td>f_terminal</td><td>
+							<label>{{item.f_terminal}}</label>
+                        </td></tr><!--:"2" -->
+						<tr><td>f_pay</td><td>
+							<label>{{item.f_pay}}</label>
+                        </td></tr><!--:"260" -->
+						<tr><td>dts_value</td><td>
+							<label>{{item.dts_value}}</label>
+                        </td></tr><!--:"2016-09-02 16:21:57" -->
+						<tr><td>dts_request</td><td>
+							<label>{{item.dts_request}}</label>
+                        </td></tr><!--:"2016-09-02 16:21:00" -->
+						<tr><td>payscount</td><td>
+							<label>{{item.payscount}}</label>
+                        </td></tr><!--:"2" -->
+						<tr><td>dispcase1nominal</td><td>
+							<label>{{item.dispcase1nominal}}</label>
+                        </td></tr><!--:null -->
+						<tr><td>dispcase1load</td><td>
+							<label>{{item.dispcase1load}}</label>
+                        </td></tr><!--:null -->
+						<tr><td>dispcase1grant</td><td>
+							<label>{{item.dispcase1grant}}</label>
+                        </td></tr><!--:null -->
+						<tr><td>dispcase1rejected</td><td>
+							<label>{{item.dispcase1rejected}}</label>
+                        </td></tr><!--:null -->
+						<tr><td>dispcase2nominal</td><td>
+							<label>{{item.dispcase2nominal}}</label>
+                        </td></tr><!--:null -->
+						<tr><td>dispcase2load</td><td>
+							<label>{{item.dispcase2load}}</label>
+                        </td></tr><!--:null -->
+						<tr><td>dispcase2grant</td><td>
+							<label>{{item.dispcase2grant}}</label>
+                        </td></tr><!--:null -->
+						<tr><td>dispcase2rejected</td><td>
+							<label>{{item.dispcase2rejected}}</label>
+                        </td></tr><!--:null -->
+						<tr><td>bondcount10</td><td>
+							<label>{{item.bondcount10}}</label>
+                        </td></tr><!--:"1" -->
+						<tr><td>bondcount50</td><td>
+							<label>{{item.bondcount50}}</label>
+                        </td></tr><!--:"2" -->
+						<tr><td>bondcount100</td><td>
+							<label>{{item.bondcount100}}</label>
+                        </td></tr><!--:"3" -->
+						<tr><td>bondcount200</td><td>
+							<label>{{item.bondcount200}}</label>
+                        </td></tr><!--:"4" -->
+						<tr><td>bondcount500</td><td>
+							<label>{{item.bondcount500}}</label>
+                        </td></tr><!--:"5" -->
+						<tr><td>bondcount1000</td><td>
+							<label>{{item.bondcount1000}}</label>
+                        </td></tr><!--:"6" -->
+						<tr><td>bondcount2000</td><td>
+							<label>{{item.bondcount2000}}</label>
+                        </td></tr><!--:"7" -->
+						<tr><td>bondcount5000</td><td>
+							<label>{{item.bondcount5000}}</label>
+                        </td></tr><!--:"8" -->
+						<tr><td>dts_start</td><td>
+							<label>{{item.dts_start}}</label>
+                        </td></tr><!--:"2016-09-02 12:29:38" -->
+						<tr><td>dts_stop</td><td>
+							<label>{{item.dts_stop}}</label>
+                        </td></tr><!--:"2016-09-02 12:33:42" -->
+						<tr><td>terminal_pay_count</td><td>
+							<label>{{item.terminal_pay_count}}</label>
+                        </td></tr><!--:"6" -->
+						<tr><td>terminal_value_total_sum</td><td>
+							<label>{{item.terminal_value_total_sum}}</label>
+                        </td></tr><!--:"5500.0000" -->
+						<tr><td>terminal_value_total_min</td><td>
+							<label>{{item.terminal_value_total_min}}</label>
+                        </td></tr><!--:"200.0000" -->
+						<tr><td>terminal_value_total_max</td><td>
+							<label>{{item.terminal_value_total_max}}</label>
+                        </td></tr><!--:"2500.0000" -->
+						<tr><td>terminal_value_comiss_sum</td><td>
+							<label>{{item.terminal_value_comiss_sum}}</label>
+                        </td></tr><!--:"0.0000" -->
+						<tr><td>terminal_value_comiss_min</td><td>
+							<label>{{item.terminal_value_comiss_min}}</label>
+                        </td></tr><!--:"0.0000" -->
+						<tr><td>terminal_value_comiss_max</td><td>
+							<label>{{item.terminal_value_comiss_max}}</label>
+                        </td></tr><!--:"0.0000" -->
+						<tr><td>terminal_value_pay_sum</td><td>
+							<label>{{item.terminal_value_pay_sum}}</label>
+                        </td></tr><!--:"5500.0000" -->
+						<tr><td>terminal_value_pay_min</td><td>
+							<label>{{item.terminal_value_pay_min}}</label>
+                        </td></tr><!--:"200.0000" -->
+						<tr><td>terminal_value_pay_max</td><td>
+							<label>{{item.terminal_value_pay_max}}</label>
+                        </td></tr><!--:"2500.0000" -->
+						<tr><td>system_pay_count</td><td>
+							<label>{{item.system_pay_count}}</label>
+                        </td></tr><!--:"6" -->
+						<tr><td>system_pay_value_cur_sum</td><td>
+							<label>{{item.system_pay_value_cur_sum}}</label>
+                        </td></tr><!--:"5500.0000" -->
+						<tr><td>system_pay_value_cur_min</td><td>
+							<label>{{item.system_pay_value_cur_min}}</label>
+                        </td></tr><!--:"200.0000" -->
+						<tr><td>system_pay_value_cur_max</td><td>
+							<label>{{item.system_pay_value_cur_max}}</label>
+                        </td></tr><!--:"2500.0000" -->
+						<tr><td>system_pay_value_rur_sum</td><td>
+							<label>{{item.system_pay_value_rur_sum}}</label>
+                        </td></tr><!--:"5500.0000" -->
+						<tr><td>system_pay_value_rur_min</td><td>
+							<label>{{item.system_pay_value_rur_min}}</label>
+                        </td></tr><!--:"200.0000" -->
+						<tr><td>system_pay_value_rur_max</td><td>
+							<label>{{item.system_pay_value_rur_max}}</label>
+                        </td></tr><!--:"2500.0000" -->
+						<tr><td>system_comiss_value_cur_sum</td><td>
+							<label>{{item.system_comiss_value_cur_sum}}</label>
+                        </td></tr><!--:"0.0000" -->
+						<tr><td>system_comiss_value_cur_min</td><td>
+							<label>{{item.system_comiss_value_cur_min}}</label>
+                        </td></tr><!--:"0.0000" -->
+						<tr><td>system_comiss_value_cur_max</td><td>
+							<label>{{item.system_comiss_value_cur_max}}</label>
+                        </td></tr><!--:"0.0000" -->
+						<tr><td>system_comiss_value_rur_sum</td><td>
+							<label>{{item.system_comiss_value_rur_sum}}</label>
+                        </td></tr><!--:"0.0000" -->
+						<tr><td>system_comiss_value_rur_min</td><td>
+							<label>{{item.system_comiss_value_rur_min}}</label>
+                        </td></tr><!--:"0.0000" -->
+						<tr><td>system_comiss_value_rur_max</td><td>
+							<label>{{item.system_comiss_value_rur_max}}</label>
+                        </td></tr><!--:"0.0000" -->
+						<tr><td>gate_pay_count</td><td>
+							<label>{{item.gate_pay_count}}</label>
+                        </td></tr><!--:"5" -->
+						<tr><td>gate_value_total_sum</td><td>
+							<label>{{item.gate_value_total_sum}}</label>
+                        </td></tr><!--:"5300.0000" -->
+						<tr><td>gate_value_total_min</td><td>
+							<label>{{item.gate_value_total_min}}</label>
+                        </td></tr><!--:"0.0000" -->
+						<tr><td>gate_value_total_max</td><td>
+							<label>{{item.gate_value_total_max}}</label>
+                        </td></tr><!--:"2500.0000" -->
+						<tr><td>gate_value_comiss_sum</td><td>
+							<label>{{item.gate_value_comiss_sum}}</label>
+                        </td></tr><!--:"49.0000" -->
+						<tr><td>gate_value_comiss_min</td><td>
+							<label>{{item.gate_value_comiss_min}}</label>
+                        </td></tr><!--:"0.0000" -->
+						<tr><td>gate_value_comiss_max</td><td>
+							<label>{{item.gate_value_comiss_max}}</label>
+                        </td></tr><!--:"30.0000" -->
+						<tr><td>gate_value_pay_sum</td><td>
+							<label>{{item.gate_value_pay_sum}}</label>
+                        </td></tr><!--:"5251.0000" -->
+						<tr><td>gate_value_pay_min</td><td>
+							<label>{{item.gate_value_pay_min}}</label>
+                        </td></tr><!--:"0.0000" -->
+						<tr><td>gate_value_pay_max</td><td>
+							<label>{{item.gate_value_pay_max}}</label>
+                        </td></tr><!--:"2500.0000" -->
+						<tr><td>gate_value_send</td><td>
+							<label>{{item.gate_value_send}}</label>
+                        </td></tr><!--:"0.0000" -->
+
+
+                    </table>
+                </div>
+            </script>
+	<!--		
+			<div ng-repeat="item in FF_Incassation.items | orderBy:'-id' track by $index" ng-if='paging ? ($index>=paging.begin && $index<paging.end) : true'>
+				<p  ng-include="'FF_Incassations'"></p>
+			</div>
+-->
+			
+
+		
+
+		
+
+  </div>
+</div>
+</div>

@@ -1,0 +1,106 @@
+<div ng-if="FF_Client.status!='ready'" class="app-content-loading">
+          <i class="fa fa-spinner fa-spin loading-spinner"></i>
+</div>
+
+<div ui-content-for="title">
+    <center>
+        <signal-panel class='pull-right' ng-if="FF_Client.status=='ready'">
+                <div class="fa fa-refresh" ng-click="FF_Client.Load();" ></div>
+                <div class="fa fa-save"    ng-click="FF_Client.Save();FF_Access.Save();" ></div>
+        </signal-panel>
+    </center>
+</div>
+
+<div class="scrollable" ng-if="FF_Client.status=='ready'">
+<div class="scrollable-content">
+  <div class="container-fluid section section-break" id="toggleExample" ng-controller="CtrlUserIndex">
+
+            <br/>
+
+
+
+            <script type="text/ng-template" id="FF_Accesses">
+                <div ng-class="'paneled-item'+(item | iud_class)" ng-controller="CtrlUserIndex">
+                    <b>{{(item.name ? item.name : 'Новая запись')}}</b>
+					
+                    <i class='fa fa-remove pull-right clickable'    ng-click='item | iud_delete'  ng-if="item.iud!=3 && item.iud!=4 && FF_Access.status=='ready'"    ></i>
+                    <i class='fa fa-undo   pull-right clickable'    ng-click='item | iud_undo'    ng-if="(item.iud==3 || item.iud==4) && FF_Access.status=='ready'"    ></i>
+                    <i class='fa fa-edit   pull-right clickable'    ng-click="FF_Access.Param('edititem', FF_Access.Param('edititem').value== item.id ? '0' : item.id)" ng-if="FF_Access.status=='ready'"></i>
+                    <div style='clear:both;'></div>
+                    <table style='width:100%;'  cellspacing='3px;' ng-if="FF_Access.Param('edititem').value==item.id">
+                        <tr><td>Название</td><td>
+                                <input type='text' ng-change="item | iud_change" ng-model='item.name' />
+                        </td></tr>
+                        <tr><td>Логин</td><td>
+                                <input type='text' ng-change="item | iud_change" ng-model='item.login' />
+                        </td></tr>
+                        <tr><td>Пароль</td><td>
+                                <input type='passwd' ng-change="item | iud_change;"   ng-model='item.passwd' />
+                        </td></tr>
+                    </table>
+                </div>
+            </script>
+            
+
+			
+            <script type="text/ng-template" id="FF_ClientItemTemplate">
+                <div ng-class="'paneled-item'+(item | iud_class)" ng-controller="CtrlUserIndex">
+                    <b>{{item.descr}}</b>
+            
+                    <div ng-if="true"> <!-- BODY FF_Client.Param('edititem').value==item.id -->
+
+                        <table  style='width:100%;'  cellspacing='3px;' >
+                            <tr><td>Почта</td><td>{{item.email}}</td></tr>
+                            <tr><td>Пароль</td><td><input type='text' ng-change="item | iud_change" ng-model='item.passwd' /></td></tr>
+                            <tr><td>Тип лица</td><td>{{ item.c_clientjur | get_indexed_value : {list: FF_Dictionaryes.dictionary('lst_system_c_clientjur'), index:'c_clientjur', field:'descr'} }}
+                            <tr ng-if='item.c_clientjur==2'><td>Краткое наименование</td><td>{{item.name1}}</td></tr>
+                            <tr ng-if='item.c_clientjur==1'><td>Фамилия</td><td>{{item.name1}}</td></tr>
+                            <tr ng-if='item.c_clientjur==1'><td>Имя</td><td>{{item.name2}}</td></tr>
+                            <tr ng-if='item.c_clientjur==1'><td>Отчество</td><td>{{item.name3}}</td></tr>
+                            <tr ng-if='item.c_clientjur==2'><td>Полное наименование</td><td>{{item.descr}}</td></tr>
+                            <tr ng-if='item.c_clientjur==1'><td>ФИО</td><td>{{item.descr}}</td></tr>
+                            <tr><td>Пол</td><td>{{ item.sex==1 ? 'Муж':'Жен' }}</td></tr>
+                            <tr><td>День рожденья</td><td>{{item.birthday}}</td></tr>
+                            <tr><td>Временная зона</td><td>{{item.timezone}}</td></tr>
+                            <tr ng-repeat="dextra in FF_Dictionaryes.dictionary('lst_system_c_extratype')"><td>{{dextra.name}}</td><td><section ng-repeat="iextra in item.ask_f_clientextra.data"  ng-if="iextra.c_extratype==dextra.c_extratype && iextra.stat==0" >{{iextra.value_char}}</section></td></tr>
+
+            
+                            <tr><td colspan='2'><b>Контакты</b></td></tr>
+                            <tr ng-repeat="item in FF_Contact.items | orderBy:'id' track by $index" ng-if='item.stat==0' >
+                                    <td>{{ item.c_contacttype | get_indexed_value : {list: FF_Dictionaryes.dictionary('lst_system_c_contacttype'), index:'c_contacttype', field:'descr'} }}</td>
+                                    <td>{{(item.data ? item.data : 'Новая запись')}}</td>
+                            </tr>
+                    
+                    
+                        </table>
+
+
+
+                        <div ng-if="FF_Contact.status!='ready' || FF_Access.status!='ready'">Идёт загрузка данных...</div>
+
+
+
+                            <div ng-if="FF_Access.status=='ready'">
+                                <br/>
+                                <h4>Терминалы</h4>
+                                <div ng-repeat="item in FF_Access.items | orderBy:'id' track by $index" ng-if='item.stat==0' ng-include="'FF_Accesses'"></div>
+                                <br/>
+                                <signal-panel class='pull-right'>
+                                        <div ng-click="FF_Access.Create({f_client:item.f_client})" >Добавить терминал</div>
+                                </signal-panel>
+                                <div style='clear:both;'></div>
+                            </div>
+                        </div>
+                    </div> <!-- /BODY -->
+					
+                </div>
+            </script>
+            
+
+			
+            <div ng-repeat="item in FF_Client.items | orderObjectBy:'id' track by $index" 
+                 ng-if='(item.stat==stat || stat==null)' ng-include="'FF_ClientItemTemplate'"></div>
+            
+  </div>
+</div>
+</div>

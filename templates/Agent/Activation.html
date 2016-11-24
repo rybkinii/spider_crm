@@ -1,0 +1,79 @@
+﻿      
+
+            
+<form id="myform" action="#">
+    <div class="panel panel-default"><div class="panel-heading">Активация платежного шлюза</div><div class="panel-body">
+    
+    <div align="center">
+        <table class="create-entity">
+        <tr>
+            <th>Платежный шлюз</th>
+            <td>
+                <select id="gateway" name="gateway"><option value="1003">КиберПлат</option>
+<option value="1005">Рапида</option>
+<option value="1007">Дельта</option>
+</select>
+            </td>
+        </tr>
+        <tr>
+            <th>Параметры</th>
+            <td>
+                <div class="settings" id="deltaSettings" >
+                    <table>
+                        <tr>
+                            <td class="desc" ><div class="desc">ID Агента</div></td>
+                            <td><input type="text" id="DeltaAgent" name="setting" /></td>
+                        </tr>
+                        <tr>
+                            <td>ID пополнения баланса</td>
+                            <td><input type="text" id="DeltaBalanceVerification" name="setting" /></td>
+                        </tr> 
+                        <tr>
+                            <td>Номер платежной точки</td>
+                            <td><input type="text" id="DeltaPaymentPoint" name="setting" /></td>
+                        </tr>
+                    </table>
+                </div>    
+                <div class="settings" id="cyberplatSettings" >
+                    <table>
+                        <tr>
+                            <td  ><div class="desc">Код дилера (SD)</div></td>
+                            <td><input type="text" id="CyberplatSD" name="setting" /></td>
+                        </tr> 
+                        <tr>
+                            <td>Код точки (AP)</td>
+                            <td><input type="text" id="CyberplatAP" name="setting" /></td>
+                        </tr>
+                            <tr>
+                            <td>Код оператора (OP)</td>
+                            <td><input type="text" id="CyberplatOP" name="setting" /></td>
+                        </tr>
+                    </table>
+                </div>    
+                <div class="settings" id="rapidaSettings" >
+                    <table>
+                        <tr>
+                            <td><div class="desc">Номер терминала</div></td>
+                            <td><input type="text" id="RapidaTerminal" name="setting" /></td>
+                        </tr> 
+                        <tr>
+                            <td>Пароль от ключа</td>
+                            <td><input type="password" id="RapidaPass" name="setting" /></td>
+                        </tr>
+                            <tr>
+                            <td>Ключ</td>
+                            <td><input type="file" id="RapidaKey" name="setting" /></td>
+                        </tr>
+                    </table>
+                </div>    
+            </td>
+        </tr>
+        </table>
+        <!--style="text-align: center;padding-top: 10px;"-->
+        <p>
+            <input type="button" id="activate" value="Активировать"/>
+        </p>
+    </div>
+</div></div>
+</form>
+

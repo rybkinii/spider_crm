@@ -1,0 +1,60 @@
+<div ng-if="FF_Templateax.status!='ready' || FF_Client.status!='ready'" class="app-content-loading">
+          <i class="fa fa-spinner fa-spin loading-spinner"></i>
+</div>
+
+<div ui-content-for="title">
+    <center>
+    Комиссии &nbsp;
+        <signal-panel  ng-if="FF_Templateax.status=='ready' && FF_Client.status=='ready'">
+                <div class="fa fa-plus"     ng-click="FF_Templateax.Create()" ></div>
+                <div class="fa fa-refresh" ng-click="FF_Templateax.Load()" ></div>
+                <div class="fa fa-save"    ng-click="FF_Templateax.Save()" ></div>
+        </signal-panel>
+    </center>
+</div>
+
+
+<div class="scrollable" ng-if="FF_Templateax.status=='ready' && FF_Client.status=='ready'">
+<div class="scrollable-content">
+  <div class="container-fluid section section-break" id="toggleExample" ng-controller="CtrlTemplateax">
+
+		<br/>
+		
+            <script type="text/ng-template" id="FF_Templateaxs">
+                <div ng-class="'paneled-item'+(item | iud_class)" ng-controller="CtrlTemplateax">
+                    <b>{{ item.c_taxtype | get_indexed_value : {list: FF_Dictionaryes.dictionary('lst_terminals_c_taxtype'), index:'c_taxtype', field:'descr'} }}</b>
+					
+                    <i class='fa fa-undo   pull-right clickable'    ng-click='item | iud_undo'    ng-if="(item.iud==3 || item.iud==4) && FF_Templateax.status=='ready'"    ></i>
+					<a href='Templates/{{item.f_template}}' ng-if="(item.iud==0 || item.iud==2 || item.iud==3) && FF_Templateax.status=='ready'"><i class='fa fa-pencil pull-right clickable'></i></a>
+                    <i class='fa fa-remove pull-right clickable'    ng-click='item | iud_delete'  ng-if="item.iud!=3 && item.iud!=4 && FF_Templateax.status=='ready'"    ></i>
+                    <i class='fa fa-edit   pull-right clickable'    ng-click="FF_Templateax.Param('edititem', FF_Templateax.Param('edititem').value== item.id ? '0' : item.id)" ng-if="FF_Templateax.status=='ready'"></i>
+                    <div style='clear:both;'></div>
+					
+                    <table style='width:100%;'  cellspacing='3px;' ng-if="FF_Templateax.Param('edititem').value==item.id">
+                        <tr><td>Тип комиссии</td><td>
+                                <selector-source clearing='true' ng-change="item | iud_change" ng-model="item.c_taxtype" source="{list:FF_Dictionaryes.dictionary('lst_terminals_c_taxtype'),index:'c_taxtype',field:'descr'}" class="" ></selector-source>
+                        </td></tr>
+                        <tr><td>pay_value_start</td><td>
+                                <input type='text' ng-change="item | iud_change" ng-model='item.pay_value_start' />
+                        </td></tr>
+                        <tr><td>value_perc</td><td>
+                                <input type='text' ng-change="item | iud_change" ng-model='item.value_perc' />
+                        </td></tr>
+                        <tr><td>value_min_amount</td><td>
+                                <input type='text' ng-change="item | iud_change" ng-model='item.value_min_amount' />
+                        </td></tr>
+                        <tr><td>value_max_amount</td><td>
+                                <input type='text' ng-change="item | iud_change" ng-model='item.value_max_amount' />
+                        </td></tr>
+                    </table>
+                </div>
+            </script>
+			
+			<div ng-repeat="item in FF_Templateax.items | orderBy:'id' track by $index" ng-if='item.stat==0'>
+				<p  ng-include="'FF_Templateaxs'"></p>
+			</div>
+
+
+  </div>
+</div>
+</div>

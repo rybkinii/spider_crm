@@ -1,0 +1,7 @@
+files/*
+.~
+\#*
+*.css.map
+*.log
+*.status
+*.conf.php

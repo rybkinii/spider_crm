@@ -1,0 +1,110 @@
+﻿
+<script>
+  $(document).ready(function () {
+	$('.selectpicker').each(function(){
+		$(this).selectpicker({ liveSearch: false, maxOptions: 1 });
+	});	
+  });
+</script>
+
+
+<div class="panel panel-default"><div class="panel-heading">Период</div><div class="panel-body">
+		<table align='center'>
+		<tr>
+			<td><select class='selectpicker show-tick form-control input-sm'></select></td>
+			<td>&nbsp;c&nbsp; <input data-provide='datepicker' class="form-control input-sm"></td>
+			<td>&nbsp;по&nbsp; <input data-provide='datepicker' class="form-control input-sm"></td>
+		</tr>
+		</table>
+		
+		
+		
+  </div>
+</div>
+
+<div class="panel panel-default">
+  <div class="panel-heading">
+    Параметры поиска
+	<button data-toggle="collapse" data-target="#search-body" class='pull-right'>Collapsible</button>
+  </div>
+  <div class="panel-body collapse in" id='search-body'>
+
+	<table align='center'>
+		<tr>
+			<td>Номер телефона или счета</td>
+			<td><input type="text" class="form-control input-sm" placeholder="Username" aria-describedby="basic-addon1"></td>
+		</tr>
+		<tr>
+			<td>Группа операторов</td>
+			<td><select class='selectpicker'></select></td>
+		</tr>
+		<tr>
+			<td>Оператор</td>
+			<td><select class='selectpicker'></select></td>
+		</tr>
+		<tr>
+			<td>Субагент</td>
+			<td><select class='selectpicker'></select></td>
+		</tr>
+		<tr>
+			<td>Номер терминала</td>
+			<td><input type="text" class="form-control input-sm" placeholder="Username" aria-describedby="basic-addon1"></td>
+		</tr>
+		<tr>
+			<td>Тип терминала</td>
+			<td><select class='selectpicker'></select></td>
+		</tr>
+		<tr>
+			<td>Номер транзакции</td>
+			<td><input type="text" class="form-control input-sm" placeholder="Username" aria-describedby="basic-addon1"></td>
+		</tr>
+		<tr>
+			<td>Номер чека</td>
+			<td><input type="text" class="form-control input-sm" placeholder="Username" aria-describedby="basic-addon1"></td>
+		</tr>
+		<tr>
+			<td>Состояние платежей</td>
+			<td>
+                        <table cellpadding="0" cellspacing="0" border="0">
+                            <tr>
+                                <td><input checked="checked" class="PaymentStateType" id="PaymentStateType" name="PaymentStateType" type="radio" value="Any" />Любые</td>
+                                <td><input class="PaymentStateType" id="PaymentStateType" name="PaymentStateType" type="radio" value="InWork" />Проводятся</td>
+                            </tr>
+                             <tr>
+                                <td><input class="PaymentStateType" id="PaymentStateType" name="PaymentStateType" type="radio" value="Successful" />Зачисленные</td>
+                                <td><input class="PaymentStateType" id="PaymentStateType" name="PaymentStateType" type="radio" value="Rejected" />Отклоненные</td>
+                            </tr>
+                            <tr>
+                                <td><input class="PaymentStateType" id="PaymentStateType" name="PaymentStateType" type="radio" value="Returned" />Возвращенные</td>
+                                <td><input class="PaymentStateType" id="PaymentStateType" name="PaymentStateType" type="radio" value="Edited" />Перепроведенные</td>
+                            </tr>
+                            <tr>
+                                <td colspan="2" style="font-weight: bold;"><input class="PaymentStateType" id="PaymentStateType" name="PaymentStateType" type="radio" value="Warning" />Отклоненные (Подозрительные)</td>
+                            </tr>
+                        </table>
+			</td>
+		</tr>		
+		<tr>
+			<td>Платежей на странице</td>
+			<td><select class='selectpicker'></select></td>
+		</tr>				
+		<tr>
+			<td>Искать по дате</td>
+			<td>
+				<input checked="checked" id="IsSearchBySystemTimeStart" name="IsSearchBySystemTimeStart" type="radio" value="true" />Поступления&nbsp;
+				<input id="IsSearchBySystemTimeStart" name="IsSearchBySystemTimeStart" type="radio" value="false" />Проведения
+			</td>
+		</tr>	
+		<tr>
+			<td>Тип транзакции</td>
+			<td><select class='selectpicker'></select></td>
+		</tr>
+		<tr>
+			<td colspan='2' align='center'><button>Поиск</button></td>
+		</tr>	
+	</table>
+
+	
+			
+  </div>
+</div>

@@ -1,0 +1,133 @@
+<div ng-if="FF_Pay.status!='ready'" class="app-content-loading">
+          <i class="fa fa-spinner fa-spin loading-spinner"></i>
+</div>
+
+<div ui-content-for="title">
+    <center>
+        <signal-panel class='pull-right' ng-if="FF_Pay.status=='ready'">
+                <!--<div class="fa fa-plus"     ng-click="FF_Pay.Create({f_c_f_client:FSession.current.f_client});$root.treedisplay[FSession.current.f_client]=true;" ></div>-->
+                <div class="fa fa-refresh" ng-click="FF_Pay.Load()" ></div>
+                <!--<div class="fa fa-save"    ng-click="FF_Pay.Save();" ></div>-->
+        </signal-panel>
+    </center>
+</div>
+
+<div class="scrollable" ng-if="FF_Pay.status=='ready'">
+<div class="scrollable-content">
+  <div class="container-fluid section section-break" id="toggleExample" ng-controller="CtrlPay">
+
+            <br/>
+			<table width='100%'>
+				<tr><th>Фильтры</th></tr>
+				<tr><td width='30%'>Терминал</td><td><selector-source clearing='true' style='min-width:100%' ng-change="FF_Pay.Load();" ng-model="FF_Pay.f_terminal" source="{list:FF_Terminal.items,index:'f_terminal',field:'fa_descr'}" search="true" class="" ></selector-source></td></tr>
+				<!--<tr><td colspan='2'><input type='checkbox' ng-change="item | iud_change;"  ng-false-value="0" ng-true-value="1" ng-checked="stat==1" ng-model='stat' /> Отображать отключенные терминалы</td></tr>-->
+				<tr><td width='30%'>Дата начала</td><td><input type='date' format-date placeholder="yyyy-MM-dd" ng-change="FF_Pay.Load();" ng-model='FF_Pay.dts_value_start' /></td></tr>
+				<tr><td width='30%'>Дата окончания</td><td><input type='date' format-date placeholder="yyyy-MM-dd" ng-change="FF_Pay.Load();" ng-model='FF_Pay.dts_value_stop' /></td></tr>
+<!--                                query.action     = 'ask_f_pay';; query.dts_value_start; query.dts_value_stop; query.parameter_value; query.f_service; query.f_terminal; query.f_client; query.request_id; query.f_pay; query.stat;-->
+			</table>
+<!--query.dts_value_start; query.dts_value_stop; query.parameter_value; query.f_service; query.f_terminal; query.f_client; query.request_id; query.f_pay; query.stat;						-->
+			<br/>
+			<center>
+			<div data-pagination="" data-num-pages="numPages()"  data-current-page="currentPage" data-max-size="maxSize" data-boundary-links="true"></div>
+			</center>
+                        
+                        <table border='1' align='center' >
+                            <tr>
+                                <th>Дата поступления</th>
+                                <th>Дата проведения</th>
+                                <th>Номер транзацкции</th>
+                                <th>Оператор</th>
+                                <th>Сумма с комиссии<br/>Без комисии</th>
+                                <th>Статус</th>
+                                <th>Номер терминала Название</th>
+                            </tr>
+                            <tr ng-repeat="item in FF_Pay.items | orderObjectBy:'id' track by $index"> 
+                                <td>{{item.terminal_request_dt}}</td>
+                                <td>{{item.terminal_dts_value}}</td>
+                                <td>{{item.terminal_f_pay}}</td>
+                                <td>{{item.terminal_f_service | get_indexed_value : {list: FF_Service.items, index:'f_service', field:'name'} }}</td>
+                                <td>{{item.terminal_value_total}}</td>
+                                <td>{{item.terminal_stat}}</td>
+                                <td>{{(item.terminal_f_terminal | get_indexed_value : {list: FF_Terminal.items, index:'f_terminal', field:'get_f_address'}).descr }}</td>
+                            </tr>
+                        <table>
+                        
+            <script type="text/ng-template" id="FF_Pays">
+                <div ng-class="'paneled-item'+(item | iud_class)" ng-controller="CtrlPay">
+                    <b>Терминал {{item.terminal_f_terminal}}: &nbsp;{{item.terminal_pay_descr}}</b>
+                    <!--<i class='fa fa-undo   pull-right clickable'   ng-click='item | iud_undo'    ng-if="(item.iud==3 || item.iud==4) && FF_Pay.status=='ready'"    ></i>
+                    <i class='fa fa-remove pull-right clickable'  ng-click='item | iud_delete'  ng-if="item.iud!=3 && item.iud!=4 && FF_Pay.status=='ready'"    ></i>-->
+                    <i class='fa fa-edit   pull-right clickable'    ng-click="FF_Pay.Param('edititem', FF_Pay.Param('edititem').value== item.id ? '0' : item.id)" ng-if="FF_Pay.status=='ready'"></i>
+                    <div style='clear:both;'></div>
+					{{item}}
+                    <table style='width:100%;'  cellspacing='3px;' ng-if="FF_Pay.Param('edititem').value==item.id">
+					
+						<tr><td>terminal_f_pay</td><td>
+                            <label>{{item.terminal_f_pay}}</label>
+                        </td></tr><!--:"1" -->
+						<tr><td>terminal_f_terminal</td><td>
+                            <label>{{item.terminal_f_terminal}}</label>
+                        </td></tr><!--:"2" -->
+						<tr><td>terminal_request_id</td><td>
+                            <label>{{item.terminal_request_id}}</label>
+                        </td></tr><!--:"25" -->
+						<tr><td>terminal_request_dt</td><td>
+                            <label>{{item.terminal_request_dt}}</label>
+                        </td></tr><!--:"2016-08-29 15:33:48" -->
+						<tr><td>terminal_dts_value</td><td>
+                            <label>{{item.terminal_dts_value}}</label>
+                        </td></tr><!--:"2016-08-29 15:35:12" -->
+						<tr><td>terminal_c_taxtype</td><td>
+                            <label>{{item.terminal_c_taxtype}}</label>
+                        </td></tr><!--:"1" -->
+						<tr><td>terminal_f_taxterminal</td><td>
+                            <label>{{item.terminal_f_taxterminal}}</label>
+                        </td></tr><!--:"3" -->
+						<tr><td>terminal_value_total</td><td>
+                            <label>{{item.terminal_value_total}}</label>
+                        </td></tr><!--:"100.0000" -->
+						<tr><td>terminal_value_comiss</td><td>
+                            <label>{{item.terminal_value_comiss}}</label>
+                        </td></tr><!--:"0.0000" -->
+						<tr><td>terminal_value_pay</td><td>
+                            <label>{{item.terminal_value_pay}}</label>
+                        </td></tr><!--:"100.0000" -->
+						<tr><td>terminal_pay_descr</td><td>
+                            <label>{{item.terminal_pay_descr}}</label>
+                        </td></tr>
+						<tr><td>terminal_f_service</td><td>
+                            <label>{{item.terminal_f_service}}</label>
+                        </td></tr><!--:"14" -->
+						<tr><td>terminal_parameters</td><td>
+                            <label>{{item.terminal_parameters}}</label>
+                        </td></tr><!--:"{111111111}" -->
+						<tr><td>terminal_stat</td><td>
+                            <label>{{item.terminal_stat}}</label>
+                        </td></tr><!--:"0" -->
+						<tr><td>terminal_c_error</td><td>
+                            <label>{{item.terminal_c_error}}</label>
+                        </td></tr>
+
+
+					
+                    </table>
+                </div>
+            </script>
+<!--
+			<div ng-repeat="item in FF_Pay.items | orderObjectBy:'id' track by $index" ng-if='paging ? ($index>=paging.begin && $index<paging.end) : true'>
+				<p  ng-include="'FF_Pays'"></p>
+			</div>
+-->
+			
+		
+
+		
+		<!--<div ng-if="FF_Terminal.status=='ready' && FF_Terminal.items.length>0" width='100%' border=1 ng-repeat='terminal in FF_Terminal.items'>
+		{{terminal}}
+		</div>-->
+		<!--<datatable service='FF_Terminal' caption='fa_descr' model="FF_Terminal_fields"></datatable>-->
+        
+
+  </div>
+</div>
+</div>

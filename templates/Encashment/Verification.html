@@ -1,0 +1,80 @@
+﻿
+
+        
+
+            
+    
+    <div class="panel panel-default"><div class="panel-heading">Сверка инкассаций</div><div class="panel-body">
+
+        
+
+
+<table class="parameters-table" align="center" >
+    <tr>
+        <th colspan="2">Период</th>
+    </tr>
+    <tr>
+        <td>
+            <label for="StartingTime">Диапазон:</label> &nbsp;&nbsp;&nbsp;&nbsp;
+        </td>
+        <td>
+            <select id="Period" name="Period" style="width: 150px"><option value="0">За сегодня</option>
+<option value="1">За вчера</option>
+<option value="2">За последние 7 дней</option>
+<option value="3">За последние 14 дней</option>
+<option value="4">За последние 30 дней</option>
+<option value="5">За текущий месяц</option>
+<option value="6">За прошлый месяц</option>
+</select>
+            с &nbsp;
+            
+            <input class="dateinput" id="StartingTime" name="StartingTime" type="text" value="" />
+
+            
+
+            <span id="CopyStartingDate" class="hand" title="Скопировать начальную дату">до</span>&nbsp;
+            
+            <input class="dateinput" id="EndingTime" name="EndingTime" type="text" value="" />
+
+            
+        </td>
+    </tr>
+</table>
+<div style="text-align:center;">
+    <span><span class="field-validation-valid" id="StartingTime_validationMessage"></span></span>&nbsp;
+    <span><span class="field-validation-valid" id="EndingTime_validationMessage"></span></span>
+</div>
+
+        <table class="parameters-table" cellpadding="0" cellspacing="0" align="center">
+        <tr>
+            <th colspan="2">Параметры фильтра</th>
+        </tr>
+        <tr>
+            <td class="after-header">Терминал:</td>
+            <td class="after-header">
+                
+                <select id="terminalId" name="terminalId" disabled="disabled"></select>
+                <img id="terminalLoading" src="/Content/images/ajax-loader.gif" alt="Загрузка..." />
+            </td>
+        </tr>
+        <tr>
+            <td class="after-header">Маршрут:</td>
+            <td class="after-header"><select id="route" name="route"><option value="0">Любой</option>
+</select></td>
+        </tr>
+        <tr>
+            <td style="vertical-align:top;">Субагент:
+                <div id="treecontrol">
+                    <a href="#" id="collapse"></a>
+                </div>
+            </td>
+            <td><ul id="LeveledAgents" class="filetree"><li><input  type="checkbox" agentId="6416475" parentId="7249141"/>ИП Аскирка  (TELE2)</li>
+</ul></td>
+        </tr>
+        </table>
+        <div>
+            <input  id="search" type="button" value="Построить отчет" />
+            <img class="loading_img" src="/Content/Images/loading.gif" alt="loader" />
+            <div id="serverError" class="field-validation-error" ></div>
+        </div>
+    </div></div>

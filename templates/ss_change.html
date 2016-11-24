@@ -1,0 +1,183 @@
+<div ng-if="FF_OperatorsInterval.status!='ready'" class="app-content-loading">
+          <i class="fa fa-spinner fa-spin loading-spinner"></i>
+</div>
+
+<div ui-content-for="title">
+    <center>
+        <signal-panel  class='pull-right' ng-if="FF_OperatorsInterval.status=='ready'">
+                <div class="fa fa-refresh" ng-click="FF_OperatorsInterval.Load()" ></div>
+                <div class="fa fa-save"    ng-click="FF_OperatorsInterval.Save()" ></div>
+        </signal-panel>
+    </center>
+</div>
+
+
+<div class="scrollable" ng-if="FF_OperatorsInterval.status=='ready'">
+<div class="scrollable-content">
+  <div class="container-fluid section section-break" id="toggleExample" ng-controller="CtrlServiceSettings">
+
+		<br/>
+		
+			<center>
+			<!--<div data-pagination="" data-num-pages="numPages()"  data-current-page="currentPage" data-max-size="maxSize" data-boundary-links="true"></div>-->
+			</center>
+			
+          <script type="text/ng-template" id="OperatorsIntervals">
+                <div ng-class="'paneled-item'+(item | iud_class)" ng-controller="CtrlServiceSettings">
+                    <b>{{ item.f_operators_interval }}: {{ item.operator }}</b>
+                    <i class='fa fa-edit   pull-right clickable'    ng-click="FF_OperatorsInterval.Param('edititem', FF_OperatorsInterval.Param('edititem').value== item.id ? '0' : item.id)" ng-if="FF_OperatorsInterval.status=='ready'"></i>
+					<select ng-change="item | iud_change" ng-model="item.f_service" class='plunker-selector pull-right' ng-if="FF_OperatorsInterval.Param('edititem').value!=item.id">
+						<option value='0' ></option>
+						<option ng-repeat='option in FF_Service.items' value='{{option.f_service}}' ng-if="['1'].indexOf(option.root)!=-1 && option.is_catalog!=1 && option.f_s_f_service!=6 ">{{option.f_service}}:{{option.name}}:{{option.fullname}}</option>
+					</select>
+					<!--<selector-source clearing='true' ng-change="item | iud_change" ng-model="item.f_service" source="{list:FF_Service.items,filter:selfilter,index:'f_service',fieldfun:fieldselect}" class='plunker-selector pull-right' ></selector-source>-->
+                    <div style='clear:both;'></div>
+                    <table style='width:100%;'  cellspacing='3px;' ng-if="FF_OperatorsInterval.Param('edititem').value==item.id">
+						<tr><td>f_operators_interval</td><td>
+							<label>{{item.f_operators_interval}}</label>
+                        </td></tr>
+						<tr><td>operator</td><td>
+							<label>{{item.operator}}</label>
+                        </td></tr>
+						<tr><td>operator_id</td><td>
+							<label>{{item.operator_id}}</label>
+                        </td></tr>
+						<tr><td>region</td><td>
+							<label>{{item.region}}</label>
+                        </td></tr>
+						<tr><td>def</td><td>
+							<label>{{item.def}}</label>
+                        </td></tr>
+						<tr><td>start_num</td><td>
+							<label>{{item.start_num}}</label>
+                        </td></tr>
+						<tr><td>end_num</td><td>
+							<label>{{item.end_num}}</label>
+                        </td></tr>
+						<tr><td>start_date</td><td>
+							<label>{{item.start_date}}</label>
+                        </td></tr>
+						<tr><td>f_service</td><td>
+							<select ng-change="item | iud_change" ng-model="item.f_service" class='' ng-if="true">
+								<option value='0' ></option>
+								<option ng-repeat='option in FF_Service.items' value='{{option.f_service}}' ng-if="['1'].indexOf(option.root)!=-1 && option.is_catalog!=1 && option.f_s_f_service!=6 ">{{option.f_service}}:{{option.name}}:{{option.fullname}}</option>
+							</select>
+							<!--<selector-source clearing='true' ng-change="item | iud_change" ng-model="item.f_service" source="{list:FF_Service.items,index:'f_service',fieldfun:fieldselect}" ></selector-source>-->
+                        </td></tr>
+                    </table>
+                </div>
+            </script>
+			
+			<div ng-class="" >
+			<table>
+				<tr><td>operator</td><td><input type='text' ng-model="$root.operator" ng-change='f_service=0'/></td></tr>
+				<tr><td>region</td><td><input type='text' ng-model="$root.region" ng-change='f_service=0'/></td></tr>
+				<tr><td>f_service</td><td>
+					<select ng-change="groupchange(f_service)" ng-model="f_service" class='plunker-selector'>
+						<option value='0' ></option>
+						<option ng-repeat='option in FF_Service.items' value='{{option.f_service}}' ng-if="['1'].indexOf(option.root)!=-1 && option.is_catalog!=1 && option.f_s_f_service!=6 ">{{option.f_service}}:{{option.name}}:{{option.fullname}}</option>
+					</select>
+				</td></tr>
+				<tr><td>f_service_null</td><td><input type='checkbox' ng-model="$root.f_service_null" checked='checked' ng-change='f_service_null=!f_service_null'/></td></tr>
+			</table>
+				
+				
+			</div>
+			
+			<!--<select  ng-model="f_operators_interval" >
+				<option value='0' ></option>
+				<option ng-repeat='option in FF_OperatorsInterval.items' value='{{option.operator}}' ng-if="option.is_catalog!=1 && option.f_s_f_service!=6 ">{{option.operator}}</option>
+			</select>
+			
+			<select  ng-model="region" >
+				<option value='0' ></option>
+				<option ng-repeat='option in FF_OperatorsInterval.items' value='{{option.region}}' ng-if="option.is_catalog!=1 && option.f_s_f_service!=6 ">{{option.region}}</option>
+			</select>-->
+
+
+			<table  border='1'>
+				<tr>
+						<th>f_...</th>
+						<th>operator</th>
+						<th>region</th>
+						<th>start_num</th>
+						<th>end_num </th>
+						<th>f_service</th>
+						<th>Выбор</th>
+				</tr>
+				<tr 
+				ng-repeat="item in FF_OperatorsInterval.items | orderObjectBy:'id' track by $index" 
+				ng-if="($root.f_service_null ? (item.f_service=='' || item.f_service=='0' || item.f_service==null) : true ) && (([null,'','0'].indexOf($root.operator)!=-1)||(item.operator.indexOf($root.operator)!=-1))&&(([null,'','0'].indexOf($root.region)!=-1)||(item.region.indexOf($root.region)!=-1)) &&  item.stat==0 " 
+				> <!-- && (paging ? ($index>=paging.begin && $index<paging.end) : true) -->
+						<td>{{ item.f_operators_interval }}</td>
+						<td>{{ item.operator }}</td>
+						<td>{{ item.region }}</td>
+						<td>{{ item.start_num }}</td>
+						<td>{{ item.end_num }}</td>
+						<td>{{item.f_service}}</td>
+						<td>
+							<i class='fa fa-edit   pull-right clickable' ng-click="FF_OperatorsInterval.Param('edititem', FF_OperatorsInterval.Param('edititem').value== item.id ? '0' : item.id)" ng-if="FF_OperatorsInterval.status=='ready'"></i>
+							<select ng-change="item | iud_change" ng-model="item.f_service" class='plunker-selector pull-right' ng-if="FF_OperatorsInterval.Param('edititem').value== item.id">
+								<option value='0' ></option>
+								<option ng-repeat='option in FF_Service.items' value='{{option.f_service}}' ng-if="['1'].indexOf(option.root)!=-1 && option.is_catalog!=1 && option.f_s_f_service!=6 ">{{option.f_service}}:{{option.name}}:{{option.fullname}}</option>
+							</select>
+						</td>
+				</tr>
+			</table>
+			
+<!--			<div ng-repeat="item in FF_OperatorsInterval.items | orderObjectBy:'id' track by $index" ng-if="(([null,'','0'].indexOf($root.operator)!=-1)||(item.operator.indexOf($root.operator)!=-1))&&(([null,'','0'].indexOf($root.region)!=-1)||(item.region.indexOf($root.region)!=-1)) &&  item.stat==0 " > <!-- && (paging ? ($index>=paging.begin && $index<paging.end) : true) 
+				<div ng-class="'paneled-item'+(item | iud_class)" ng-controller="CtrlServiceSettings">
+                    <b>{{ item.f_operators_interval }}: {{ item.operator }}</b>
+                    <i class='fa fa-edit   pull-right clickable'    ng-click="FF_OperatorsInterval.Param('edititem', FF_OperatorsInterval.Param('edititem').value== item.id ? '0' : item.id)" ng-if="FF_OperatorsInterval.status=='ready'"></i>
+					<select ng-change="item | iud_change" ng-model="item.f_service" class='plunker-selector pull-right' >
+						<option value='0' ></option>
+						<option ng-repeat='option in FF_Service.items' value='{{option.f_service}}' ng-if="['1'].indexOf(option.root)!=-1 && option.is_catalog!=1 && option.f_s_f_service!=6 ">{{option.f_service}}:{{option.name}}:{{option.fullname}}</option>
+					</select>
+                    <div style='clear:both;'></div>
+                    <table style='width:100%;'  cellspacing='3px;' ng-if="FF_OperatorsInterval.Param('edititem').value==item.id">
+						<tr><td>region</td><td>
+							<label>{{item.region}}</label>
+                        </td></tr>
+						<tr><td>start_num</td><td>
+							<label>{{item.start_num}}</label>
+                        </td></tr>
+						<tr><td>end_num</td><td>
+							<label>{{item.end_num}}</label>
+                        </td></tr>
+                    </table>
+                </div>
+			</div>-->
+			
+			<!--
+						<tr><td>f_operators_interval</td><td>
+							<label>{{item.f_operators_interval}}</label>
+                        </td></tr>
+						<tr><td>operator</td><td>
+							<label>{{item.operator}}</label>
+                        </td></tr>
+						<tr><td>operator_id</td><td>
+							<label>{{item.operator_id}}</label>
+                        </td></tr>
+						<tr><td>def</td><td>
+							<label>{{item.def}}</label>
+                        </td></tr>
+						<tr><td>start_date</td><td>
+							<label>{{item.start_date}}</label>
+                        </td></tr>
+						<tr><td>f_service</td><td>
+							<select ng-change="item | iud_change" ng-model="item.f_service" class='' ng-if="true">
+								<option value='0' ></option>
+								<option ng-repeat='option in FF_Service.items' value='{{option.f_service}}' ng-if="['1'].indexOf(option.root)!=-1 && option.is_catalog!=1 && option.f_s_f_service!=6 ">{{option.f_service}}:{{option.name}}:{{option.fullname}}</option>
+							</select>
+                        </td></tr>
+			-->
+			
+
+
+  </div>
+</div>
+</div>
+
+
+
+		

@@ -1,0 +1,104 @@
+﻿
+
+        
+
+            
+    <form action="/DynamicReport/Save" id="form0" method="post">
+    <div class="panel panel-default"><div class="panel-heading">Конструктор отчетов</div><div class="panel-body">
+
+        <input id="Id" name="Id" type="hidden" value="0" />
+        
+        <table class="create-entity" cellpadding="0" cellspacing="0" align="center">
+        <tr>
+            <th class="header" colspan="2">Параметры фильтра</th>
+        </tr>
+        <tr>
+            <th class="after-header">Название отчета:</th>
+            <td class="after-header"><input id="Name" name="Name" type="text" value="" /></td>
+        </tr>
+        <tr>
+            <th class="after-header">Терминал:</th>
+            <td class="after-header">
+                <input id="selectedTerminalId" name="selectedTerminalId" type="hidden" value="0" />
+                <select data-placeholder="Загрузка..." id="TerminalId" name="TerminalId"></select>
+                <img id="terminalLoading" src="/Content/images/ajax-loader.gif" alt="Загрузка..."  style="vertical-align: middle;"/>
+            </td>
+            
+        </tr>
+        <tr>
+            <th>Оператор:</th>
+            <td>
+                <input id="selectedProviderId" name="selectedProviderId" type="hidden" value="0" />
+                <select data-placeholder="Загрузка..." id="ProviderId" name="ProviderId"></select>
+                <img id="providerLoading" src="/Content/images/ajax-loader.gif" alt="Загрузка..."  style="vertical-align: middle;"/>
+            </td>
+        </tr>
+        <tr>
+            <th>Субагент:</th>
+            <td>
+                <input id="selectedAgentId" name="selectedAgentId" type="hidden" value="0" />
+                <select data-placeholder="Загрузка..." id="AgentId" name="AgentId"></select>
+                <img id="agentLoading" src="/Content/images/ajax-loader.gif" alt="Загрузка..."  style="vertical-align: middle;"/>
+            </td>
+        </tr>
+        <tr>
+            <th>Тип терминала:</th>
+            <td><select id="TerminalType" name="TerminalType">	<option selected="selected" value="Any">Любой</option>
+	<option value="HardTerminal">Автомат</option>
+	<option value="WinTerminal">Win-терминал</option>
+</select></td>
+        </tr>
+        <tr>
+            <th>Состояние платежей:</th>
+            <td>
+                <input checked="checked" id="PaymentStateType" name="PaymentStateType" type="radio" value="Any" />Любые&nbsp;
+                <input id="PaymentStateType" name="PaymentStateType" type="radio" value="Successful" />Зачисленные&nbsp;
+            </td>
+        </tr>
+        <tr>
+            <th class="header" colspan="2">Параметры вывода</th>
+        </tr>
+        
+        <tr >
+            <th>Строки:</th>
+            <td><select id="RowId" name="RowId"><option value="19">Группы операторов</option>
+<option value="15">Дата</option>
+<option value="8">Дни недели</option>
+<option value="14">Месяцы</option>
+<option value="12">Провайдеры</option>
+<option value="13">Субагенты</option>
+<option value="11">Терминалы</option>
+</select></td>
+        </tr>
+        <tr >
+            <th>Столбцы:</th>
+            <td><select id="HeaderId" name="HeaderId"><option value="19">Группы операторов</option>
+<option value="15">Дата</option>
+<option value="8">Дни недели</option>
+<option value="14">Месяцы</option>
+<option value="12">Провайдеры</option>
+<option value="13">Субагенты</option>
+<option value="11">Терминалы</option>
+</select></td>
+        </tr>
+        <tr style="vertical-align:top;">
+            <th>Ячейки:</th>
+            <td>
+               <select data-placeholder="Выберите ячейки для отображения" id="Cells" multiple="multiple" name="Cells"><option value="7">Внутренняя комиссия</option>
+<option value="5">Комиссия</option>
+<option value="2">Сумма без комиссии</option>
+<option value="4">Сумма с комиссией</option>
+<option value="1">Число операций</option>
+</select>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <input type="submit" value="Сохранить и показать"/>
+                <input id="cancel"  type="button" value="Отмена"/>
+            </td>
+        </tr>
+        </table>
+        
+    </div></div>
+    </form>

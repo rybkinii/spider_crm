@@ -1,0 +1,118 @@
+﻿
+
+            
+    <form action="/Agent" id="form0" method="post">
+    <div class="panel panel-default"><div class="panel-heading">Поиск агента</div><div class="panel-body">
+        
+        <table class="parameters-table" align="center" style="margin-top: 5px;">
+            <tr>
+                <th colspan="2">Параметры поиска</th>
+            </tr>
+            <tr>
+                <td>
+                    <label for="AgentId">ID субагента:</label>
+                </td>
+                <td>
+                    
+                    <input id="AgentId" name="AgentId" type="text" value="" />
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label for="AgentId">Полное наименование:</label>
+                </td>
+                <td>
+                    <input id="Name" name="Name" type="text" value="" />
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label for="AgentId">Юридический адрес:</label>
+                </td>
+                <td>
+                    <input id="Address" name="Address" type="text" value="" />
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label for="AgentId">ИНН:</label>
+                </td>
+                <td>
+                    <input id="ITIN" name="ITIN" type="text" value="" />
+                </td>
+            </tr>
+             <tr>
+                    <td><label for="AgentLegalName">Наименование на чеке:</label></td>
+                    <td>
+                        <input id="AgentLegalName" name="AgentLegalName" type="text" value="" />
+                    </td>
+                </tr>
+                <tr>
+                    <td><label for="LegalAddress">Юридический адрес:</label></td>
+                    <td>
+                        <input id="LegalAddress" name="LegalAddress" type="text" value="" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for="Phone">Контактный телефон (мобильный):</label>
+                    </td>
+                    <td>
+                        <input id="Phone" name="Phone" type="text" value="" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for="Email">E-mail:</label>
+                    </td>
+                    <td>
+                        <input id="Email" name="Email" type="text" value="" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for="">Cчёт:</label>
+                    </td>
+                    <td>
+                        <input id="BankAccount" name="BankAccount" type="text" value="" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>Персональный менеждер</td>
+                    <td><select id="ManagerId" name="ManagerId"><option selected="selected" value="0">Не задан</option>
+<option value="176">Скрябина Ирина</option>
+<option value="5923">Павлова Светлана</option>
+<option value="6240">Дробилина Наталья</option>
+<option value="8552">Яценко Татьяна</option>
+<option value="9745">Смотраков Антон</option>
+<option value="6835">Дубровина Мария</option>
+<option value="10666">Угоднова Евгения</option>
+<option value="5027">Смолин Александр</option>
+<option value="5020">Котягин Александр</option>
+<option value="2171">Мария Топалова</option>
+<option value="370">Подмарев Максим Владимирович</option>
+<option value="10667">Миракова Екатерина</option>
+<option value="13006">Колобов Евгений</option>
+<option value="13130">Токмаков Юрий</option>
+<option value="12882">Карапетьян Роксана</option>
+<option value="12707">Саврасова Татьяна</option>
+<option value="2590">Шахов Дмитрий</option>
+</select></td>
+                </tr>
+        </table>
+        <input id="searchAgents" type="button" value="Найти"/>
+        <img class="loading_img" src="/Content/Images/loading.gif" alt="loader" />
+        <div id="serverError" class="field-validation-error">
+            <span class="field-validation-valid" id="Name_validationMessage"></span> 
+            <span class="field-validation-valid" id="Address_validationMessage"></span>   
+            <span class="field-validation-valid" id="ITIN_validationMessage"></span> 
+            <span class="field-validation-valid" id="AgentLegalName_validationMessage"></span> 
+            <span class="field-validation-valid" id="LegalAddress_validationMessage"></span> 
+            <span class="field-validation-valid" id="Phone_validationMessage"></span> 
+            <span class="field-validation-valid" id="Email_validationMessage"></span> 
+            <span class="field-validation-valid" id="BankAccount_validationMessage"></span> 
+            <span class="field-validation-valid" id="ManagerId_validationMessage"></span> 
+        </div>
+    </div></div>
+    <div id="searchResults"></div>
+    </form>

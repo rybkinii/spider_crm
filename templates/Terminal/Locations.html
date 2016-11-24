@@ -1,0 +1,673 @@
+﻿      
+
+            
+
+    <div class="panel panel-default"><div class="panel-heading">Список терминалов</div><div class="panel-body">
+
+        <div align="center">
+            <table class="parameters-table" align="center" style="margin-top: 5px;">
+                <tr>
+                    <th colspan="2">Параметры поиска</th>
+                </tr>
+                <tr>
+                    <td>Номер терминала:</td>
+                    <td><input id="Id" name="Id" type="text" value="" /></td>
+                </tr>
+                <tr>
+                    <td>Состояние терминала:</td>
+                    <td><select id="TerminalStateType" name="TerminalStateType">	<option value="All">Все</option>
+	<option selected="selected" value="Active">Активные</option>
+	<option value="NotActive">Неактивные</option>
+</select></td>
+                </tr>
+                
+                <tr>
+                    <td>
+                        Адрес содержит:
+                    </td>
+                    <td>
+                        <input id="address" type="text" />
+                    </td>
+                </tr>
+                <tr>
+                    <td style="vertical-align: top;">
+                        Агент:
+                        <div id="treecontrol">
+                            <a href="#" id="collapse"></a>
+                        </div>
+                    </td>
+                    <td><ul id="LeveledAgents" class="filetree"><li><input  type="checkbox" agentId="6416475" parentId="7249141"/>ИП Аскирка  (TELE2)</li>
+</ul></td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for="PageSize">Терминалов на странице:</label>
+                    </td>
+                    <td>
+                        <select id="PageSize" name="PageSize" style="width: 50px"><option selected="selected">50</option>
+<option>100</option>
+<option>200</option>
+</select>
+                    </td>
+                </tr>
+            </table>
+            <input id="searchLocations" type="button" value="Найти"/>
+            <img class="loading_img" src="/Content/Images/loading.gif" alt="loader" />
+            <div id="serverError" class="field-validation-error">
+            </div>            
+        </div>
+       
+    </div></div>
+      <div id="searchResults">
+        
+<div class="ajax" align="center">
+    <input id="totalPages" name="totalPages" type="hidden" value="1" />   
+    <table class="list-entity">
+        <tr>
+            <th style="min-width: 40px">№ </th>
+            <th style="min-width: 300px">Название</th>
+            <th style="min-width: 200px">Регион</th>
+            <th style="min-width: 200px">Населенный пункт</th>
+            <th style="min-width: 200px">Улица</th>
+            <th style="min-width: 200px">Дом</th>
+            <th style="min-width: 200px">Принадлежит агенту</th>
+            <th>Подтверждение</th>
+            
+        </tr>
+        
+                <tr>                
+                    <td>1</td>   
+                    <td>
+                        <img src="/Content/images/terminal.png" alt="Терминал" />
+                        <a href="/Terminal/Edit/8757321">8757321 3 Дачная</a>
+                        
+                    </td>
+                    
+                    <td>Саратовская область</td>
+                    <td>город Саратов</td>
+                    <td>улица 50 Лет Октября</td>
+                    <td>196</td>
+                    
+                    <td>ИП Аскирка  (TELE2) </td>
+
+                    <td style="text-align:center;">
+                        <input id="8757321" class="approve" type="checkbox" value="1" />
+                        
+                    </td>
+                     
+                </tr>
+        
+                <tr>                
+                    <td>2</td>   
+                    <td>
+                        <img src="/Content/images/terminal.png" alt="Терминал" />
+                        <a href="/Terminal/Edit/6595541">6595541 Автовокзал, Моссковская 170</a>
+                        
+                    </td>
+                    
+                    <td>Саратовская область</td>
+                    <td>город Саратов</td>
+                    <td>улица Московская</td>
+                    <td>170</td>
+                    
+                    <td>ИП Аскирка  (TELE2) </td>
+
+                    <td style="text-align:center;">
+                        <input id="6595541" class="approve" type="checkbox" value="1" />
+                        
+                    </td>
+                     
+                </tr>
+        
+                <tr>                
+                    <td>3</td>   
+                    <td>
+                        <img src="/Content/images/terminal.png" alt="Терминал" />
+                        <a href="/Terminal/Edit/1945623">1945623 Антонова 14Б Магнит</a>
+                        
+                    </td>
+                    
+                    <td>Саратовская область</td>
+                    <td>город Саратов</td>
+                    <td>проспект Антонова</td>
+                    <td>14Б</td>
+                    
+                    <td>ИП Аскирка  (TELE2) </td>
+
+                    <td style="text-align:center;">
+                        <input id="1945623" class="approve" type="checkbox" value="1" />
+                        
+                    </td>
+                     
+                </tr>
+        
+                <tr>                
+                    <td>4</td>   
+                    <td>
+                        <img src="/Content/images/terminal.png" alt="Терминал" />
+                        <a href="/Terminal/Edit/5279387">5279387 Аткарск Советская 93 Семейный (Бал Ленина)</a>
+                        
+                    </td>
+                    
+                    <td>Саратовская область</td>
+                    <td>город Аткарск</td>
+                    <td>улица Советская</td>
+                    <td>93</td>
+                    
+                    <td>ИП Аскирка  (TELE2) </td>
+
+                    <td style="text-align:center;">
+                        <input id="5279387" class="approve" type="checkbox" value="1" />
+                        
+                    </td>
+                     
+                </tr>
+        
+                <tr>                
+                    <td>5</td>   
+                    <td>
+                        <img src="/Content/images/terminal.png" alt="Терминал" />
+                        <a href="/Terminal/Edit/8286120">8286120 Балашов пр. Энтузиастов 1 ТЦ &quot;Пассаж&quot;</a>
+                        
+                    </td>
+                    
+                    <td>Саратовская область</td>
+                    <td>город Балашов</td>
+                    <td>проспект Энтузиастов</td>
+                    <td>1</td>
+                    
+                    <td>ИП Аскирка  (TELE2) </td>
+
+                    <td style="text-align:center;">
+                        <input id="8286120" class="approve" type="checkbox" value="1" />
+                        
+                    </td>
+                     
+                </tr>
+        
+                <tr>                
+                    <td>6</td>   
+                    <td>
+                        <img src="/Content/images/terminal.png" alt="Терминал" />
+                        <a href="/Terminal/Edit/2956534">2956534 Балашов, 30л. Победы 137 - 53</a>
+                        
+                    </td>
+                    
+                    <td>Саратовская область</td>
+                    <td>город Балашов</td>
+                    <td>улица 30 л. Победы </td>
+                    <td>137-53</td>
+                    
+                    <td>ИП Аскирка  (TELE2) </td>
+
+                    <td style="text-align:center;">
+                        <input id="2956534" class="approve" type="checkbox" value="1" />
+                        
+                    </td>
+                     
+                </tr>
+        
+                <tr>                
+                    <td>7</td>   
+                    <td>
+                        <img src="/Content/images/terminal.png" alt="Терминал" />
+                        <a href="/Terminal/Edit/7484995">7484995 Вольск, Октябрьская, 106а </a>
+                        
+                    </td>
+                    
+                    <td>Саратовская область</td>
+                    <td>город Вольск</td>
+                    <td>улица Октябрьская</td>
+                    <td>106а</td>
+                    
+                    <td>ИП Аскирка  (TELE2) </td>
+
+                    <td style="text-align:center;">
+                        <input id="7484995" class="approve" type="checkbox" value="1" />
+                        
+                    </td>
+                     
+                </tr>
+        
+                <tr>                
+                    <td>8</td>   
+                    <td>
+                        <img src="/Content/images/terminal.png" alt="Терминал" />
+                        <a href="/Terminal/Edit/7728908">7728908 ГМ &quot;Лента&quot; Блинова 50</a>
+                        
+                    </td>
+                    
+                    <td>Саратовская область</td>
+                    <td>город Саратов</td>
+                    <td>улица Блинова</td>
+                    <td>50</td>
+                    
+                    <td>ИП Аскирка  (TELE2) </td>
+
+                    <td style="text-align:center;">
+                        <input id="7728908" class="approve" type="checkbox" value="1" />
+                        
+                    </td>
+                     
+                </tr>
+        
+                <tr>                
+                    <td>9</td>   
+                    <td>
+                        <img src="/Content/images/terminal.png" alt="Терминал" />
+                        <a href="/Terminal/Edit/4188150">4188150 Ершов (Пугачев, М. Горького 21/2)</a>
+                        
+                    </td>
+                    
+                    <td>Саратовская область</td>
+                    <td>город Ершов</td>
+                    <td>улица Гоголя </td>
+                    <td>44Т</td>
+                    
+                    <td>ИП Аскирка  (TELE2) </td>
+
+                    <td style="text-align:center;">
+                        <input id="4188150" class="approve" type="checkbox" value="1" />
+                        
+                    </td>
+                     
+                </tr>
+        
+                <tr>                
+                    <td>10</td>   
+                    <td>
+                        <img src="/Content/images/terminal.png" alt="Терминал" />
+                        <a href="/Terminal/Edit/8771974">8771974 Калининск, Советская 11</a>
+                        
+                    </td>
+                    
+                    <td>Саратовская область</td>
+                    <td>город Калининск</td>
+                    <td>улица Советская</td>
+                    <td>11</td>
+                    
+                    <td>ИП Аскирка  (TELE2) </td>
+
+                    <td style="text-align:center;">
+                        <input id="8771974" class="approve" type="checkbox" value="1" />
+                        
+                    </td>
+                     
+                </tr>
+        
+                <tr>                
+                    <td>11</td>   
+                    <td>
+                        <img src="/Content/images/terminal.png" alt="Терминал" />
+                        <a href="/Terminal/Edit/5928372">5928372 Кирова 13-15</a>
+                        
+                    </td>
+                    
+                    <td>Саратовская область</td>
+                    <td>город Саратов</td>
+                    <td>проспект Кирова</td>
+                    <td>13-15</td>
+                    
+                    <td>ИП Аскирка  (TELE2) </td>
+
+                    <td style="text-align:center;">
+                        <input id="5928372" class="approve" type="checkbox" value="1" />
+                        
+                    </td>
+                     
+                </tr>
+        
+                <tr>                
+                    <td>12</td>   
+                    <td>
+                        <img src="/Content/images/terminal.png" alt="Терминал" />
+                        <a href="/Terminal/Edit/4113737">4113737 Кирова 52 (Бал ТЦ &quot;Рокот&quot;)</a>
+                        
+                    </td>
+                    
+                    <td>Саратовская область</td>
+                    <td>город Саратов</td>
+                    <td>улица Кирова</td>
+                    <td>52</td>
+                    
+                    <td>ИП Аскирка  (TELE2) </td>
+
+                    <td style="text-align:center;">
+                        <input id="4113737" class="approve" type="checkbox" value="1" />
+                        
+                    </td>
+                     
+                </tr>
+        
+                <tr>                
+                    <td>13</td>   
+                    <td>
+                        <img src="/Content/images/terminal.png" alt="Терминал" />
+                        <a href="/Terminal/Edit/4130964">4130964 Маркс ТЦ &quot;Аврора&quot;</a>
+                        
+                    </td>
+                    
+                    <td>Саратовская область</td>
+                    <td>город Маркс</td>
+                    <td>улица Первомайская</td>
+                    <td>62</td>
+                    
+                    <td>ИП Аскирка  (TELE2) </td>
+
+                    <td style="text-align:center;">
+                        <input id="4130964" class="approve" type="checkbox" value="1" />
+                        
+                    </td>
+                     
+                </tr>
+        
+                <tr>                
+                    <td>14</td>   
+                    <td>
+                        <img src="/Content/images/terminal.png" alt="Терминал" />
+                        <a href="/Terminal/Edit/1513744">1513744 Мирный переулок</a>
+                        
+                    </td>
+                    
+                    <td>Саратовская область</td>
+                    <td>город Саратов</td>
+                    <td>улица Мирный</td>
+                    <td>46</td>
+                    
+                    <td>ИП Аскирка  (TELE2) </td>
+
+                    <td style="text-align:center;">
+                        <input id="1513744" class="approve" type="checkbox" value="1" />
+                        
+                    </td>
+                     
+                </tr>
+        
+                <tr>                
+                    <td>15</td>   
+                    <td>
+                        <img src="/Content/images/terminal.png" alt="Терминал" />
+                        <a href="/Terminal/Edit/2602730">2602730 Петровск Бр. Костериных 105</a>
+                        
+                    </td>
+                    
+                    <td>Саратовская область</td>
+                    <td>город Петровск</td>
+                    <td>улица Бр. Костериных</td>
+                    <td>105</td>
+                    
+                    <td>ИП Аскирка  (TELE2) </td>
+
+                    <td style="text-align:center;">
+                        <input id="2602730" class="approve" type="checkbox" value="1" />
+                        
+                    </td>
+                     
+                </tr>
+        
+                <tr>                
+                    <td>16</td>   
+                    <td>
+                        <img src="/Content/images/terminal.png" alt="Терминал" />
+                        <a href="/Terminal/Edit/9677217">9677217 пр-т Кирова 26</a>
+                        
+                    </td>
+                    
+                    <td>Саратовская область</td>
+                    <td>город Саратов</td>
+                    <td>проспект Кирова</td>
+                    <td>26</td>
+                    
+                    <td>ИП Аскирка  (TELE2) </td>
+
+                    <td style="text-align:center;">
+                        <input id="9677217" class="approve" type="checkbox" value="1" />
+                        
+                    </td>
+                     
+                </tr>
+        
+                <tr>                
+                    <td>17</td>   
+                    <td>
+                        <img src="/Content/images/terminal.png" alt="Терминал" />
+                        <a href="/Terminal/Edit/9877528">9877528 Ртищево Громова 1</a>
+                        
+                    </td>
+                    
+                    <td>Саратовская область</td>
+                    <td>город Ртищево</td>
+                    <td>улица А. Громова </td>
+                    <td>1</td>
+                    
+                    <td>ИП Аскирка  (TELE2) </td>
+
+                    <td style="text-align:center;">
+                        <input id="9877528" class="approve" type="checkbox" value="1" />
+                        
+                    </td>
+                     
+                </tr>
+        
+                <tr>                
+                    <td>18</td>   
+                    <td>
+                        <img src="/Content/images/terminal.png" alt="Терминал" />
+                        <a href="/Terminal/Edit/5040364">5040364 Рынок Волга</a>
+                        
+                    </td>
+                    
+                    <td>Саратовская область</td>
+                    <td>город Саратов</td>
+                    <td>улица Краевая</td>
+                    <td>81</td>
+                    
+                    <td>ИП Аскирка  (TELE2) </td>
+
+                    <td style="text-align:center;">
+                        <input id="5040364" class="approve" type="checkbox" value="1" />
+                        
+                    </td>
+                     
+                </tr>
+        
+                <tr>                
+                    <td>19</td>   
+                    <td>
+                        <img src="/Content/images/terminal.png" alt="Терминал" />
+                        <a href="/Terminal/Edit/7934211">7934211 Солнечный</a>
+                        
+                    </td>
+                    
+                    <td>Саратовская область</td>
+                    <td>город Саратов</td>
+                    <td>улица Тархова</td>
+                    <td>26</td>
+                    
+                    <td>ИП Аскирка  (TELE2) </td>
+
+                    <td style="text-align:center;">
+                        <input id="7934211" class="approve" type="checkbox" value="1" />
+                        
+                    </td>
+                     
+                </tr>
+        
+                <tr>                
+                    <td>20</td>   
+                    <td>
+                        <img src="/Content/images/terminal.png" alt="Терминал" />
+                        <a href="/Terminal/Edit/3922523">3922523 ТЦ &quot;Сити Молл&quot;</a>
+                        
+                    </td>
+                    
+                    <td>Саратовская область</td>
+                    <td>город Саратов</td>
+                    <td>шоссе Новоастраханское</td>
+                    <td>8</td>
+                    
+                    <td>ИП Аскирка  (TELE2) </td>
+
+                    <td style="text-align:center;">
+                        <input id="3922523" class="approve" type="checkbox" value="1" />
+                        
+                    </td>
+                     
+                </tr>
+        
+                <tr>                
+                    <td>21</td>   
+                    <td>
+                        <img src="/Content/images/terminal.png" alt="Терминал" />
+                        <a href="/Terminal/Edit/1761220">1761220 ТЦ &quot;Центральный Кол&quot; Б.Горная 310А</a>
+                        
+                    </td>
+                    
+                    <td>Саратовская область</td>
+                    <td>город Саратов</td>
+                    <td>улица Б.Горная </td>
+                    <td>310а</td>
+                    
+                    <td>ИП Аскирка  (TELE2) </td>
+
+                    <td style="text-align:center;">
+                        <input id="1761220" class="approve" type="checkbox" value="1" />
+                        
+                    </td>
+                     
+                </tr>
+        
+                <tr>                
+                    <td>22</td>   
+                    <td>
+                        <img src="/Content/images/terminal.png" alt="Терминал" />
+                        <a href="/Terminal/Edit/8378759">8378759 Усть - Курдюмская 11А</a>
+                        
+                    </td>
+                    
+                    <td>Саратовская область</td>
+                    <td>город Саратов</td>
+                    <td>улица Усть - Курдюмская</td>
+                    <td>11а</td>
+                    
+                    <td>ИП Аскирка  (TELE2) </td>
+
+                    <td style="text-align:center;">
+                        <input id="8378759" class="approve" type="checkbox" value="1" />
+                        
+                    </td>
+                     
+                </tr>
+        
+                <tr>                
+                    <td>23</td>   
+                    <td>
+                        <img src="/Content/images/terminal.png" alt="Терминал" />
+                        <a href="/Terminal/Edit/2022461">2022461 Энгельс Колотилова 84 &quot;Магнит&quot;</a>
+                        
+                    </td>
+                    
+                    <td>Саратовская область</td>
+                    <td>город Энгельс</td>
+                    <td>улица Колотилова</td>
+                    <td>84</td>
+                    
+                    <td>ИП Аскирка  (TELE2) </td>
+
+                    <td style="text-align:center;">
+                        <input id="2022461" class="approve" type="checkbox" value="1" />
+                        
+                    </td>
+                     
+                </tr>
+        
+                <tr>                
+                    <td>24</td>   
+                    <td>
+                        <img src="/Content/images/terminal.png" alt="Терминал" />
+                        <a href="/Terminal/Edit/8190426">8190426 Энгельс, пл. Ленина 4</a>
+                        
+                    </td>
+                    
+                    <td>Саратовская область</td>
+                    <td>город Энгельс</td>
+                    <td>улица Ленина</td>
+                    <td>4</td>
+                    
+                    <td>ИП Аскирка  (TELE2) </td>
+
+                    <td style="text-align:center;">
+                        <input id="8190426" class="approve" type="checkbox" value="1" />
+                        
+                    </td>
+                     
+                </tr>
+        
+                <tr>                
+                    <td>25</td>   
+                    <td>
+                        <img src="/Content/images/terminal.png" alt="Терминал" />
+                        <a href="/Terminal/Edit/8482890">8482890 Энгельс, Степная 122</a>
+                        
+                    </td>
+                    
+                    <td>Саратовская область</td>
+                    <td>город Энгельс</td>
+                    <td>улица Степная</td>
+                    <td>122</td>
+                    
+                    <td>ИП Аскирка  (TELE2) </td>
+
+                    <td style="text-align:center;">
+                        <input id="8482890" class="approve" type="checkbox" value="1" />
+                        
+                    </td>
+                     
+                </tr>
+        
+                <tr>                
+                    <td>26</td>   
+                    <td>
+                        <img src="/Content/images/terminal.png" alt="Терминал" />
+                        <a href="/Terminal/Edit/9330442">9330442 Энгельс, Строителей 2 (Бал, Трнавская 24)</a>
+                        
+                    </td>
+                    
+                    <td>Саратовская область</td>
+                    <td>город Энгельс</td>
+                    <td>улица Строителей</td>
+                    <td>2</td>
+                    
+                    <td>ИП Аскирка  (TELE2) </td>
+
+                    <td style="text-align:center;">
+                        <input id="9330442" class="approve" type="checkbox" value="1" />
+                        
+                    </td>
+                     
+                </tr>
+        
+                <tr>                
+                    <td>27</td>   
+                    <td>
+                        <img src="/Content/images/terminal.png" alt="Терминал" />
+                        <a href="/Terminal/Edit/8576170">8576170 Энгельс, Химиков, 1 </a>
+                        
+                    </td>
+                    
+                    <td>Саратовская область</td>
+                    <td>город Энгельс</td>
+                    <td>улица Химиков</td>
+                    <td>1</td>
+                    
+                    <td>ИП Аскирка  (TELE2) </td>
+
+                    <td style="text-align:center;">
+                        <input id="8576170" class="approve" type="checkbox" value="1" />
+                        
+                    </td>
+                     
+                </tr>
+        
+    </table>
+</div>

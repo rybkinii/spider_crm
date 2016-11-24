@@ -1,0 +1,931 @@
+﻿
+        
+
+            
+    <form action="/Terminal/Save" id="form0" method="post">
+    <div class="panel panel-default"><div class="panel-heading">Создание терминала</div><div class="panel-body">
+
+    <div align="center">
+        <input id="Id" name="Id" type="hidden" value="0" />
+        <input id="Info_Id" name="Info.Id" type="hidden" value="0" />
+        <input id="Location_Id" name="Location.Id" type="hidden" value="0" />
+        <input id="Location_CountryCode" name="Location.CountryCode" type="hidden" value="" />
+        <input id="Location_Subarea" name="Location.Subarea" type="hidden" value="" />
+        <input id="Location_Description" name="Location.Description" type="hidden" value="" />
+        <input id="Location_Kind" name="Location.Kind" type="hidden" value="" />
+        <input id="Location_Precision" name="Location.Precision" type="hidden" value="" />
+        <input id="Location_HasNewAddress" name="Location.HasNewAddress" type="hidden" value="True" />
+        <input id="Parent_Id" name="Parent.Id" type="hidden" value="6416475" />
+        <input id="Info_WorkStartTime" name="Info.WorkStartTime" type="hidden" value="" />
+        <input id="Info_WorkEndTime" name="Info.WorkEndTime" type="hidden" value="" />
+        <table class="create-entity">
+            <tr>
+                <th colspan="2">Принадлежит агенту</th>
+                <td>
+                  <input disabled="disabled" id="Parent_Name" name="Parent.Name" style="width: 300px;" type="text" value="ИП Аскирка  (TELE2)" />
+                    
+                </td>
+                <td></td>
+            </tr>
+            <tr>
+                <th colspan="2">Название терминала</th>
+                <td><input id="Name" name="Name" style="width: 300px;" type="text" value="" /></td>
+                <td><span style="color: red;">*</span></td>
+            </tr>
+            <tr>
+                <th rowspan="4">Адрес точки</th>
+                <th>Регион</th>
+                <td><select id="Location_Region_Id" name="Location.Region.Id" style="width: 300px;"><option value="0">Не задан</option>
+<option value="80">Агинский Бурятский автономный округ</option>
+<option value="22">Алтайский край</option>
+<option value="28">Амурская область</option>
+<option value="29">Архангельская область</option>
+<option value="30">Астраханская область</option>
+<option value="31">Белгородская область</option>
+<option value="32">Брянская область</option>
+
+</select></td>
+                <td></td>
+            </tr>
+            <tr>
+                <th><select id="Location_TownType" name="Location.TownType" style="width: 120px;"><option value="город">Город</option>
+<option value="село">Село</option>
+<option value="поселок">Поселок</option>
+<option value="деревня">Деревня</option>
+<option value="поселок городского типа">Поселок городского типа</option>
+<option value="станица">Станица</option>
+<option value="п/о">П/о</option>
+<option value="станция">Станция</option>
+<option value="аул">Аул</option>
+<option value="хутор">Хутор</option>
+<option value="населённый пункт">Населённый пункт</option>
+</select></th>
+                <td><input id="Location_Town" name="Location.Town" style="width: 300px;" type="text" value="" /></td>
+                <td><span style="color: red;">*</span></td>
+            </tr>
+            <tr>
+                <th><select id="Location_StreetType" name="Location.StreetType" style="width: 120px;"><option value="улица">Улица</option>
+<option value="проспект">Проспект</option>
+<option value="проезд">Проезд</option>
+<option value="тупик">Тупик</option>
+<option value="шоссе">Шоссе</option>
+<option value="бульвар">Бульвар</option>
+<option value="переулок">Переулок</option>
+<option value="площадь">Площадь</option>
+<option value="набережная">Набережная</option>
+<option value="квартал">Квартал</option>
+<option value="аллея">Аллея</option>
+<option value="микрорайон">Микрорайон</option>
+<option value="а/я">А/я</option>
+<option value="тракт">Тракт</option>
+<option value="фед. трасса">Фед. трасса</option>
+<option value="линия">Линия</option>
+</select> </th>
+                <td><input id="Location_Street" name="Location.Street" style="width: 300px;" type="text" value="" /></td>
+                <td><span style="color: red;">*</span></td>
+            </tr>
+            <tr>
+                <th>Дом</th>
+                <td><input id="Location_NumBuilding" name="Location.NumBuilding" style="width: 300px;" type="text" value="" /></td>
+                <td><span style="color: red;">*</span></td>
+            </tr>
+            <tr>
+                <th  colspan="2"></th>
+                <td>
+                    <div id="yandexDiv" style="padding: 3px;">
+                        <a id="locationLink" href="#">Уточнить адрес</a><sup>*</sup>
+                        <a id="mapLink" style="margin-left: 20px;" href="#">Указать на карте</a><sup>*</sup><br/>
+                        <span class="tip"><sup>*</sup>Сервисы предоставлены компанией Яндекс.</span>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <th colspan="2">Скопировать настройки с терминала</th>
+                <td><select id="TemplateTerminalId" name="TemplateTerminalId"><option selected="selected" value="0">Любой</option>
+<option value="1513744">1513744 Мирный переулок</option>
+<option value="1761220">1761220 ТЦ &quot;Центральный Кол&quot; Б.Горная 310А</option>
+<option value="1945623">1945623 Антонова 14Б Магнит</option>
+<option value="2022461">2022461 Энгельс Колотилова 84 &quot;Магнит&quot;</option>
+<option value="2602730">2602730 Петровск Бр. Костериных 105</option>
+<option value="2956534">2956534 Балашов, 30л. Победы 137 - 53</option>
+<option value="3922523">3922523 ТЦ &quot;Сити Молл&quot;</option>
+<option value="4113737">4113737 Кирова 52 (Бал ТЦ &quot;Рокот&quot;)</option>
+<option value="4130964">4130964 Маркс ТЦ &quot;Аврора&quot;</option>
+<option value="4188150">4188150 Ершов (Пугачев, М. Горького 21/2)</option>
+
+</select>&nbsp;<input id="CopySettings" type="button" value="Применить" /></td>
+                <td></td>
+            </tr>
+            
+            <tr>
+                <th colspan="2">Тип терминала</th>
+                <td>
+                    <input checked="checked" id="IsWinTerminal" name="IsWinTerminal" type="radio" value="false" />Автомат<br />
+                    <input id="IsWinTerminal" name="IsWinTerminal" type="radio" value="true" />Win-терминал
+                </td>
+                <td></td>
+            </tr>
+            <tr>
+                <th colspan="2">Шаблон комиссий операторов</th>
+                <td>
+                    <select id="TerminalCommissionTemplate_Id" name="TerminalCommissionTemplate.Id" style="width: 300px;"><option value="0">Произвольный</option>
+<option value="179">Системный 3% минимум 29р.</option>
+<option value="249">Системный 7% минимум 3 р.</option>
+<option value="339">Системный КИВИ 3% минимум 35р.</option>
+<option value="562">Системный 5%</option>
+<option value="563">Системный 7%</option>
+<option value="564">Системный 10%</option>
+
+</select>
+                </td>
+                <td></td>
+            </tr>
+            
+        
+            <tr>
+                <th colspan="2">Внешняя комиссия</th>
+                <td>
+                    <input id="IsCommissionListHere" name="IsCommissionListHere" type="radio" value="true" />Персональная<br />
+                    <input checked="checked" id="IsCommissionListHere" name="IsCommissionListHere" type="radio" value="false" />Задается у агента
+                </td>
+                <td></td>
+            </tr>
+            <tr>
+                <th colspan="2">Логин</th>
+                <td>
+<input type="text" id="Login" name="Login" style="width: 100px" value=""/>
+<input type="button" id="LoginButton" value="Сгенерировать" /></td>
+                <td><span style="color: red;">*</span></td>
+            </tr>
+            <tr>
+                <th colspan="2">Пароль</th>
+                <td>
+<input type="text" id="Password" name="Password" style="width: 100px" value=""/>
+<input type="button" id="PasswordButton" value="Сгенерировать" /></td>
+                <td><span style="color: red;">*</span></td>
+            </tr>
+            <tr>
+                <th colspan="2">Активный</th>
+                <td><input checked="checked" id="Active" name="Active" type="checkbox" value="true" /><input name="Active" type="hidden" value="false" /></td>
+                <td></td>
+            </tr>
+            <tr>
+                <th colspan="4" class="header">                   
+                    <span id="extendedPropsOption" class="hand" style="text-decoration: underline;">
+                        <img id="extendedPropsImg" src="/Content/images/icon_plus_1.gif" alt="+" style="padding-right: 5px;" />Расширенные настройки
+                    </span>
+                </th>                
+            </tr>
+        </table>
+        <table id="extendedProps" class="create-entity" style="display: none;">
+            <tr>
+                <th colspan="2" rowspan="7">ТОП-5 операторов на первой странице</th>
+                <td>
+                    <select id="Info_FirstPageProvider1_Id" name="Info.FirstPageProvider1.Id" style="width: 300px;"><option value="0">Не задан</option>
+<option value="2883"> ДЖЕТ МАНИ</option>
+<option value="2571"> УК &quot;ОМЕГА&quot; - Паркинг</option>
+<option value="2966">0-12 ТОЧКА РУ</option>
+<option value="596">11x11</option>
+<option value="82">2com</option>
+<option value="83">2Pay.ru</option>
+<option value="2364">4Game</option>
+<option value="234">4Story</option>
+<option value="492">7K</option>
+<option value="1163">7K (без доп. комиссии)</option>
+<option value="2659">8day</option>
+<option value="2508">Academ.org</option>
+<option value="568">AironetSP</option>
+<option value="2141">Aiva&#160;- Сотовая связь</option>
+<option value="219">AMF</option>
+<option value="2980">AmmoPay</option>
+<option value="1418">ApaNet</option>
+<option value="85">Apollophone</option>
+<option value="2956">AQUAFON</option>
+<option value="2236">Arche Age</option>
+<option value="2246">Arche Age (без доп.комиссии)</option>
+<option value="408">ARKAN</option>
+<option value="2556">Armored Warfire - проект &quot;Армата&quot;</option>
+<option value="2557">Armored Warfire - проект &quot;Армата&quot; (без доп.комиссии)</option>
+<option value="678">Asteis Telecom</option>
+<option value="722">Astro7.ru</option>
+<option value="2473">Avito</option>
+<option value="2441">AVON (Онлайн)</option>
+<option value="164">AVON (Оффлайн)</option>
+<option value="695">Avtovo.Net</option>
+<option value="2863">Bakcell Азербайджан</option>
+<option value="1641">Betcity</option>
+<option value="2951">Betinhell</option>
+<option value="204">Biglion</option>
+<option value="2665">Black Fire</option>
+<option value="2840">Black Gold Online</option>
+<option value="243">Bloody world</option>
+<option value="2050">Bloody world (без доп. комиссии)</option>
+<option value="86">butovo.com</option>
+<option value="565">butovo.net</option>
+<option value="730">CardTel</option>
+<option value="2918">CarMoney (ТОЧКА ЗАЙМА)</option>
+<option value="173">Carnage.ru</option>
+<option value="733">CCS</option>
+<option value="2144">CCS оплата доступа в интернет</option>
+<option value="2143">CCS оплата услуг связи</option>
+<option value="2145">CCS&#160;оплата услуг ТВ</option>
+<option value="681">CDT</option>
+<option value="2882">Centr.LAN</option>
+<option value="944">CHAYKA.NET</option>
+
+</select>
+                </td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>
+                    <select id="Info_FirstPageProvider3_Id" name="Info.FirstPageProvider3.Id" style="width: 300px;"><option value="0">Не задан</option>
+<option value="2883"> ДЖЕТ МАНИ</option>
+<option value="2571"> УК &quot;ОМЕГА&quot; - Паркинг</option>
+<option value="2966">0-12 ТОЧКА РУ</option>
+<option value="596">11x11</option>
+<option value="82">2com</option>
+<option value="83">2Pay.ru</option>
+<option value="2364">4Game</option>
+<option value="234">4Story</option>
+<option value="492">7K</option>
+<option value="1163">7K (без доп. комиссии)</option>
+<option value="2659">8day</option>
+<option value="2508">Academ.org</option>
+<option value="568">AironetSP</option>
+
+</select>
+                </td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>
+                    <select id="Info_FirstPageProvider4_Id" name="Info.FirstPageProvider4.Id" style="width: 300px;"><option value="0">Не задан</option>
+<option value="2883"> ДЖЕТ МАНИ</option>
+<option value="2571"> УК &quot;ОМЕГА&quot; - Паркинг</option>
+<option value="2966">0-12 ТОЧКА РУ</option>
+<option value="596">11x11</option>
+<option value="82">2com</option>
+<option value="83">2Pay.ru</option>
+<option value="2364">4Game</option>
+<option value="234">4Story</option>
+<option value="492">7K</option>
+<option value="1163">7K (без доп. комиссии)</option>
+<option value="2659">8day</option>
+<option value="2508">Academ.org</option>
+<option value="568">AironetSP</option>
+
+</select>
+                </td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>
+                    <select id="Info_FirstPageProvider5_Id" name="Info.FirstPageProvider5.Id" style="width: 300px;"><option value="0">Не задан</option>
+<option value="2883"> ДЖЕТ МАНИ</option>
+<option value="2571"> УК &quot;ОМЕГА&quot; - Паркинг</option>
+<option value="2966">0-12 ТОЧКА РУ</option>
+<option value="596">11x11</option>
+<option value="82">2com</option>
+<option value="83">2Pay.ru</option>
+<option value="2364">4Game</option>
+<option value="234">4Story</option>
+<option value="492">7K</option>
+<option value="1163">7K (без доп. комиссии)</option>
+<option value="2659">8day</option>
+<option value="2508">Academ.org</option>
+<option value="568">AironetSP</option>
+
+</select>
+                </td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>                   
+                    <span id="otherProvidersOption" class="hand">
+                        <img id="otherProvidersImg" src="/Content/images/icon_plus_1.gif" alt="+" style="padding-right: 5px;" /> Остальные операторы... (ТОП-18)
+                    </span>
+                </td>                
+                <td></td>
+            </tr>
+            <tr>
+                <td>
+                    <table id="otherProviders" style="display: none;">
+                        <tr>
+                            <td>
+                                <select id="Info_FirstPageProvider6_Id" name="Info.FirstPageProvider6.Id" style="width: 300px;"><option value="0">Не задан</option>
+<option value="2883"> ДЖЕТ МАНИ</option>
+<option value="2571"> УК &quot;ОМЕГА&quot; - Паркинг</option>
+<option value="2966">0-12 ТОЧКА РУ</option>
+<option value="596">11x11</option>
+<option value="82">2com</option>
+<option value="83">2Pay.ru</option>
+<option value="2364">4Game</option>
+<option value="234">4Story</option>
+<option value="492">7K</option>
+<option value="1163">7K (без доп. комиссии)</option>
+<option value="2659">8day</option>
+<option value="2508">Academ.org</option>
+<option value="568">AironetSP</option>
+</select>
+                            </td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <select id="Info_FirstPageProvider7_Id" name="Info.FirstPageProvider7.Id" style="width: 300px;"><option value="0">Не задан</option>
+<option value="2883"> ДЖЕТ МАНИ</option>
+<option value="2571"> УК &quot;ОМЕГА&quot; - Паркинг</option>
+<option value="2966">0-12 ТОЧКА РУ</option>
+<option value="596">11x11</option>
+<option value="82">2com</option>
+<option value="83">2Pay.ru</option>
+<option value="2364">4Game</option>
+<option value="234">4Story</option>
+<option value="492">7K</option>
+<option value="1163">7K (без доп. комиссии)</option>
+<option value="2659">8day</option>
+<option value="2508">Academ.org</option>
+<option value="568">AironetSP</option>
+</select>
+                            </td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <select id="Info_FirstPageProvider8_Id" name="Info.FirstPageProvider8.Id" style="width: 300px;"><option value="0">Не задан</option>
+<option value="2883"> ДЖЕТ МАНИ</option>
+<option value="2571"> УК &quot;ОМЕГА&quot; - Паркинг</option>
+<option value="2966">0-12 ТОЧКА РУ</option>
+<option value="596">11x11</option>
+<option value="82">2com</option>
+<option value="83">2Pay.ru</option>
+<option value="2364">4Game</option>
+<option value="234">4Story</option>
+<option value="492">7K</option>
+<option value="1163">7K (без доп. комиссии)</option>
+<option value="2659">8day</option>
+<option value="2508">Academ.org</option>
+<option value="568">AironetSP</option>
+
+</select>
+                            </td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <select id="Info_FirstPageProvider9_Id" name="Info.FirstPageProvider9.Id" style="width: 300px;"><option value="0">Не задан</option>
+<option value="2883"> ДЖЕТ МАНИ</option>
+<option value="2571"> УК &quot;ОМЕГА&quot; - Паркинг</option>
+<option value="2966">0-12 ТОЧКА РУ</option>
+<option value="596">11x11</option>
+<option value="82">2com</option>
+<option value="83">2Pay.ru</option>
+<option value="2364">4Game</option>
+<option value="234">4Story</option>
+<option value="492">7K</option>
+<option value="1163">7K (без доп. комиссии)</option>
+<option value="2659">8day</option>
+<option value="2508">Academ.org</option>
+<option value="568">AironetSP</option>
+
+</select>
+                            </td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <select id="Info_FirstPageProvider10_Id" name="Info.FirstPageProvider10.Id" style="width: 300px;"><option value="0">Не задан</option>
+<option value="2883"> ДЖЕТ МАНИ</option>
+<option value="2571"> УК &quot;ОМЕГА&quot; - Паркинг</option>
+<option value="2966">0-12 ТОЧКА РУ</option>
+<option value="596">11x11</option>
+<option value="82">2com</option>
+<option value="83">2Pay.ru</option>
+<option value="2364">4Game</option>
+<option value="234">4Story</option>
+<option value="492">7K</option>
+<option value="1163">7K (без доп. комиссии)</option>
+<option value="2659">8day</option>
+<option value="2508">Academ.org</option>
+<option value="568">AironetSP</option>
+</select>
+                            </td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <select id="Info_FirstPageProvider11_Id" name="Info.FirstPageProvider11.Id" style="width: 300px;"><option value="0">Не задан</option>
+<option value="2883"> ДЖЕТ МАНИ</option>
+<option value="2571"> УК &quot;ОМЕГА&quot; - Паркинг</option>
+<option value="2966">0-12 ТОЧКА РУ</option>
+<option value="596">11x11</option>
+<option value="82">2com</option>
+<option value="83">2Pay.ru</option>
+<option value="2364">4Game</option>
+<option value="234">4Story</option>
+<option value="492">7K</option>
+<option value="1163">7K (без доп. комиссии)</option>
+<option value="2659">8day</option>
+<option value="2508">Academ.org</option>
+<option value="568">AironetSP</option>
+</select>
+                            </td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <select id="Info_FirstPageProvider12_Id" name="Info.FirstPageProvider12.Id" style="width: 300px;"><option value="0">Не задан</option>
+<option value="2883"> ДЖЕТ МАНИ</option>
+<option value="2571"> УК &quot;ОМЕГА&quot; - Паркинг</option>
+<option value="2966">0-12 ТОЧКА РУ</option>
+<option value="596">11x11</option>
+<option value="82">2com</option>
+<option value="83">2Pay.ru</option>
+<option value="2364">4Game</option>
+<option value="234">4Story</option>
+<option value="492">7K</option>
+<option value="1163">7K (без доп. комиссии)</option>
+<option value="2659">8day</option>
+<option value="2508">Academ.org</option>
+<option value="568">AironetSP</option>
+
+</select>
+                            </td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <select id="Info_FirstPageProvider13_Id" name="Info.FirstPageProvider13.Id" style="width: 300px;"><option value="0">Не задан</option>
+<option value="2883"> ДЖЕТ МАНИ</option>
+<option value="2571"> УК &quot;ОМЕГА&quot; - Паркинг</option>
+<option value="2966">0-12 ТОЧКА РУ</option>
+<option value="596">11x11</option>
+<option value="82">2com</option>
+<option value="83">2Pay.ru</option>
+<option value="2364">4Game</option>
+<option value="234">4Story</option>
+<option value="492">7K</option>
+<option value="1163">7K (без доп. комиссии)</option>
+<option value="2659">8day</option>
+<option value="2508">Academ.org</option>
+<option value="568">AironetSP</option>
+</select>
+                            </td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <select id="Info_FirstPageProvider14_Id" name="Info.FirstPageProvider14.Id" style="width: 300px;"><option value="0">Не задан</option>
+<option value="2883"> ДЖЕТ МАНИ</option>
+<option value="2571"> УК &quot;ОМЕГА&quot; - Паркинг</option>
+<option value="2966">0-12 ТОЧКА РУ</option>
+<option value="596">11x11</option>
+<option value="82">2com</option>
+<option value="83">2Pay.ru</option>
+<option value="2364">4Game</option>
+<option value="234">4Story</option>
+<option value="492">7K</option>
+<option value="1163">7K (без доп. комиссии)</option>
+<option value="2659">8day</option>
+<option value="2508">Academ.org</option>
+<option value="568">AironetSP</option>
+</select>
+                            </td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <select id="Info_FirstPageProvider15_Id" name="Info.FirstPageProvider15.Id" style="width: 300px;"><option value="0">Не задан</option>
+<option value="2883"> ДЖЕТ МАНИ</option>
+<option value="2571"> УК &quot;ОМЕГА&quot; - Паркинг</option>
+<option value="2966">0-12 ТОЧКА РУ</option>
+<option value="596">11x11</option>
+<option value="82">2com</option>
+<option value="83">2Pay.ru</option>
+<option value="2364">4Game</option>
+<option value="234">4Story</option>
+<option value="492">7K</option>
+<option value="1163">7K (без доп. комиссии)</option>
+<option value="2659">8day</option>
+<option value="2508">Academ.org</option>
+<option value="568">AironetSP</option>
+</select>
+                            </td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <select id="Info_FirstPageProvider16_Id" name="Info.FirstPageProvider16.Id" style="width: 300px;"><option value="0">Не задан</option>
+<option value="2883"> ДЖЕТ МАНИ</option>
+<option value="2571"> УК &quot;ОМЕГА&quot; - Паркинг</option>
+<option value="2966">0-12 ТОЧКА РУ</option>
+<option value="596">11x11</option>
+<option value="82">2com</option>
+<option value="83">2Pay.ru</option>
+<option value="2364">4Game</option>
+<option value="234">4Story</option>
+<option value="492">7K</option>
+<option value="1163">7K (без доп. комиссии)</option>
+<option value="2659">8day</option>
+<option value="2508">Academ.org</option>
+<option value="568">AironetSP</option>
+</select>
+                            </td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <select id="Info_FirstPageProvider17_Id" name="Info.FirstPageProvider17.Id" style="width: 300px;"><option value="0">Не задан</option>
+<option value="2883"> ДЖЕТ МАНИ</option>
+<option value="2571"> УК &quot;ОМЕГА&quot; - Паркинг</option>
+<option value="2966">0-12 ТОЧКА РУ</option>
+<option value="596">11x11</option>
+<option value="82">2com</option>
+<option value="83">2Pay.ru</option>
+<option value="2364">4Game</option>
+<option value="234">4Story</option>
+<option value="492">7K</option>
+<option value="1163">7K (без доп. комиссии)</option>
+<option value="2659">8day</option>
+<option value="2508">Academ.org</option>
+<option value="568">AironetSP</option>
+</select>
+                            </td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <select id="Info_FirstPageProvider18_Id" name="Info.FirstPageProvider18.Id" style="width: 300px;"><option value="0">Не задан</option>
+<option value="2883"> ДЖЕТ МАНИ</option>
+<option value="2571"> УК &quot;ОМЕГА&quot; - Паркинг</option>
+<option value="2966">0-12 ТОЧКА РУ</option>
+<option value="596">11x11</option>
+<option value="82">2com</option>
+<option value="83">2Pay.ru</option>
+<option value="2364">4Game</option>
+<option value="234">4Story</option>
+<option value="492">7K</option>
+<option value="1163">7K (без доп. комиссии)</option>
+<option value="2659">8day</option>
+<option value="2508">Academ.org</option>
+<option value="568">AironetSP</option>
+</select>
+                            </td>
+                            <td></td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+            <tr><th colspan="4"><p></p></th></tr>
+            <tr>
+                <th colspan="2" rowspan="6">Группы операторов на первой странице</th>
+                <td>
+                    <select id="Info_ProviderGroup1_Id" name="Info.ProviderGroup1.Id" style="width: 300px;"><option value="0">Не задана</option>
+<option value="1">Сотовая связь</option>
+<option value="2">Интернет и телефония</option>
+<option value="3">Телевидение</option>
+<option value="4">Электронная коммерция</option>
+<option value="5">Банки и кредиты</option>
+</select>
+                </td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>
+                    <select id="Info_ProviderGroup2_Id" name="Info.ProviderGroup2.Id" style="width: 300px;"><option value="0">Не задана</option>
+<option value="1">Сотовая связь</option>
+<option value="2">Интернет и телефония</option>
+<option value="3">Телевидение</option>
+<option value="4">Электронная коммерция</option>
+<option value="5">Банки и кредиты</option></select>                   
+                </td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>
+                    <select id="Info_ProviderGroup3_Id" name="Info.ProviderGroup3.Id" style="width: 300px;"><option value="0">Не задана</option>
+<option value="1">Сотовая связь</option>
+<option value="2">Интернет и телефония</option>
+<option value="3">Телевидение</option>
+<option value="4">Электронная коммерция</option>
+<option value="5">Банки и кредиты</option>
+
+</select>                   
+                </td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>
+                    <select id="Info_ProviderGroup4_Id" name="Info.ProviderGroup4.Id" style="width: 300px;"><option value="0">Не задана</option>
+<option value="1">Сотовая связь</option>
+<option value="2">Интернет и телефония</option>
+<option value="3">Телевидение</option>
+<option value="4">Электронная коммерция</option>
+<option value="5">Банки и кредиты</option>
+
+</select>                   
+                </td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>
+                    <select id="Info_ProviderGroup5_Id" name="Info.ProviderGroup5.Id" style="width: 300px;"><option value="0">Не задана</option>
+<option value="1">Сотовая связь</option>
+<option value="2">Интернет и телефония</option>
+<option value="3">Телевидение</option>
+<option value="4">Электронная коммерция</option>
+<option value="5">Банки и кредиты</option>
+
+</select>                   
+                </td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>
+                    <select id="Info_ProviderGroup6_Id" name="Info.ProviderGroup6.Id" style="width: 300px;"><option value="0">Не задана</option>
+<option value="1">Сотовая связь</option>
+<option value="2">Интернет и телефония</option>
+<option value="3">Телевидение</option>
+<option value="4">Электронная коммерция</option>
+<option value="5">Банки и кредиты</option>
+
+</select>                   
+                </td>
+                <td></td>
+            </tr>
+            <tr><th colspan="4"><p></p></th></tr>
+            <tr>
+                <th colspan="2" rowspan="7">ТОП-7 операторов на второй странице</th>
+                <td>
+                    <select id="Info_TopProvider1_Id" name="Info.TopProvider1.Id" style="width: 300px;"><option value="0">Не задан</option>
+<option value="2883"> ДЖЕТ МАНИ</option>
+<option value="2571"> УК &quot;ОМЕГА&quot; - Паркинг</option>
+<option value="2966">0-12 ТОЧКА РУ</option>
+<option value="596">11x11</option>
+</select>
+                </td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>
+                    <select id="Info_TopProvider2_Id" name="Info.TopProvider2.Id" style="width: 300px;"><option value="0">Не задан</option>
+<option value="2883"> ДЖЕТ МАНИ</option>
+<option value="2571"> УК &quot;ОМЕГА&quot; - Паркинг</option>
+<option value="2966">0-12 ТОЧКА РУ</option>
+<option value="596">11x11</option>
+</select>
+                </td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>
+                    <select id="Info_TopProvider3_Id" name="Info.TopProvider3.Id" style="width: 300px;"><option value="0">Не задан</option>
+<option value="2883"> ДЖЕТ МАНИ</option>
+<option value="2571"> УК &quot;ОМЕГА&quot; - Паркинг</option>
+<option value="2966">0-12 ТОЧКА РУ</option>
+<option value="596">11x11</option>
+</select>                    
+                </td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>
+                    <select id="Info_TopProvider4_Id" name="Info.TopProvider4.Id" style="width: 300px;"><option value="0">Не задан</option>
+<option value="2883"> ДЖЕТ МАНИ</option>
+<option value="2571"> УК &quot;ОМЕГА&quot; - Паркинг</option>
+<option value="2966">0-12 ТОЧКА РУ</option>
+<option value="596">11x11</option>
+</select>                    
+                </td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>
+                    <select id="Info_TopProvider5_Id" name="Info.TopProvider5.Id" style="width: 300px;"><option value="0">Не задан</option>
+<option value="2883"> ДЖЕТ МАНИ</option>
+<option value="2571"> УК &quot;ОМЕГА&quot; - Паркинг</option>
+<option value="2966">0-12 ТОЧКА РУ</option>
+<option value="596">11x11</option>
+</select>                    
+                </td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>
+                    <select id="Info_TopProvider6_Id" name="Info.TopProvider6.Id" style="width: 300px;"><option value="0">Не задан</option>
+<option value="2883"> ДЖЕТ МАНИ</option>
+<option value="2571"> УК &quot;ОМЕГА&quot; - Паркинг</option>
+<option value="2966">0-12 ТОЧКА РУ</option>
+<option value="596">11x11</option>
+</select>                    
+                </td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>
+                    <select id="Info_TopProvider7_Id" name="Info.TopProvider7.Id" style="width: 300px;"><option value="0">Не задан</option>
+<option value="2883"> ДЖЕТ МАНИ</option>
+<option value="2571"> УК &quot;ОМЕГА&quot; - Паркинг</option>
+<option value="2966">0-12 ТОЧКА РУ</option>
+<option value="596">11x11</option>
+</select>                    
+                </td>
+                <td></td>
+            </tr>   
+            <tr>
+                <th colspan="2">Часовой пояс</th>
+                <td>
+                    <select id="GMTOffset" name="GMTOffset" style="width: 300px;"><option value="2">GMT +02:00</option>
+<option value="3">GMT +03:00</option>
+<option value="4">GMT +04:00</option>
+<option value="5">GMT +05:00</option>
+<option value="6">GMT +06:00</option>
+<option value="7">GMT +07:00</option>
+<option value="8">GMT +08:00</option>
+<option value="9">GMT +09:00</option>
+
+</select>
+                </td>
+                <td>
+                </td>
+            </tr>
+            <tr>
+                <th colspan="2">Время работы терминала
+                <br />
+                <span class="small-tip">(при круглосуточной работе терминала<br /> поля заполняются с 00:00 до 00:00)</span></th>
+                <td>
+                    с <select id="WorkStartHours" name="WorkStartHours" style="width: 50px"><option value="0">00</option>
+<option value="1">01</option>
+<option value="2">02</option>
+<option value="3">03</option>
+<option value="4">04</option>
+<option value="5">05</option>
+<option value="6">06</option>
+
+
+</select>:<select id="WorkStartMinutes" name="WorkStartMinutes" style="width: 50px"><option value="0">00</option>
+<option value="1">01</option>
+<option value="2">02</option>
+<option value="3">03</option>
+<option value="4">04</option>
+<option value="5">05</option>
+<option value="6">06</option>
+
+
+
+
+
+
+</select> по <select id="WorkEndHours" name="WorkEndHours" style="width: 50px"><option value="0">00</option>
+<option value="1">01</option>
+<option value="2">02</option>
+<option value="3">03</option>
+<option value="4">04</option>
+<option value="5">05</option>
+<option value="6">06</option>
+
+
+</select>:<select id="WorkEndMinutes" name="WorkEndMinutes" style="width: 50px"><option value="0">00</option>
+<option value="1">01</option>
+<option value="2">02</option>
+<option value="3">03</option>
+<option value="4">04</option>
+<option value="5">05</option>
+<option value="6">06</option>
+
+
+
+
+
+
+</select>
+                </td>
+                <td></td>
+            </tr>
+            <tr>
+                <th colspan="2">Контактное лицо</th>
+                <td>
+                    <input id="Contact" name="Contact" style="width: 300px;" type="text" value="" />
+                </td>
+                <td></td>
+            </tr>
+            <tr>
+                <th colspan="2">Мобильный телефон</th>
+                <td>
+                    <input id="CellPhone" name="CellPhone" style="width: 300px;" type="text" value="" />
+                </td>
+                <td></td>
+            </tr>
+            <tr>
+                <th colspan="2">Телефон</th>
+                <td>
+                    <input id="Tel" name="Tel" style="width: 300px;" type="text" value="" />
+                </td>
+                <td></td>
+            </tr>
+            <tr>
+                <th colspan="2">Email</th>
+                <td>
+                    <input id="Email" name="Email" style="width: 300px;" type="text" value="" />
+                </td>
+                <td></td>
+            </tr>
+            <tr>
+                <th colspan="2">Стоимость аренды (в месяц)</th>
+                <td>
+                    <input id="Info_RentAmount" name="Info.RentAmount" style="width: 300px;" type="text" value="0,00" />
+                </td>
+                <td></td>
+            </tr>
+            <tr>
+                <th colspan="2">Стоимость инкассации (за одну)</th>
+                <td><input id="Info_EncashmentAmount" name="Info.EncashmentAmount" style="width: 300px;" type="text" value="0.00" /></td>
+                <td></td>
+            </tr>
+            <tr>
+                <th colspan="2">Другие платежи (в месяц)<br/>
+                <span class="small-tip">(техобслуживание, амортизация и т.п.)</span>
+                </th>
+                <td><input id="Info_OtherPaymentsAmount" name="Info.OtherPaymentsAmount" style="width: 300px;" type="text" value="0.00" /></td>
+                <td></td>
+            </tr>
+            <tr>
+                <th colspan="2">Максимальный разовый платеж</th>
+                <td>
+                    <input id="MaximumPaymentAmount" name="MaximumPaymentAmount" style="width: 300px;" type="text" value="0,00" />
+                </td>
+                <td></td>
+            </tr>
+            <tr>
+                <th colspan="2">Максимальная сумма платежей в день</th>
+                <td>
+                    <input id="Info_MaximumDayAmount" name="Info.MaximumDayAmount" style="width: 300px;" type="text" value="30000,00" />
+                </td>
+                <td></td>
+            </tr>
+             <tr>
+                <th colspan="2">Разрешить перепроведение платежей</th>
+                <td>
+                    <input checked="checked" id="AllowEditPayment" name="AllowEditPayment" type="checkbox" value="true" /><input name="AllowEditPayment" type="hidden" value="false" />
+                </td>
+                <td></td>
+            </tr>
+            <tr>
+                <th colspan="2">Автоматическая блокировка<img id="automaticBlockInfo" style="margin-left: 3px;" src="/Content/images/info.png" alt="Инфо"/><br/>
+                <span class="small-tip">(при достижении максимальной суммы платежей в день)</span></th>
+                <td><input id="Info_AllowAutomaticBlockTerminal" name="Info.AllowAutomaticBlockTerminal" type="checkbox" value="true" /><input name="Info.AllowAutomaticBlockTerminal" type="hidden" value="false" /></td>
+                <td></td>
+            </tr>
+            <tr>
+                <th colspan="2">Количество купюр в купюроприемнике</th>
+                <td>
+                    <input id="Info_BillsCount" name="Info.BillsCount" style="width: 300px;" type="text" value="0" />
+                </td>
+                <td></td>
+            </tr>
+           
+            <tr>
+                <th colspan="2">Дополнительный текст на квитанции</th>
+                <td><input id="Info_AdditionalSlipInfo" name="Info.AdditionalSlipInfo" style="width: 300px;" type="text" value="" /></td>
+                <td><span style="visibility: hidden">*</span></td>
+            </tr>
+			<tr>
+                <th colspan="2">Дополнительная информация</th>
+                <td><textarea cols="20" id="Info_Description" name="Info.Description" rows="2" style="width: 300px; height:100px;">
+</textarea></td>
+            </tr>
+        </table>
+        <p>
+            <input type="submit" value="Сохранить" id="submitButton" />
+            <input type="button" value="Отмена" onclick="javascript:document.location.href = '/Terminal/Index'" />
+            <br/><span id="terminalError" class="validation-summary-errors"> </span>
+        </p>
+        <div id="serverError" class="field-validation-error">
+            <span class="field-validation-valid" id="Name_validationMessage"></span> 
+            <span class="field-validation-valid" id="Login_validationMessage"></span> 
+            <span class="field-validation-valid" id="Password_validationMessage"></span> 
+            <span class="field-validation-valid" id="Info_TopProvider1_Id_validationMessage"></span>
+            <span class="field-validation-valid" id="Location_Town_validationMessage"></span>
+            <span class="field-validation-valid" id="Location_Street_validationMessage"></span>
+            <span class="field-validation-valid" id="Location_NumBuilding_validationMessage"></span>
+        </div>
+         <div id="locationDialog" style="display: none; padding: 0;">
+            <table id="locations" class="parameters-table lines" style="width:100%;" >
+                <tr class="parameters">
+                    <th>Предполагаемое месторасположение терминала</th>
+                </tr>
+            </table>
+        </div>
+        <div id="mapDialog" style="display: none; padding: 0;">
+            <div id="map" style="width: 99.8%; height: 99.8%;"></div>
+        </div>
+        <div id="automaticBlockDialog" style="display: none; padding: 0;">
+            <b>Настройка включена:</b><br/>
+            <p style="text-indent: 20px;">При достижении максимальной суммы платежей в день, терминал блокируется и НЕ принимает платежи.</p>
+            <b>Настройка выключена:</b><br/>
+            <p style="text-indent: 20px;">При достижении максимальной суммы платежей в день, терминал НЕ блокируется и принимает платежи. Все платежи поступают с ошибочным статусом &quot;Превышен лимит на терминале&quot;.</p>
+        </div>
+    </div>
+    </div></div>
+    </form>

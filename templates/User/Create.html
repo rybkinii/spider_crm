@@ -1,0 +1,429 @@
+﻿
+
+        
+
+            
+    <form action="/User/Save" id="form0" method="post">
+    <div class="panel panel-default"><div class="panel-heading">Создание пользователя</div><div class="panel-body">
+    
+    <div align="center">
+        <input id="Id" name="Id" type="hidden" value="0" />
+        
+        <table class="create-entity">
+            <tr>
+                <th>Главный агент</th>
+                <td>                  <input disabled="disabled" id="Agent_Name" name="Agent.Name" style="width: 300px;" type="text" value="ИП Аскирка  (TELE2)" />
+                  
+                </td>
+            </tr>
+            <tr>
+                <th>Логин</th>
+                <td>                    <input id="Login" name="Login" style="width: 300px;" type="text" value="" />                   
+                </td>
+                <td><span style="color: red;">*</span></td>
+            </tr>
+            <tr>
+                <th>Пароль на получение сертификата</th>
+                <td><input type="text" id="Password" name="Password" style="width: 100px" value=""/>
+<input type="button" id="PasswordButton" value="Сгенерировать" /></td>
+                <td><span style="color: red;">*</span></td>
+            </tr>
+            <tr>
+                <th>Пароль для Web-доступа</th>
+                <td><input type="text" id="WebPassword" name="WebPassword" style="width: 100px" value=""/>
+<input type="button" id="WebPasswordButton" value="Сгенерировать" /></td>
+                <td><span style="color: red;">*</span></td>
+            </tr>
+            <tr>
+                <th>ФИО пользователя</th>
+                <td>                    <input id="FullName" name="FullName" style="width: 300px;" type="text" value="" />
+                </td>
+                <td><span style="color: red;">*</span></td>
+            </tr>
+            <tr>
+                <th>Контактный телефон</th>
+                <td>                    <input id="Phone" name="Phone" style="width: 300px;" type="text" value="" />
+                </td>
+                <td><span style="color: red;">*</span></td>
+            </tr>
+            <tr>
+                <th>E-mail</th>
+                <td><input id="Email" name="Email" style="width: 300px;" type="text" value="" /></td>
+                <td></td>
+            </tr>
+            
+            <tr>
+                <th>Шаблон прав</th>
+                <td>                    <select id="UserRightTemplate" name="UserRightTemplate" style="width: 180px"><option value="0">Произвольный</option>
+<option value="1">Администратор</option>
+<option value="2">Менеджер</option>
+<option value="3">Бухгалтер</option>
+<option value="4">Колл-центр</option>
+<option value="5">Мониторинг</option>
+<option value="6">Инкассатор</option>
+</select>
+                    <a href="#" id="userRightsLink" style="display: none">Назначить права</a>
+                </td>
+                <td></td>
+            </tr>
+            <tr>
+                <th style="vertical-align:top;">Субагент:</th>
+                
+                <td><ul id="LeveledAgents" class="filetree"><li><input  type="checkbox" agentId="6416475" parentId="7249141"/>ИП Аскирка  (TELE2)</li>
+</ul></td>
+                <td></td>
+            </tr>
+            
+            <tr>
+                <th colspan="3" class="header">                   
+                    <span id="notificationPropertiesOption" class="hand" style="text-decoration: underline;">
+                        <img id="notificationPropertiesImg" src="/Content/images/icon_plus_1.gif" alt="+" style="padding-right: 5px;" />Уведомления о действиях пользователя
+                    </span>
+                </th>                
+            </tr>
+            <tr class="notification" style="display: none;">
+                <th>E-mail для уведомлений</th>
+                <td colspan="2">
+                    <input id="NotificationEmail" name="NotificationEmail" type="text" value="" />
+                    <img id="myEmailImg" src="/Content/images/email.png" style="vertical-align:text-bottom;" alt="Мой e-mail"/>
+                    <input id="myEmail" name="myEmail" type="hidden" value="" />
+                </td>
+            </tr>
+            <tr class="notification" style="display: none;">
+                <th>Создание агента</th>
+                <td colspan="2"><input type="checkbox" value="1" 
+                /></td>
+            </tr>
+            <tr class="notification" style="display: none;">
+                <th>Создание win-терминала</th>
+                <td colspan="2"><input type="checkbox" value="2"
+                /></td>
+            </tr>
+            <tr class="notification" style="display: none;">
+                <th>Перепроведение платежа</th>
+                <td colspan="2"><input type="checkbox" value="4"
+                /></td>
+            </tr>
+        </table>
+
+        <div id="userRights" style="display: none;">
+            <table>
+                
+                    <tr>
+                        <th>Терминалы</th>
+                        <th>Просмотр</th>
+                        <th>Изменение</th>
+                    </tr>
+                   
+                        <tr>
+                            <td style="text-align: left">
+                                Список терминалов
+                                <input type="hidden" id="1" read="False" write="False" /></td>
+                            <td>                                 
+                                    <input rightId="1" rightType="read" type = "checkbox" />
+                                </td>
+                            <td>                                
+                                    <input rightId="1" rightType="write" type = "checkbox" />
+                                </td>
+                        </tr>
+                    
+                        <tr>
+                            <td style="text-align: left">
+                                Список субагентов
+                                <input type="hidden" id="19" read="False" write="False" /></td>
+                            <td>                                 
+                                    <input rightId="19" rightType="read" type = "checkbox" />
+                                </td>
+                            <td>                                </td>
+                        </tr>
+                    
+                    <tr>
+                        <th>Платежи</th>
+                        <th>Просмотр</th>
+                        <th>Изменение</th>
+                    </tr>
+                   
+                        <tr>
+                            <td style="text-align: left">
+                                Поиск платежа
+                                <input type="hidden" id="5" read="False" write="False" /></td>
+                            <td>                                 
+                                    <input rightId="5" rightType="read" type = "checkbox" />
+                                </td>
+                            <td>                                
+                                    <input rightId="5" rightType="write" type = "checkbox" />
+                                </td>
+                        </tr>
+                    
+                        <tr>
+                            <td style="text-align: left">
+                                Балансы - Перераспределение
+                                <input type="hidden" id="16" read="False" write="False" /></td>
+                            <td>                                </td>
+                            <td>                                
+                                    <input rightId="16" rightType="write" type = "checkbox" />
+                                </td>
+                        </tr>
+                    
+                        <tr>
+                            <td style="text-align: left">
+                                Расширенное перепроведение платежей
+                                <input type="hidden" id="42" read="False" write="False" /></td>
+                            <td>                                </td>
+                            <td>                                
+                                    <input rightId="42" rightType="write" type = "checkbox" />
+                                </td>
+                        </tr>
+                    
+                    <tr>
+                        <th>Управление терминалами</th>
+                        <th>Просмотр</th>
+                        <th>Изменение</th>
+                    </tr>
+                   
+                        <tr>
+                            <td style="text-align: left">
+                                Мониторинг
+                                <input type="hidden" id="9" read="False" write="False" /></td>
+                            <td>                                 
+                                    <input rightId="9" rightType="read" type = "checkbox" />
+                                </td>
+                            <td>                                
+                                    <input rightId="9" rightType="write" type = "checkbox" />
+                                </td>
+                        </tr>
+                    
+                    <tr>
+                        <th>Настройки / пользователи</th>
+                        <th>Просмотр</th>
+                        <th>Изменение</th>
+                    </tr>
+                   
+                        <tr>
+                            <td style="text-align: left">
+                                Пользователи
+                                <input type="hidden" id="14" read="False" write="False" /></td>
+                            <td>                                 
+                                    <input rightId="14" rightType="read" type = "checkbox" />
+                                </td>
+                            <td>                                </td>
+                        </tr>
+                    
+                    <tr>
+                        <th>Отчеты</th>
+                        <th>Просмотр</th>
+                        <th>Изменение</th>
+                    </tr>
+                   
+                        <tr>
+                            <td style="text-align: left">
+                                Инкассация 
+                                <input type="hidden" id="22" read="False" write="False" /></td>
+                            <td>                                 
+                                    <input rightId="22" rightType="read" type = "checkbox" />
+                                </td>
+                            <td>                                </td>
+                        </tr>
+                    
+                        <tr>
+                            <td style="text-align: left">
+                                Сводный по балансам
+                                <input type="hidden" id="27" read="False" write="False" /></td>
+                            <td>                                 
+                                    <input rightId="27" rightType="read" type = "checkbox" />
+                                </td>
+                            <td>                                </td>
+                        </tr>
+                    
+                        <tr>
+                            <td style="text-align: left">
+                                Отчет руководителя
+                                <input type="hidden" id="28" read="False" write="False" /></td>
+                            <td>                                 
+                                    <input rightId="28" rightType="read" type = "checkbox" />
+                                </td>
+                            <td>                                </td>
+                        </tr>
+                    
+                        <tr>
+                            <td style="text-align: left">
+                                Сводный отчет
+                                <input type="hidden" id="29" read="False" write="False" /></td>
+                            <td>                                 
+                                    <input rightId="29" rightType="read" type = "checkbox" />
+                                </td>
+                            <td>                                </td>
+                        </tr>
+                    
+                        <tr>
+                            <td style="text-align: left">
+                                Банковские платежи
+                                <input type="hidden" id="30" read="False" write="False" /></td>
+                            <td>                                 
+                                    <input rightId="30" rightType="read" type = "checkbox" />
+                                </td>
+                            <td>                                </td>
+                        </tr>
+                    
+                        <tr>
+                            <td style="text-align: left">
+                                Начисленная комиссия
+                                <input type="hidden" id="31" read="False" write="False" /></td>
+                            <td>                                 
+                                    <input rightId="31" rightType="read" type = "checkbox" />
+                                </td>
+                            <td>                                </td>
+                        </tr>
+                    
+                        <tr>
+                            <td style="text-align: left">
+                                Заявки на отмены
+                                <input type="hidden" id="32" read="False" write="False" /></td>
+                            <td>                                 
+                                    <input rightId="32" rightType="read" type = "checkbox" />
+                                </td>
+                            <td>                                </td>
+                        </tr>
+                    
+                        <tr>
+                            <td style="text-align: left">
+                                Проценты по овердрафтам
+                                <input type="hidden" id="33" read="False" write="False" /></td>
+                            <td>                                 
+                                    <input rightId="33" rightType="read" type = "checkbox" />
+                                </td>
+                            <td>                                </td>
+                        </tr>
+                    
+                    <tr>
+                        <th>Сервис</th>
+                        <th>Просмотр</th>
+                        <th>Изменение</th>
+                    </tr>
+                   
+                        <tr>
+                            <td style="text-align: left">
+                                Зачисление внутренней комиссии
+                                <input type="hidden" id="34" read="False" write="False" /></td>
+                            <td>                                 
+                                    <input rightId="34" rightType="read" type = "checkbox" />
+                                </td>
+                            <td>                                
+                                    <input rightId="34" rightType="write" type = "checkbox" />
+                                </td>
+                        </tr>
+                    
+                        <tr>
+                            <td style="text-align: left">
+                                Сверка инкассаций
+                                <input type="hidden" id="35" read="False" write="False" /></td>
+                            <td>                                 
+                                    <input rightId="35" rightType="read" type = "checkbox" />
+                                </td>
+                            <td>                                
+                                    <input rightId="35" rightType="write" type = "checkbox" />
+                                </td>
+                        </tr>
+                    
+                        <tr>
+                            <td style="text-align: left">
+                                Новости для субагентов
+                                <input type="hidden" id="36" read="False" write="False" /></td>
+                            <td>                                 
+                                    <input rightId="36" rightType="read" type = "checkbox" />
+                                </td>
+                            <td>                                
+                                    <input rightId="36" rightType="write" type = "checkbox" />
+                                </td>
+                        </tr>
+                    
+                        <tr>
+                            <td style="text-align: left">
+                                Управление рекламой
+                                <input type="hidden" id="37" read="False" write="False" /></td>
+                            <td>                                 
+                                    <input rightId="37" rightType="read" type = "checkbox" />
+                                </td>
+                            <td>                                
+                                    <input rightId="37" rightType="write" type = "checkbox" />
+                                </td>
+                        </tr>
+                    
+                        <tr>
+                            <td style="text-align: left">
+                                Настройки
+                                <input type="hidden" id="38" read="False" write="False" /></td>
+                            <td>                                 
+                                    <input rightId="38" rightType="read" type = "checkbox" />
+                                </td>
+                            <td>                                
+                                    <input rightId="38" rightType="write" type = "checkbox" />
+                                </td>
+                        </tr>
+                    
+                        <tr>
+                            <td style="text-align: left">
+                                Логи с терминалов
+                                <input type="hidden" id="39" read="False" write="False" /></td>
+                            <td>                                 
+                                    <input rightId="39" rightType="read" type = "checkbox" />
+                                </td>
+                            <td>                                
+                                    <input rightId="39" rightType="write" type = "checkbox" />
+                                </td>
+                        </tr>
+                    
+                    <tr>
+                        <th>Магазин</th>
+                        <th>Просмотр</th>
+                        <th>Изменение</th>
+                    </tr>
+                   
+                        <tr>
+                            <td style="text-align: left">
+                                Магазин
+                                <input type="hidden" id="40" read="False" write="False" /></td>
+                            <td>                                 
+                                    <input rightId="40" rightType="read" type = "checkbox" />
+                                </td>
+                            <td>                                
+                                    <input rightId="40" rightType="write" type = "checkbox" />
+                                </td>
+                        </tr>
+                    
+                    <tr>
+                        <th>Статистика</th>
+                        <th>Просмотр</th>
+                        <th>Изменение</th>
+                    </tr>
+                   
+                        <tr>
+                            <td style="text-align: left">
+                                Статистика
+                                <input type="hidden" id="41" read="False" write="False" /></td>
+                            <td>                                 
+                                    <input rightId="41" rightType="read" type = "checkbox" />
+                                </td>
+                            <td>                                
+                                    <input rightId="41" rightType="write" type = "checkbox" />
+                                </td>
+                        </tr>
+                    
+            </table>
+        </div>
+        <p>
+            <input id="submitButton" type="button" value="Сохранить" />
+            <input type="button" value="Отмена" onclick="javascript:document.location.href = '/User/Index'" />
+
+        </p>
+        <div id="serverError" class="field-validation-error">
+            <span class="field-validation-valid" id="Login_validationMessage"></span> 
+            <span class="field-validation-valid" id="Password_validationMessage"></span> 
+            <span class="field-validation-valid" id="WebPassword_validationMessage"></span> 
+            <span class="field-validation-valid" id="FullName_validationMessage"></span> 
+            <span class="field-validation-valid" id="Phone_validationMessage"></span> 
+            <span class="field-validation-valid" id="Email_validationMessage"></span> 
+        </div>
+    </div>
+    </div></div>
+    </form>

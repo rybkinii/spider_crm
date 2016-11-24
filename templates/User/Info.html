@@ -1,0 +1,66 @@
+﻿ 
+<div ng-controller="CtrlUserInfo" class="panel panel-default">
+
+
+	<div class="panel-heading">Пользователь
+		<div class="clear"></div>
+	</div>
+	
+	<div class="panel-body">
+		
+		<div ng-if="FF_Client.status!='ready'">
+			<span class="glyphicon glyphicon-refresh" aria-hidden="false"></span> Загрузка
+		</div>
+		
+		<table ng-if="FF_Client.status=='ready' && FF_Client.items.length>0 && client.f_client==f_client" width='100%' border=1 ng-repeat='client in FF_Client.items'>
+			<!--<tr><td>id</td><td>{{client.id}}</td></tr>-->
+			<tr><td>email</td><td>{{client.email}}</td></tr>
+			<tr><td>passwd</td><td>{{client.passwd}}</td></tr>
+			<!--<tr><td>f_client</td><td>{{client.f_client}}</td></tr>-->
+			<tr ng-if='client.f_c_f_client'><td>f_c_f_client</td><td>
+				<!--{{client.f_c_f_client}}-->
+				<label ng-repeat='f_c_f_client in FF_Client.items' ng-if='client.f_c_f_client==f_c_f_client.f_client'>{{f_c_f_client.descr}}</label>
+			</td></tr>
+			<tr><td>c_clientjur</td><td>
+				<!--{{client.c_clientjur}}-->
+				<label ng-repeat='c_clientjur in FF_Dictionaryes.items' ng-if="c_clientjur.dictionary=='lst_system_c_clientjur' && c_clientjur.c_clientjur==client.c_clientjur">
+				{{c_clientjur.descr}}
+				</label>
+			</td></tr>
+			<tr><td>c_clientgroup</td><td>
+				<!--{{client.c_clientgroup}}-->
+				<label ng-repeat='c_clientgroup in FF_Dictionaryes.items' ng-if="c_clientgroup.dictionary=='lst_system_c_clientgroup' && c_clientgroup.c_clientgroup==client.c_clientgroup">
+				{{c_clientgroup.descr}}
+				</label>
+			</td></tr>
+			<tr><td>name1</td><td>{{client.name1}}</td></tr>
+			<tr><td>name2</td><td>{{client.name2}}</td></tr>
+			<tr><td>name3</td><td>{{client.name3}}</td></tr>
+			<tr><td>descr</td><td>{{client.descr}}</td></tr>
+			<tr><td>sex</td><td>
+				<!--{{client.sex}}-->
+				<label ng-if='client.sex==1'>Муж</label>
+				<label ng-if='client.sex==0'>Жен</label>
+			</td></tr>
+			<tr><td>birthday</td><td>{{client.birthday}}</td></tr>
+			<tr><td>timezone</td><td>{{client.timezone}}</td></tr>
+			<tr><td>debug_mode</td><td>
+				<!--{{client.debug_mode}}-->
+				<label ng-if='client.debug_mode'>Режим отладки</label>
+				<label ng-if='!client.debug_mode'>Режим работы</label>
+			</td></tr>
+			<tr><td>stat</td><td>
+				<!--{{client.stat}}-->
+				<label ng-if='client.stat==1'>Отключён</label>
+				<label ng-if='client.stat==0'>Активен</label>
+			</td></tr>
+			<!--
+			<tr><td>dt_start</td><td>{{client.dt_start}}</td></tr>
+			<tr><td>dt_modify</td><td>{{client.dt_modify}}</td></tr>
+			-->
+		</table>
+		
+	</div>
+	
+</div>
+

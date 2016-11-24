@@ -1,0 +1,113 @@
+.clear{clear:both;}
+.form-control {display: inline-block;width: auto;}
+.panel-heading { padding: 5px 15px;}
+
+.navbar {
+    margin-bottom: 7px;
+    padding-top: 5px;
+}
+
+.ng-scope
+{
+	//background-color:#a0a0a0;
+	background-color:transparent;
+}
+.panel {margin:5px;}
+.panel-heading
+{
+    background:#a0a0a0;
+    opacity: 1.0;
+}
+.panel-body
+{
+    background-color:none;
+    opacity: 1.0;
+}
+
+.panel-heading  .btn, .panel-heading .btn-group .btn {
+    margin-top: -2px;
+    margin-right: -10px;
+}
+
+body{background-color:#c0c0c0 !important;}
+td, th {padding: 2px;}
+
+
+.app{
+    background:#fff;
+}
+.sidebar-left{
+    background:#fff;
+}
+
+.navbar-brand {
+    width: 100%;
+    color: #aaa;
+    height:38px;
+}
+
+.section.section-break
+{
+    box-shadow: none;
+}
+
+signal-panel{
+    float : none !important;
+}
+
+
+textarea, input[type="text"], input[type="password"], input[type="datetime"], input[type="datetime-local"], input[type="date"], input[type="month"], input[type="time"], input[type="week"], input[type="number"], input[type="email"], input[type="url"], input[type="search"], input[type="tel"], input[type="color"], .uneditable-input
+{
+    border: 1px solid #cccccc;
+    border-width: 0px 0px 1px 0px;
+}
+.navbar-app .btn,
+.navbar-app .btn-navbar,
+.sidebar-toggle,
+.navbar-app .btn:hover,
+.navbar-app .btn-navbar:hover,
+.sidebar-toggle:hover
+{
+    color:#aaa; 
+}
+
+.paneled-item
+{
+    margin:2px 7px 0px 7px;
+}
+
+
+.paneled-item-shadow
+{
+//    border:1px solid #e0e0e0;
+}
+
+.navbar-app .btn, .navbar-app 
+{
+    line-height: 30px;
+}
+signal-panel div,
+.fa.clickable{
+    padding: 7px;
+}
+
+
+.paneled-item signal-panel div
+{
+    font-size: 12px;
+    background-color: #c0c0c0;
+    font-weight: bold;
+    margin:0px 7px 2px 0px;
+}
+
+.plunker-selector
+{
+	margin-top:3px;
+	max-width:260px;
+}
+
+tree ul li {
+  list-style-type: none; }
+  tree ul li ng-static-include {
+    width: 90%;
+    display: inline-block; }

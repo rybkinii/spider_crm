@@ -1,0 +1,94 @@
+﻿
+
+        
+
+            
+	   <div class="panel panel-default"><div class="panel-heading">Прибыльность терминалов<sup>*</sup> агента ИП</div><div class="panel-body">
+
+        
+        <div style="padding-bottom:5px;" align="center">
+            <table class="parameters-table">
+                <tr>
+                    <td style="padding:0;" colspan="2" >
+
+
+<table class="parameters-table" align="center" >
+    <tr>
+        <th colspan="2">Период</th>
+    </tr>
+    <tr>
+        <td>
+            <label for="StartingTime">Диапазон:</label> &nbsp;&nbsp;&nbsp;&nbsp;
+        </td>
+        <td>
+            <select id="Period" name="Period" style="width: 150px"><option value="0">За сегодня</option>
+<option value="1">За вчера</option>
+<option value="2">За последние 7 дней</option>
+<option value="3">За последние 14 дней</option>
+<option value="4">За последние 30 дней</option>
+<option value="5">За текущий месяц</option>
+<option value="6">За прошлый месяц</option>
+</select>
+            с &nbsp;
+            
+            <input class="dateinput" id="StartingTime" name="StartingTime" type="text" value="" />
+
+            
+
+            <span id="CopyStartingDate" class="hand" title="Скопировать начальную дату">до</span>&nbsp;
+            
+            <input class="dateinput" id="EndingTime" name="EndingTime" type="text" value="" />
+
+            
+        </td>
+    </tr>
+</table>
+<div style="text-align:center;">
+    <span><span class="field-validation-valid" id="StartingTime_validationMessage"></span></span>&nbsp;
+    <span><span class="field-validation-valid" id="EndingTime_validationMessage"></span></span>
+</div>
+</td>
+                </tr>
+                <tr>
+                    <td>Детализация:</td>
+                    <td>
+                        <input type="radio" name="ReportPeriod" value="Day" checked="checked"/>По дням
+                        <input type="radio" name="ReportPeriod" value="Month"/>По месяцам
+                    </td>
+                </tr>
+				<tr>
+                    <td>Сортировать:</td>
+                    <td><select id="Sort" name="Sort">	<option selected="selected" value="ByNumber">По номеру терминала</option>
+	<option value="ByProfitabilityAsc">По рентабельности (возрастание)</option>
+	<option value="ByProfitabilityDesc">По рентабельности (убывание)</option>
+</select></td>
+                </tr>
+				<tr>
+                    <td>Состояние терминала:</td>
+                    <td><select id="TerminalStateType" name="TerminalStateType">	<option selected="selected" value="All">Все</option>
+	<option value="Active">Активные</option>
+	<option value="NotActive">Неактивные</option>
+</select></td>
+                </tr>
+                <tr><th colspan="2">Фильтр по субагентам</th></tr>
+                <tr>
+                    <td>Агенты:</td></>
+                    <td><ul id="LeveledAgents" class="filetree"><li><input  type="checkbox" agentId="6416475" parentId="7249141"/>ИП Аскирка  (TELE2)</li>
+</ul></td>
+                </tr>
+                </table>
+            <div align="center">
+                <input type="button" id="search" value="Поиск" />
+                <img id="loading" src="/Content/images/loading.gif" alt="loading" style="margin-bottom:5px;vertical-align:middle;visibility:hidden;" />
+            </div>
+            <div>
+                <span class="tip"><sup>*</sup>Формула расчета прибыльности терминала за период времени:<br/>
+                внешняя комиссия + внутренняя комиссия – стоимость аренды – (стоимость инкассации * количество инкассаций за период)- другие платежи.</span>
+            </div>
+            <div id="serverError" class="field-validation-error" align="center"></div>
+        </div>
+        
+        <div id="result">
+        </div>
+    </div></div>
+

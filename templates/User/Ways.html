@@ -1,0 +1,52 @@
+<div ng-if="FF_Terminalgroup.status!='ready'" class="app-content-loading">
+          <i class="fa fa-spinner fa-spin loading-spinner"></i>
+</div>
+
+<div ui-content-for="title">
+    <center>
+        <signal-panel class='pull-right' ng-if="FF_Terminalgroup.status=='ready'">
+                <div class="fa fa-plus"     ng-click="FF_Terminalgroup.Create({f_client:FSession.current.f_client});" ></div>
+                <div class="fa fa-refresh" ng-click="FF_Terminalgroup.Load();" ></div>
+                <div class="fa fa-save"    ng-click="FF_Terminalgroup.Save();" ></div>
+        </signal-panel>
+    </center>
+</div>
+
+<div class="scrollable" ng-if="FF_Terminalgroup.status=='ready'">
+<div class="scrollable-content">
+  <div class="container-fluid section section-break" id="toggleExample" ng-controller="CtrlUserWays">
+
+            
+            <!--{{ FF_Terminalgroup }}-->
+            <br/>
+            <script type="text/ng-template" id="FF_Ways">
+                <div ng-class="'paneled-item'+(item | iud_class)" ng-controller="CtrlUserWays">
+                    <b>Маршрут {{item.name}}</b>
+                    <i class='fa fa-undo   pull-right clickable'    ng-click='item | iud_undo'    ng-if="(item.iud==3 || item.iud==4) && FF_Terminalgroup.status=='ready'"    ></i>
+                    <i class='fa fa-remove pull-right clickable'    ng-click='item | iud_delete'  ng-if="item.iud!=3 && item.iud!=4 && FF_Terminalgroup.status=='ready'"    ></i>
+                    <i class='fa fa-edit   pull-right clickable'    ng-click="FF_Terminalgroup.Param('edititem', FF_Terminalgroup.Param('edititem').value== item.id ? '0' : item.id)" ng-if="FF_Terminalgroup.status=='ready'"></i>
+					
+                    <div style='clear:both;'></div>
+                    <table style='width:100%;'  cellspacing='3px;' ng-if="FF_Terminalgroup.Param('edititem').value==item.id">
+                        <tr><td>Имя</td><td>
+                            <input type='text' ng-change="item | iud_change" ng-model='item.name'/>
+                        </td></tr>
+                    </table>
+                    <table  align='center' cellspacing='3px;' ng-if="FF_Terminalgroup.Param('edititem').value==item.id">
+                        <tr ng-repeat='terminal in FF_Terminal.items'><td>{{terminal.fa_descr}}</td><td>
+                            <input type='checkbox' ng-change="item | iud_change" ng-model='item.f_terminals[terminal.f_terminal]'/>
+                        </td></tr>
+                    </table>
+
+                </div>
+            </script>
+			
+        <div ng-repeat="item in FF_Terminalgroup.items | orderObjectBy:'id' track by $index" 
+             ng-if='(item.stat==stat || stat==null)'
+             ng-include="'FF_Ways'"></div>
+
+            
+
+  </div>
+</div>
+</div>

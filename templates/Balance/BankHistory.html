@@ -1,0 +1,20 @@
+﻿<script>
+  $(document).ready(function () {
+	$('.selectpicker').each(function(){
+		$(this).selectpicker({ liveSearch: false, maxOptions: 1 });
+	});	
+  });
+</script>
+
+<div class="panel panel-default">
+  <div class="panel-heading">Период</div>
+  <div class="panel-body">
+		<table align='center'>
+		<tr>
+			<td><select class='selectpicker show-tick form-control input-sm'></select></td>
+			<td>&nbsp;c&nbsp; <input data-provide='datepicker' class="form-control input-sm"></td>
+			<td>&nbsp;по&nbsp; <input data-provide='datepicker' class="form-control input-sm"></td>
+		</tr>
+		</table>
+  </div>
+</div>

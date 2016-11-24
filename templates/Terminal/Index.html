@@ -1,0 +1,156 @@
+﻿<div ng-if="FF_Terminal.status!='ready'" class="app-content-loading">
+          <i class="fa fa-spinner fa-spin loading-spinner"></i>
+</div>
+
+<div ui-content-for="title">
+    <center>
+        <signal-panel class='pull-right' ng-if="FF_Terminal.status=='ready'">
+                <!--<div class="fa fa-plus"     ng-click="FF_Terminal.Create()" ></div>-->
+                <div class="fa fa-refresh" ng-click="FF_Terminal.Load()" ></div>
+                <div class="fa fa-save"    ng-click="FF_Terminal.Save();" ></div>
+        </signal-panel>
+    </center>
+</div>
+
+<div class="scrollable" ng-if="FF_Terminal.status=='ready'">
+<div class="scrollable-content">
+  <div class="container-fluid section section-break" id="toggleExample" ng-controller="CtrlTerminalIndex">
+
+            <br/>
+
+			<table width='100%'>
+				<tr><th>Фильтры</th></tr>
+				<tr><td width='30%'>Пользователь</td><td><selector-source style='min-width:100%' clearing='true' ng-model="f_client" source="{list:FF_Client.items,index:'f_client',field:'descr'}" search="true" class="" ></selector-source></td></tr>
+				<tr><td colspan='2'><!--Статус</td><td>-->
+				<input type='checkbox' ng-change="item | iud_change;"  ng-false-value="0" ng-true-value="1" ng-checked="stat==1" ng-model='stat' /> Отображать отключенные терминалы
+				<!--<input type='radio' ng-model='stat' value='0'/>Включён <input type='radio' ng-model='stat' value='1'/>Выключен-->
+				</td></tr>
+			</table>
+			<br/>
+
+			
+			
+			
+            <script type="text/ng-template" id="FF_Terminals">
+                <div ng-class="'paneled-item'+(item | iud_class)" ng-controller="CtrlTerminalIndex">
+                    <b>Терминал {{item.f_terminal}}: {{item.fa_descr}}</b>
+                    <!--<i class='fa fa-remove pull-right clickable'    ng-click='item | iud_change; item.stat=1;'  ng-if="item.stat==0"    ></i>
+					<i class='fa fa-undo   pull-right clickable'    ng-click='item | iud_change; item.stat=0;'    ng-if="item.stat==1 && FF_Terminal.status=='ready'"    ></i>-->
+                    <i class='fa fa-edit   pull-right clickable'    ng-click="FF_Terminal.Param('edititem', FF_Terminal.Param('edititem').value== item.id ? '0' : item.id)" ng-if="FF_Terminal.status=='ready'"></i>
+					<a href='Terminal/{{item.f_terminal}}' ng-if="(item.iud==0 || item.iud==2 || item.iud==3) && FF_Terminal.status=='ready'"><i class='fa fa-wrench pull-right clickable'></i></a>
+					
+
+                    <div style='clear:both;'></div>
+					
+                    <table style='width:100%;'  cellspacing='3px;' ng-if="FF_Terminal.Param('edititem').value==item.id">
+
+                        <tr><td>Агент</td><td>
+								{{ item.f_client | get_indexed_value : {list: FF_Client.items, index:'f_client', field:'descr'} }}
+                                <!--<selector-source clearing='true' ng-change="item | iud_change" ng-model="item.f_client" source="{list:FF_Client.items,index:'f_client',field:'descr'}" search="true" class="" ></selector-source>-->
+                        </td></tr>
+                        <tr><td>Время включения терминала</td><td>
+                                        <input type='time' ng-change="item | iud_change" ng-model='item.time_start' />
+                        </td></tr>
+                        <tr><td>Время выключения терминала</td><td>
+                                        <input type='time' ng-change="item | iud_change" ng-model='item.time_stop' />
+                        </td></tr>
+                        <tr><td>Лимит предупреждения о балансе</td><td>
+                                <input type='text' ng-change="item | iud_change" ng-model='item.warning_limit' />
+                        </td></tr>
+                        <tr><td>Разрешить перерегистрацию</td><td>
+							<input type='checkbox' ng-change="item | iud_change;"  ng-model='item.unregistered' />
+							
+                        </td></tr>
+                        <tr><td>Терминал включён</td><td>
+								<input type='checkbox' ng-change="item | iud_change;"  ng-model='item.stat' />
+								
+                        </td></tr>
+                        <tr><td>Дата регистрации терминала</td><td>
+                            <label>{{item.dt_start}}</label>
+                        </td></tr>
+                        <tr><td>Дата отключения терминала</td><td>
+                            <label>{{item.dt_stop}}</label>
+                        </td></tr>
+						
+						<tr><th colspan='2'>Адрес регистрации</th></tr>
+                        <tr><td>Индекс</td><td>
+                            <input type='text' placeholder='Индекс...' ng-change="item | iud_change;item.get_f_address.pdescr();" ng-model='item.get_f_address.postindex' />
+                        </td></tr>
+                        <tr><td>Регион</td><td>
+                            <input type='text' placeholder='Регион...' ng-change="item | iud_change;item.get_f_address.pdescr();" ng-model='item.get_f_address.region' />
+                        </td></tr>
+                        <tr><td>Район</td><td>
+                            <input type='text' placeholder='Район...' ng-change="item | iud_change;item.get_f_address.pdescr();" ng-model='item.get_f_address.district' />
+                        </td></tr>
+                        <tr><td>Город</td><td>
+                            <input type='text' placeholder='Город...' ng-change="item | iud_change;item.get_f_address.pdescr();" ng-model='item.get_f_address.town' />
+                        </td></tr>
+                        <tr><td>Место</td><td>
+                            <input type='text' placeholder='Место...' ng-change="item | iud_change;item.get_f_address.pdescr();" ng-model='item.get_f_address.place' />
+                        </td></tr>
+                        <tr><td>Улица</td><td>
+                            <input type='text' placeholder='Улица...' ng-change="item | iud_change;item.get_f_address.pdescr();" ng-model='item.get_f_address.street' />
+                        </td></tr>
+                        <tr><td>Дом</td><td>
+                            <input type='text' placeholder='Дом...' ng-change="item | iud_change;item.get_f_address.pdescr();" ng-model='item.get_f_address.home' />
+                        </td></tr>
+                        <tr><td>Корпус</td><td>
+                            <input type='text' placeholder='Корпус...' ng-change="item | iud_change;item.get_f_address.pdescr();" ng-model='item.get_f_address.corpus' />
+                        </td></tr>
+                        <tr><td>Строение</td><td>
+                            <input type='text' placeholder='Строение...' ng-change="item | iud_change;item.get_f_address.pdescr();" ng-model='item.get_f_address.building' />
+                        </td></tr>
+                        <tr><td>Квартира</td><td>
+                            <input type='text' placeholder='Квартира...' ng-change="item | iud_change;item.get_f_address.pdescr();" ng-model='item.get_f_address.flat' />
+                        </td></tr>
+                        <tr><td>Описание</td><td>
+                            <input type='text' placeholder='Описание...' ng-change="item | iud_change;item.get_f_address.descr = item.get_f_address.proxy_descr;" ng-model='item.get_f_address.proxy_descr' /> 
+                        </td></tr>
+                        <tr><td>Широта</td><td>
+                            <input type='text' placeholder='Широта...' ng-change="item | iud_change;item.get_f_address.pdescr();" ng-model='item.get_f_address.latitude' />
+                        </td></tr>
+                        <tr><td>Долгота</td><td>
+                            <input type='text' placeholder='Долгота...' ng-change="item | iud_change;item.get_f_address.pdescr();" ng-model='item.get_f_address.longitude' />
+                        </td></tr>
+						
+						
+						
+						
+					<!--<tr><td>f_address</td><td>
+                            <label>{{item.f_address}}</label>
+                        </td></tr>
+					<tr><td>fa_descr</td><td>
+                            <label>{{item.fa_descr}}</label>
+                        </td></tr>
+					<tr><td>l_terminalmodule</td><td>
+                            <label>{{item.l_terminalmodule}}</label>
+                        </td></tr>
+					<tr><td>c_module</td><td>
+                            <label>{{item.c_module}}</label>
+                        </td></tr>
+					<tr><td>l_terminalaccount</td><td>
+                            <label>{{item.l_terminalaccount}}</label>
+                        </td></tr>
+					<tr><td>f_account</td><td>
+                            <label>{{item.f_account}}</label>
+                        </td></tr>
+					<tr><td>l_terminalaccess</td><td>
+                            <label>{{item.l_terminalaccess}}</label>
+                        </td></tr>
+					<tr><td>f_access</td><td>
+                            <label>{{item.f_access}}</label>
+                        </td></tr>-->
+
+					
+                    </table>
+                </div>
+            </script>
+			
+			<div ng-repeat="item in FF_Terminal.items | orderObjectBy:'id' track by $index" ng-if='(item.stat==stat || stat==null)&&(item.f_client == f_client || f_client==null)'>
+				<p  ng-include="'FF_Terminals'"></p>
+			</div>
+
+
+  </div>
+</div>
+</div>

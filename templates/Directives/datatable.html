@@ -1,0 +1,91 @@
+
+    <item  ng-show='item.__parent===undefined || item.__parent==datatableService.__parent' 
+	class="{{item.iud == 1 ? 'new': null}} {{item.iud == 2 ? 'updated': null}} {{item.iud == 3 ? 'deleted': null}} {{item.iud == 4 ? 'deleted': null}} {{item.iud == 5 ? 'ignored': null}}" ng-repeat="item in datatableService.items | orderObjectBy:'id' track by $index" 
+	ng-if='datatablePaginator ? ($index>=datatablePaginator.begin && $index<datatablePaginator.end) : true'
+	>
+
+        <label>{{item[datatableCaption]==null ? 'New item' : '(id:'+item.id+')&nbsp;' + item[datatableCaption] + (datatableStatus ? ': '+datatableStatus(item) : '') }}</label>
+        
+        <div class="control-button fa fa-remove" ng-if='canDelete!==false' ng-click="item | iud_delete"  ng-disabled="(item.iud == 0 && item.id===undefined ) || item.iud == 5"  ng-show='item.iud < 3 || item.iud == 5  || datatableService.debug==true'></div> <!-- {{datatableService.debug==true?item.iud:''}} -->
+        
+        <div class="control-button fa fa-edit" ng-if='(true !== detailLink || item.id==0) && !datatableTemplate' ng-click="item.showinfo = !item.showinfo" ng-show='item.iud < 3 || item.iud == 5 || datatableService.debug==true'></div>
+        
+        <div class="control-button fa {{template.class}}" ng-repeat='template in datatableTemplate' ng-if='(true !== detailLink || item.id==0) && datatableTemplate' ng-click="ChangeDatatableTemplate(item,template);" ng-show='item.iud < 3 || item.iud == 5 || datatableService.debug==true'></div>
+        
+        <a href='{{urlpath}}/{{item.id}}'><div ng-if='true === detailLink && item.id>0' class="control-button fa fa-edit" ng-click="" ng-show='item.iud < 3 || item.iud == 5 || datatableService.debug==true'></div></a>
+        
+        <div ng-if='datatableService.HasChilds(item.id)' class="control-button fa fa-arrow-right" ng-click="datatableService.__parent=item.id" ng-show='item.iud < 3 || item.iud == 5 || datatableService.debug==true'></div>
+        
+        <div ng-if='(datatableService[datatableNotice]||null)!==null&&(datatableService[datatableNotice](item).id||null)!=null' class="notice"><div class="fa fa-warning" ng-click="datatableService[datatableNotice](item).notice_ctrl=!datatableService[datatableNotice](item).notice_ctrl"></div>
+        <div ng-if='datatableService[datatableNotice](item).notice_ctrl' class='btn btn-success' ng-click="datatableService[datatableNotice](item).self_kill();">'close'</div>
+        <div ng-if='!datatableService[datatableNotice](item).notice_ctrl' class='btn' ng-click="datatableService[datatableNotice](item).notice_ctrl=!datatableService[datatableNotice](item).notice_ctrl" >{{datatableService[datatableNotice](item).message()}}</div>
+        </div>
+        
+        <div class="list-info    fa fa-lock" ng-if='item.stat==true'></div>
+        <!--{{item.parent}}-->
+        <!--{{item.showinfo}}-->
+        <div ng-if='item.showinfo && datatableTemplate && (item.iud < 3 || item.iud == 5 || datatableService.debug==true)' >
+            <div ng-include="item.__datatabletemplate"></div>
+        </div>
+        
+        <table ng-if='item.showinfo && !datatableTemplate && (item.iud < 3 || item.iud == 5 || datatableService.debug==true)' >
+            <!-- <tr><td colspan='2'>{{item.showinfo}}</td></tr>-->
+            <tr ng-repeat="field in datatableModel" ng-switch on="field.type">
+                <td class='field_name'>{{field.caption}}:</td>
+                <td  ng-switch-when="caption">
+                     {{item[field.field]}}
+                </td>
+                <td  ng-switch-when="text">
+                     <input type='text'  ng-disabled="item.iud == 5" placeholder="{{field.placeholder}}" ng-model='item[field.field]' ng-change="item | iud_change"/>
+                </td>
+                <td  ng-switch-when="number">
+                     <input type='number'  ng-disabled="item.iud == 5" placeholder="{{field.placeholder}}" ng-model='item[field.field]' ng-change="item | iud_change"/>
+                </td>
+                <td  ng-switch-when="select" >
+                    <table>
+                        <tr>
+                            <td class='select-list'>
+							<!--{{item[field.field]}}-->
+                                <ui-select  search-enabled="field.search==true"   ng-disabled="item.iud == 5" ng-model='item[field.field]' theme="select2" ng-change="item | iud_change">
+                                    <ui-select-match  placeholder="{{field.placeholder}}"> <!--  -->                                        <!--{{$select.selected[field.source_field]}}-->
+                                        {{$select.selected[field.source_field]}}
+                                    </ui-select-match>
+                                    <ui-select-choices repeat="uitem.id as uitem in field.source()  |  filter_property: (field.filter_property ? field.filter_property().concat([{field:field.source_field, value:$select.search}]) : [{field:field.source_field, value:$select.search}])">
+                                        <div ng-bind-html="uitem[field.source_field] | highlight: $select.search"></div>
+                                    </ui-select-choices>
+                                </ui-select>
+                            </td>
+                            <td class='select-list-control'>
+                                <div ng-if='item[field.field]!=0 && item[field.field]!=null' class="fa fa-remove" ng-click="field.clear_selection ? field.clear_selection(item) :  item[field.field]=0; item | iud_change" ></div>
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+                <td  ng-switch-when="checkbox">
+                    <input type='checkbox'  ng-disabled="item.iud == 5" ng-model='item[field.field]' ng-change="item | iud_change"/>
+                </td>
+                <td  ng-switch-when="time">
+                    <input type='time'  ng-disabled="item.iud == 5" ng-model='item[field.field]' ng-change="item | iud_change"/>
+                </td>
+                <td  ng-switch-when="date">
+                    <input type='date'  ng-disabled="item.iud == 5" placeholder="{{field.placeholder}}" ng-model='item[field.field]' format-date placeholder="yyyy-MM-dd" ng-change="item | iud_change"/>
+                </td>
+                <td  ng-switch-when="radio">
+                    <div ng-repeat="val in field.values" >
+                        <input type='radio'  ng-disabled="item.iud == 5"  ng-model='item[field.field]' value='{{val.value}}' ng-change="item | iud_change"/>val.caption
+                    </div>
+                </td>
+                <td  ng-switch-when="file">
+                    <input type='file'  app-filereader ng-disabled="item.iud == 5"  ng-model='item[field.field]' ng-change="item | iud_change"/>
+                </td>
+                <td  ng-switch-when="image">
+                    <img data-ng-src="{{Database.file_url}}/{{item[field.field]}}" alt="image:{{item[field.field]}}" class="image-file"/>
+                    <image-selector ng-change="item | iud_change" ng-model='item[field.field]' ></image-selector>
+                </td>
+                <td ng-switch-when="timeslider">
+                    <timeslider ng-disabled="item.iud == 5" modelfirst="$root.SiteMeta.field(item, field.field[0]).value" modellast="$root.SiteMeta.field(item, field.field[1]).value" change="item | iud_change"></timeslider>
+                </td>
+            </tr>
+
+        </table>
+    </item>

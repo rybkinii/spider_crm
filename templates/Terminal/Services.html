@@ -1,0 +1,111 @@
+﻿<div ng-if="FF_Service.status!='ready'" class="app-content-loading">
+          <i class="fa fa-spinner fa-spin loading-spinner"></i>
+</div>
+
+<div ui-content-for="title">
+    <center>
+        <signal-panel class='pull-right' ng-if="FF_Service.status=='ready'">
+                <!--<div class="fa fa-plus"     ng-click="FF_Service.Create({f_c_f_client:FSession.current.f_client});$root.treedisplay[FSession.current.f_client]=true;" ></div>-->
+                <div class="fa fa-refresh" ng-click="FF_Service.Load()" ></div>
+                <div class="fa fa-save"    ng-click="FF_Service.Save();" ></div>
+        </signal-panel>
+    </center>
+</div>
+
+<div class="scrollable" ng-if="FF_Service.status=='ready'">
+<div class="scrollable-content">
+  <div class="container-fluid section section-break" id="toggleExample" ng-controller="CtrlTerminalServices">
+
+            <br/>
+
+            <script type="text/ng-template" id="FF_ServiceItemTemplate">
+                <div ng-class="'paneled-item'+(item | iud_class)" ng-controller="CtrlTerminalServices">
+                    <b>{{item.f_service}}:&nbsp;{{item.name}}</b>
+					<i class='fa fa-unlock-alt   pull-right clickable'    style='color:green' ng-click="item.block=1" ng-if="item.block==0"></i>
+					<i class='fa fa-lock         pull-right clickable'    style='color:red' ng-click="item.block=0" ng-if="item.block==1"></i>
+                    <i class='fa fa-edit         pull-right clickable'    ng-click="FF_Service.Param('edititem', FF_Service.Param('edititem').value== item.id ? '0' : item.id)" ng-if="FF_Service.status=='ready'"></i>
+                    <select style='margin:5px 3px 0px 0px' ng-style="item._inheritable ? {'color':'#aaa'} : {}" ng-model="item.f_template" ng-change="item | iud_change; item._inheritable = false; FF_Service.recalc_f_templates();" class='pull-right' ng-if="FF_Service.Param('edititem').value!=item.id">
+                            <option value='0' ng-if='item.f_template!=null'></option>
+                            <option value='{{template.f_template}}' ng-repeat='template in FF_Template.items'>{{template.name}}</option>
+                    </select> 
+                    <div style='clear:both;'></div>
+					
+                    <table style='width:100%;'  cellspacing='3px;' ng-if="FF_Service.Param('edititem').value==item.id">
+						<tr><td>Наименование</td><td>
+                            <label>{{item.name}}</label>
+                        </td></tr>
+						<tr><td>Полное наименование</td><td>
+                            <label>{{item.fullname}}</label>
+                        </td></tr>
+						<tr ng-if='item.is_catalog!=1'><td>itin</td><td>
+                            <label>{{item.itin}}</label>
+                        </td></tr>
+						<tr ng-if='item.is_catalog!=1'><td>contract</td><td>
+                            <label>{{item.contract}}</label>
+                        </td></tr>
+						<tr ng-if='item.is_catalog!=1'><td>support</td><td>
+                            <label>{{item.support}}</label>
+                        </td></tr>
+						<tr ng-if='item.is_catalog!=1'><td>c_provider</td><td>
+							<label>{{item.c_provider}}</label>
+                        </td></tr>
+						<tr ng-if='item.is_catalog!=1'><td>c_taxtype</td><td>
+							<label>{{item.c_taxtype}}</label>
+                        </td></tr>
+						<tr ng-if='item.is_catalog!=1'><td>pay_min_value</td><td>
+                            <label>{{item.pay_min_value}}</label>
+                        </td></tr>
+						<tr ng-if='item.is_catalog!=1'><td>pay_max_value</td><td>
+                            <label>{{item.pay_max_value}}</label>
+                        </td></tr>
+						<tr ng-if='item.is_catalog!=1'><td>tax_min_perc</td><td>
+                            <label>{{item.tax_min_perc}}</label>
+                        </td></tr>
+						<tr ng-if='item.is_catalog!=1'><td>tax_def_perc</td><td>
+                            <label>{{item.tax_def_perc}}</label>
+                        </td></tr>
+						<tr ng-if='item.is_catalog!=1'><td>tax_max_perc</td><td>
+                            <label>{{item.tax_max_perc}}</label>
+                        </td></tr>
+						<tr ng-if='item.is_catalog!=1'><td>tax_min_amount</td><td>
+                            <label>{{item.tax_min_amount}}</label>
+                        </td></tr>
+						<tr ng-if='item.is_catalog!=1'><td>tax_def_amount</td><td>
+                            <label>{{item.tax_def_amount}}</label>
+                        </td></tr>
+						<tr ng-if='item.is_catalog!=1'><td>tax_max_amount</td><td>
+                            <label>{{item.tax_max_amount}}</label>
+                        </td></tr>
+						<tr ng-if='item.is_catalog!=1'><td>regions</td><td>
+                            <label>{{item.regions}}</label>
+                        </td></tr>
+						<tr><td>dt_start</td><td>
+							<label>{{item.dt_start}}</label>
+                        </td></tr>
+                        <tr><td>Заблокирован</td><td>
+                                <input type='checkbox' ng-change="item | iud_change;"  ng-false-value="0" ng-true-value="1" ng-checked="item.l_termserviceblock>0" ng-model='item.block' />
+                            <label>{{item.l_termserviceblock>0 || item.block!=0 ? 'Да':'Нет'}}</label>
+                        </td></tr>
+                        <tr><td>Шаблон</td><td>
+                                <select style='margin:5px 3px 0px 0px' ng-style="item._inheritable ? {'color':'#aaa'} : {}" ng-model="item.f_template" ng-change="item | iud_change; item._inheritable = false; FF_Service.recalc_f_templates();" class='pull-right'>
+                                        <option value='0' ng-if='item.f_template!=0'></option>
+                                        <option value='{{template.f_template}}' ng-repeat='template in FF_Template.items'>{{template.name}}</option>
+                                </select> 
+                        </td></tr>
+
+                    </table>
+                </div>
+            </script>
+
+			<!--{{FF_Template.items}}-->
+            <tree 
+                family    = 'FF_Service.items'
+                template  = 'FF_ServiceItemTemplate'
+                options   = "{index:'f_service',parent:'f_s_f_service'}"
+                current   = "{id:null}"
+            >
+			</tree>
+			
+  </div>
+</div>
+</div>

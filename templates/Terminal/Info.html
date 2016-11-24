@@ -1,0 +1,42 @@
+﻿ 
+<div ng-controller="CtrlTerminalInfo" class="panel panel-default">
+
+	<div class="panel-heading">Терминал
+		<div class="clear"></div>
+	</div>
+	
+	<div class="panel-body">
+		
+		<div ng-if="FF_Terminal.status!='ready'">
+			<span class="glyphicon glyphicon-refresh" aria-hidden="false"></span> Загрузка
+		</div>
+		
+		<table ng-if="FF_Terminal.status=='ready' && FF_Terminal.items.length>0 && terminal.f_terminal==f_terminal" width='100%' border=1 ng-repeat='terminal in FF_Terminal.items'>
+		
+			<tr><td>id</td><td>{{terminal.id}}</td></tr>
+			<tr><td>email</td><td>{{terminal.email}}</td></tr>
+			<tr><td>passwd</td><td>{{terminal.passwd}}</td></tr>
+			<tr><td>f_terminal</td><td>{{terminal.f_terminal}}</td></tr>
+			<tr><td>f_client</td><td>{{terminal.f_client}}</td></tr>
+			<tr><td>time_start</td><td>{{terminal.time_start}}</td></tr>
+			<tr><td>time_stop</td><td>{{terminal.time_stop}}</td></tr>
+			<tr><td>warning_limit</td><td>{{terminal.warning_limit}}</td></tr>
+			<tr><td>unregistered</td><td>{{terminal.unregistered}}</td></tr>
+			<tr><td>stat</td><td>{{terminal.stat}}</td></tr>
+			<tr><td>dt_start</td><td>{{terminal.dt_start}}</td></tr>
+			<tr><td>dt_stop</td><td>{{terminal.dt_stop}}</td></tr>
+			<tr><td>f_address</td><td>{{terminal.f_address}}</td></tr>
+			<tr><td>fa_descr</td><td>{{terminal.fa_descr}}</td></tr>
+			<tr><td>l_terminalmodule</td><td>{{terminal.l_terminalmodule}}</td></tr>
+			<tr><td>c_module</td><td>{{terminal.c_module}}</td></tr>
+			<tr><td>l_terminalaccount</td><td>{{terminal.l_terminalaccount}}</td></tr>
+			<tr><td>f_account</td><td>{{terminal.f_account}}</td></tr>
+			<tr><td>l_terminalaccess</td><td>{{terminal.l_terminalaccess}}</td></tr>
+			<tr><td>f_access</td><td>{{terminal.f_access}}</td></tr>
+
+		</table>
+		
+	</div>
+	
+</div>
+

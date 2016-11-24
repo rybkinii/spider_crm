@@ -1,0 +1,75 @@
+﻿
+
+        
+
+            
+       <div class="panel panel-default"><div class="panel-heading">Доходы с субагентов агента ИП</div><div class="panel-body">
+        <div style="padding-bottom:5px;" align="center">
+            <table class="parameters-table">
+                <tr>
+                    <th>Период</th>
+                </tr>
+                <tr>
+                    <td><select align="center" id="period" name="period" style="width:150px;"><option value="201608">Август 2016</option>
+<option value="201607">Июль 2016</option>
+<option value="201606">Июнь 2016</option>
+<option value="201605">Май 2016</option>
+<option value="201604">Апрель 2016</option>
+<option value="201603">Март 2016</option>
+<option value="201602">Февраль 2016</option>
+<option value="201601">Январь 2016</option>
+<option value="201512">Декабрь 2015</option>
+<option value="201511">Ноябрь 2015</option>
+<option value="201510">Октябрь 2015</option>
+<option value="201509">Сентябрь 2015</option>
+<option value="201508">Август 2015</option>
+<option value="201507">Июль 2015</option>
+<option value="201506">Июнь 2015</option>
+<option value="201505">Май 2015</option>
+<option value="201504">Апрель 2015</option>
+<option value="201503">Март 2015</option>
+<option value="201502">Февраль 2015</option>
+<option value="201501">Январь 2015</option>
+<option value="201412">Декабрь 2014</option>
+<option value="201411">Ноябрь 2014</option>
+<option value="201410">Октябрь 2014</option>
+<option value="201409">Сентябрь 2014</option>
+<option value="201408">Август 2014</option>
+<option value="201407">Июль 2014</option>
+<option value="201406">Июнь 2014</option>
+<option value="201405">Май 2014</option>
+<option value="201404">Апрель 2014</option>
+<option value="201403">Март 2014</option>
+<option value="201402">Февраль 2014</option>
+<option value="201401">Январь 2014</option>
+<option value="201312">Декабрь 2013</option>
+<option value="201311">Ноябрь 2013</option>
+<option value="201310">Октябрь 2013</option>
+<option value="201309">Сентябрь 2013</option>
+</select></td>
+                </tr>
+                <tr>
+                    <th>Детализация</th>
+                </tr>
+                <tr>
+                    <td>
+                        <input type="radio" name="ReportType" value="0" checked="checked"/>По операторам<br/>
+                        <input type="radio" name="ReportType" value="1"/>По субагентам<br/>
+                        <input type="radio" name="ReportType" value="2"/>По субагентам и операторам
+                        <div>
+                            <input type="checkbox" id="itoDetails" value="1" />Детализация по ИТО
+                        </div>
+                    </td>
+                </tr>
+            </table>
+            <div align="center">
+                <input type="button" id="search" value="Поиск" />
+                <img id="loading" src="/Content/images/loading.gif" alt="loading" style="margin-bottom:5px;vertical-align:middle;visibility:hidden;" />
+            </div>
+            <div id="serverError" class="field-validation-error" align="center"></div>
+        </div>
+        <div id="result">
+        </div>
+    </div></div>
+
+

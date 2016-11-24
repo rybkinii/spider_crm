@@ -1,0 +1,50 @@
+<div ng-if="FF_Dictionaryes.status!='ready'" class="app-content-loading">
+          <i class="fa fa-spinner fa-spin loading-spinner"></i>
+</div>
+
+<div ui-content-for="title">
+    <center>
+        <signal-panel class='pull-right' ng-if="FF_Client.status=='ready'">
+<!--                <div class="fa fa-plus"     ng-click="FF_Client.Create({f_c_f_client:FSession.current.f_client});$root.treedisplay[FSession.current.f_client]=true;" ></div>
+                <div class="fa fa-refresh" ng-click="FF_Client.Load();FF_Access.Load();FF_Contact.Load();" ></div>
+                <div class="fa fa-save"    ng-click="FF_Client.Save();FF_Access.Save();FF_Contact.Save();" ></div>-->
+        </signal-panel>
+    </center>
+</div>
+
+<div class="scrollable" ng-if="FF_Dictionaryes.status=='ready'">
+<div class="scrollable-content">
+  <div class="container-fluid section section-break" id="toggleExample" ng-controller="CtrlUserCassa">
+      <br/>
+
+            
+            <select ng-change="reload_model(hzhzhzhz)" ng-model='hzhzhzhz'>
+                <option ng-repeat="item in FF_Dictionaryes.dictionary('lst_system_c_paytype')" 
+                       value='{{item.c_paytype}}'>{{item.name}}</option>
+            </select>
+            
+            <select ng-model='hzhz2'>
+                <option 
+                    ng-repeat="option in filter42(FF_Model,FF_Account,'c_acctype_ct','c_acctype', 'f_model') track by $index" 
+                    value='{{option.f_account}}'>{{option.name}}:{{option.balance}}</option>
+            </select>
+            <!--{{FF_Model}}-->
+            <table>
+                <tr ng-repeat="client in FF_Client.items">
+                    <td>{{client.descr}}</td>
+                    <td>
+                        <select ng-model="client.cur">
+                            <option ng-repeat="acc in FF_Account.items" ng-if="acc.f_client==client.f_client" value="{{acc.f_account}}">{{acc.name}}: {{acc.balance}}</option>
+                        </select>
+                        <!--<b ng-repeat="acc in FF_Account.items"  ng-if="acc.f_client==client.f_client ">{{acc.balance}}</b></td> <!--&& acc.f_model.c_acctype_dt==acc.c_acctype-->
+                    <td><input type="text" value='0' ng-model='client.amount'/></td>
+                    <!--<td><button ng-disabled="FF_Account.status!='ready'" ng-click='Process(1,client);'>Перевести</button></td>-->
+                    <td><button ng-disabled="FF_Account.status!='ready'" ng-click='Process(client,hzhzhzhz,hzhz2, client.cur);'>Перевести</button></td>
+                </tr>
+            </table>
+            <!--{{FF_Account.items}}-->
+            
+
+  </div>
+</div>
+</div>

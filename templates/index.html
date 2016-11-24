@@ -1,0 +1,48 @@
+<div ui-content-for="title"> <span>Onplat</span> </div>
+
+<div class="scrollable">
+<div class="scrollable-content">
+  <div class="container-fluid section section-break" id="toggleExample">
+
+    <p ui-shared-state id="lightbulb" ui-class="{'text-primary': lightbulb}"  class="text-default">
+      <i class="fa  fa-user"></i><!--fa-lightbulb-o-->
+    </p>
+
+    <hr>
+
+    
+    
+    <div ng-if="FSession.status!='ready'" class="panel-body">
+        <i class="fa fa-spinner fa-spin loading-spinner"></i>
+    </div>
+    
+    <center>
+        <div ng-if="FSession.status=='ready' && FSession.items.length>0" ng-repeat='session in FSession.items' class="panel-body">
+                    <span role="button"  ng-click='SwitchDebug();' 
+                                    ng-class="FSession.current.debug_mode ? 'btn-success' : 'btn-default'" 
+                                    class="btn btn-xs fa fa-wrench" 
+                                    aria-hidden="true"></span>
+                {{session.descr}} ({{session.clientgroup}}) <button ng-click="FSession.Save();">Выход</button>
+        </div>
+        <div ng-if="FSession.status=='ready' && FSession.items.length==0" class="panel-body">
+			<form>
+					<table align='center'>
+							<tr><td>Пользователь</td><td><input type='text' class="form-control input-sm" ng-model='sessionlogin'/></td></tr>
+							<tr><td>Пароль</td><td><input type='password' class="form-control input-sm" ng-model='sessionpass'/></td></tr>
+							<tr><td></td><td><button class='pull-right' ng-click="FSession.Load({'email':sessionlogin,'passwd':sessionpass});">Войти</button></td></tr>
+					</table>
+			</form>
+        </div>
+    </center>
+ 
+<!-- ************************************************************************* -->
+
+
+	
+<!-- ************************************************************************* -->	
+
+	
+	
+  </div>
+</div>
+</div>

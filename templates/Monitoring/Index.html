@@ -1,0 +1,171 @@
+﻿
+
+        
+
+            
+    <form action="/Monitoring" id="parameters" method="post">
+        <div class="panel panel-default"><div class="panel-heading">Мониторинг терминалов</div><div class="panel-body">
+
+            <table class="parameters-table" align="center" style="margin-top: 5px;" width="500px">
+                <tr>
+                    <th colspan="2">Параметры отображения</th>
+                </tr>
+                <tr>
+                    <td style="vertical-align: top;">Отображать только:</td>
+                    <td>
+                        <input id="DoesntWork" name="DoesntWork" type="checkbox" value="true" /><input name="DoesntWork" type="hidden" value="false" /> Не работающие <br />
+                        <input id="WorksWithError" name="WorksWithError" type="checkbox" value="true" /><input name="WorksWithError" type="hidden" value="false" /> Работающие с ошибкой <br />
+                        <input id="IsBlocked" name="IsBlocked" type="checkbox" value="true" /><input name="IsBlocked" type="hidden" value="false" /> Заблокированные <br />
+                        <input id="PaymentsLimitReached" name="PaymentsLimitReached" type="checkbox" value="true" /><input name="PaymentsLimitReached" type="hidden" value="false" /> Достигшие лимита платежей в день<br />
+                        <input id="NoSignal20Minutes" name="NoSignal20Minutes" type="checkbox" value="true" /><input name="NoSignal20Minutes" type="hidden" value="false" /> Не выходящие на связь более 20 минут <br />
+                        <input id="BillValidatorError" name="BillValidatorError" type="checkbox" value="true" /><input name="BillValidatorError" type="hidden" value="false" /> С ошибкой купюроприемника <br />
+                        <input id="PrinterError" name="PrinterError" type="checkbox" value="true" /><input name="PrinterError" type="hidden" value="false" /> С ошибкой принтера <br />
+                        <input id="RarePayments" name="RarePayments" type="checkbox" value="true" /><input name="RarePayments" type="hidden" value="false" /> С последним платежом более часа назад <br />
+                    </td>
+                </tr>
+                
+                <tr>
+                    <td>Активные в течении</td>
+                    <td><select id="hideAfterDays">
+                            <option value="7" selected="selected">7 дней</option>
+                            <option value="14">14 дней</option>
+                            <option value="-1">За все время</option>
+                        </select></td>
+                </tr>
+                <tr>
+                    <td>Сортировать:</td>
+                    <td>
+                        <select id="TerminalSortingType" name="TerminalSortingType">	<option value="TerminalNo">По номеру терминала</option>
+	<option value="TerminalName">По названию терминала</option>
+	<option selected="selected" value="ErrorPriority">По приоритету ошибки</option>
+	<option value="SumAmount">По сумме денег</option>
+	<option value="BillsCount">По количеству купюр</option>
+	<option value="LastEncashmentDate">По времени инкассации</option>
+</select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for="PageSize">Терминалов на странице:</label>
+                    </td>
+                    <td>
+                        <select id="PageSize" name="PageSize" style="width: 50px"><option>50</option>
+<option>100</option>
+<option selected="selected">200</option>
+<option>500</option>
+</select>
+                    </td>
+                </tr>
+                <tr>
+                    <th colspan="2">Фильтр по субагентам</th>
+                </tr>
+                <tr>
+                    <td style="vertical-align: top;">
+                        Агенты:
+                        <div id="treecontrol">
+                            <a href="#" id="collapse"></a>
+                        </div>
+                    </td>
+                    <td><ul id="LeveledAgents" class="filetree"><li><input  type="checkbox" agentId="6416475" parentId="7249141"/>ИП Аскирка  (TELE2)</li>
+</ul></td>
+                </tr>
+            </table>
+            <input id="searchTerminals" type="button" value="Показать"/>
+            <img class="loading_img" src="/Content/Images/loading.gif" alt="loader" />
+            <div id="serverError" class="field-validation-error" ></div>
+        </div></div>
+        </form>
+    <div id="searchResults"></div>
+    <br />
+    <div id="Pagination"></div>
+    <input id="CurrentPage" name="CurrentPage" type="hidden" value="0" />
+    <div id="LogParams" style="display: none;">
+        Запросить лог за дату
+         <input id="LogDate" value="" class="dateinput" tabindex="-1" />
+    </div>
+    <div id="ZReportParams" style="display: none;">
+        Запросить z-отчет за дату
+         <input id="ZReportDate" value="" class="dateinput" tabindex="-1" />
+    </div>
+    <div id="changeAuthorization" style="display: none;">
+        <table>
+            <tr><th colspan="2">Авторизационные данные для входа в сервисное меню</th></tr>
+            
+            <tr>
+                <td>Код</td>
+                <td><input id="code" type="text" maxlength="10"/></td>
+            </tr>
+            <tr>
+                <td>Логин</td>
+                <td><input id="login" type="text" maxlength="63"/></td>
+            </tr>
+            <tr>
+                <td>Пароль</td>
+                <td><input id="pwd" type="password" /></td>
+            </tr>
+        </table>
+    </div>
+    <div id="updateFirmware" style="display: none;">
+        <table style="width: 100%">
+            <tr><th colspan="2">Обновление прошивки на терминале</th></tr>
+            <tr>
+                <td>Прошивка</td>
+                <td><select id="firmware" name="firmware"><option value="1">SME-RU1308B</option>
+<option value="3">SME-RU1309F</option>
+<option value="7">SME-RU1310</option>
+<option value="10">SME-RU1307</option>
+<option value="11">SME-RU1313E</option>
+<option value="18">SME-RU1315AF</option>
+<option value="22">SME-RU1319</option>
+<option value="24">SME-RU1319AF</option>
+<option value="25">SME-RU1320</option>
+<option value="27">SME-RU1320AF</option>
+<option value="28">SME-RU1321AF</option>
+<option value="29">SME-RU1322AF</option>
+<option value="30">SME-RU1322</option>
+<option value="31">SME-RU1323</option>
+<option value="32">SME-RU1323AF</option>
+<option value="33">SME-RU1324</option>
+<option value="34">SME-RU1324AF</option>
+<option value="35">SME-RU1325AF</option>
+<option value="36">SME-RU1326</option>
+<option value="37">SME-RU1326AF3</option>
+<option value="38">SME-RU1327</option>
+<option value="39">SME-RU1327AF3</option>
+<option value="40">SME-RU1328</option>
+<option value="41">SME-RU1328AF</option>
+<option value="42">SME-RU1329AF3</option>
+<option value="43">SME-RU1330AF3</option>
+<option value="44">SME-RU1330</option>
+<option value="45">SME-RU1330B</option>
+<option value="46">SME-RU1330BF3</option>
+<option value="47">SME-RU1331</option>
+<option value="48">SME-RU1331AF3</option>
+<option value="49">SME-RU1332</option>
+<option value="50">SME-RU1332AF3</option>
+<option value="51">SME-RU1334</option>
+<option value="52">SME-RU1334AF3</option>
+<option value="53">SME-RU1335</option>
+<option value="54">SME-RU1335AF3</option>
+<option value="55">SME-RU1336</option>
+<option value="56">SME-RU1336AF3</option>
+<option value="57">SME-RU1337</option>
+<option value="58">SME-RU1337AF3</option>
+<option value="59">SME-RU1338</option>
+<option value="60">SME-RU1338AF3</option>
+<option value="61">SME-RU1339</option>
+<option value="62">SME-RU1339AF3</option>
+<option value="63">SME-RU1340</option>
+<option value="64">SME-RU1340AF3</option>
+</select></td>
+            </tr>
+            <tr>
+                <td>Только скачать</td>
+                <td><input id="downloadOnly" name="downloadOnly" type="checkbox" value="true" /><input name="downloadOnly" type="hidden" value="false" /></td>
+            </tr>
+        </table>
+    </div>
+    
+
+
+    </form>

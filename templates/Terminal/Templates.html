@@ -1,0 +1,97 @@
+<div ng-if="FF_Template.status!='ready' || FF_Client.status!='ready'" class="app-content-loading">
+          <i class="fa fa-spinner fa-spin loading-spinner"></i>
+</div>
+
+<div ui-content-for="title">
+    <center>
+        <signal-panel class='pull-right' ng-if="FF_Template.status=='ready' && FF_Client.status=='ready'">
+                <div class="fa fa-plus"     ng-click="FF_Template.Param('edititem').value = FF_Template.Create().id" ></div>
+                <div class="fa fa-refresh" ng-click="FF_Template.Load()" ></div>
+                <div class="fa fa-save"    ng-click="FF_Templateax.Save();FF_Template.Save();" ></div>
+        </signal-panel>
+    </center>
+</div>
+
+<div class="scrollable" ng-if="FF_Template.status=='ready' && FF_Client.status=='ready'">
+<div class="scrollable-content">
+  <div class="container-fluid section section-break" id="toggleExample" ng-controller="CtrlTemplates">
+
+            <br/>
+            <script type="text/ng-template" id="FF_Templateaxs">
+                <div ng-class="'paneled-item'+(item | iud_class)" ng-controller="CtrlTemplateax">
+                    <b>Комиссия от {{item.pay_value_start}}    {{item.value_perc}}%</b>
+					<!--{{ item.c_taxtype | get_indexed_value : {list: FF_Dictionaryes.dictionary('lst_terminals_c_taxtype'), index:'c_taxtype', field:'descr'} }}-->			
+                    <i class='fa fa-undo   pull-right clickable'    ng-click='item | iud_undo'    ng-if="(item.iud==3 || item.iud==4) && FF_Templateax.status=='ready'"    ></i>
+                    <i class='fa fa-remove pull-right clickable'    ng-click='item | iud_delete'  ng-if="item.iud!=3 && item.iud!=4 && FF_Templateax.status=='ready'"    ></i>
+                    <i class='fa fa-edit   pull-right clickable'    ng-click="FF_Templateax.Param('edititem', FF_Templateax.Param('edititem').value== item.id ? '0' : item.id)" ng-if="FF_Templateax.status=='ready'"></i>
+                    <div style='clear:both;'></div>
+					
+                    <table style='width:100%;'  cellspacing='3px;' ng-if="FF_Templateax.Param('edititem').value==item.id">
+                        <tr><td>Тип комиссии</td><td>
+<!-- <selector-source clearing='true' ng-change="item | iud_change" ng-model="item.c_taxtype" source="{list:FF_Dictionaryes.dictionary('lst_terminals_c_taxtype'),index:'c_taxtype',field:'descr'}" class="" ></selector-source>
+-->
+    <select ng-change='item | iud_change' ng-model='item.c_taxtype'>
+	<option ng-repeat="option in FF_Dictionaryes.dictionary('lst_terminals_c_taxtype')" value="{{option.c_taxtype}}">{{option.descr}}</option>
+    </select>
+                        </td></tr>
+                        <tr><td>От суммы</td><td>
+                                <input type='text' ng-change="item | iud_change; recalc_max_amount(item);" ng-model='item.pay_value_start' />
+                        </td></tr>
+                        <tr><td>Процент</td><td>
+                                <input type='text' ng-change="item | iud_change; recalc_max_amount(item);" ng-model='item.value_perc' />
+                        </td></tr>
+                        <tr><td>Минимальная комиссия (руб)</td><td>
+                                <input type='text' ng-change="item | iud_change; recalc_max_amount(item);" ng-model='item.value_min_amount' />
+                        </td></tr>
+                        <tr><td>Максимальная комиссия (руб)</td><td>
+                                <input type='text' ng-change="item | iud_change; " ng-model='item.value_max_amount_temp' />
+                        </td></tr>
+                    </table>
+                </div>
+            </script>
+            
+            <script type="text/ng-template" id="FF_Templates">
+                <div ng-class="'paneled-item'+(item | iud_class)+( ((FF_Template.Param('edititem').value>0)&&(FF_Template.Param('edititem').value!=item.id))?'paneled-item-shadow':'')" ng-controller="CtrlTemplates">
+                    <b>Шаблон {{item.f_template}}: {{item.name}}</b>
+					
+					
+					
+                    <i class='fa fa-remove pull-right clickable'    ng-click='item | iud_delete'  ng-if="item.iud!=3 && item.iud!=4 && FF_Template.status=='ready'"    ></i>
+                    <i class='fa fa-undo   pull-right clickable'    ng-click='item | iud_undo'    ng-if="(item.iud==3 || item.iud==4) && FF_Template.status=='ready'"    ></i>
+                    <i class='fa fa-edit   pull-right clickable'    ng-click="FF_TemplateCurrent(item);" ng-if="FF_Template.status=='ready'"></i>
+                    <!--<a href='Templates/{{item.f_template}}' ng-if="(item.iud==0 || item.iud==2 || item.iud==3) && FF_Template.status=='ready'"><i class='fa fa-wrench pull-right clickable'></i></a>-->
+                    <div style='clear:both;'></div>
+					
+                    <table style='width:100%;'  cellspacing='3px;' ng-if="FF_Template.Param('edititem').value==item.id">
+						
+                        <tr><td>Название</td><td>
+                                <input type='text' ng-change="item | iud_change" ng-model='item.name' />
+                        </td></tr>
+                        <tr><td>Наследует</td><td>
+                                <input type='checkbox' ng-change="item | iud_change;"   ng-model='item.is_inherit' />
+                        </td></tr>
+
+                    </table>
+            
+                    <div ng-if="FF_Template.Param('edititem').value==item.id && FF_Templateax.status=='ready' && item.f_template>0">
+                        <div ng-repeat="item in FF_Templateax.items | orderObjectBy:'pay_value_start' track by $index" ng-if="item.stat==0  && item.f_template==FF_Template.Param('edititem').value" >
+                                <p  ng-include="'FF_Templateaxs'"></p>
+                        </div>
+                        <signal-panel class='pull-right' ng-if="FF_Templateax.status=='ready' && FF_Client.status=='ready'">
+                                <div ng-click="FF_Templateax.Param('edititem').value = FF_Templateax.Create({f_template:item.f_template}).id" >Добавить</div>
+                        </signal-panel> 
+                        <div style='clear:both;'></div>
+                    </div>
+
+                </div>
+            </script>
+			
+
+			<div ng-repeat="item in FF_Template.items | orderBy:'id' track by $index" ng-if='item.stat==0'>
+				<p  ng-include="'FF_Templates'"></p>
+			</div>
+
+
+  </div>
+</div>
+</div>
